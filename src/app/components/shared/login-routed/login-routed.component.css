@@ -1,0 +1,32 @@
+.container {
+    margin-top: 50px;
+  }
+  
+  .login-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+  
+  }
+  .password-input {
+    width: 365px; /* Ajusta el valor según tus preferencias */
+  }
+  .input {
+    margin-bottom: 20px;
+  
+  }
+  
+  
+  
+  .control-group {
+  
+    text-align: center;
+    justify-content: center;
+  }
+  
+  button{
+    margin: 20px;
+  }

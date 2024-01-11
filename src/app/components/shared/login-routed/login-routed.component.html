@@ -1,0 +1,60 @@
+
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <div class="p-d-flex p-justify-content-center mb-3">
+        <h1 class="my-5">Login Form</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Username input -->
+      <div class="input">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <input pInputText placeholder="Username" formControlName="username" required (blur)="lostFocus.username = true">
+        </div>
+        <small *ngIf="lostFocus.username" class="p-error block">
+          Username es requerido
+        </small>
+      </div>
+
+      <!-- Password input -->
+      <div class="input">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-lock"></i>
+          </span>
+          <input class="password-input" placeholder="Password" formControlName="password" type="password" required (blur)="lostFocus.password = true">
+        </div>
+        <small *ngIf="lostFocus.password" class="p-error block">
+          Password es requerida
+        </small>
+        <small *ngIf="lostFocus.password" class="p-error block">
+          La contraseña debe tener al menos 6 caracteres
+        </small>
+      </div>
+
+      <!-- Control group -->
+      <div class="control-group">
+        <button pButton type="submit" class="botonesLog p-button-primary" label="Iniciar sesión" icon="pi pi-sign-in"></button>
+        <button pButton type="button" class="botonesLog p-button-secondary" label="Reset" icon="pi pi-refresh" (click)="onReset()"></button>
+      </div>
+    </form>
+
+    <!-- Additional buttons -->
+    <div class="p-card">
+      <div class="p-card-body">
+        <div class="control-group text-center">
+          <button pButton type="button" class="p-button-danger" label="log in as admin" icon="pi pi-user" (click)="loginAdmin()"></button>
+          <button pButton type="button" class="p-button-success" label="log in as user" icon="pi pi-user-plus" (click)="loginUser()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

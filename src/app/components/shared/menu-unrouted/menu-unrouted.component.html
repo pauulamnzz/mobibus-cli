@@ -1,0 +1,19 @@
+<p-menubar [model]="items">
+  <div>
+    
+    <input id="searchBar" type="text" pInputText placeholder="Search">
+    
+    <span class="userInfo" *ngIf="strUserName">
+      <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
+    </span>
+    <span class="userInfo"class="navbar-text mx-1" *ngIf="!strUserName">
+      Not logged in
+    </span>
+    <button class="buttonLogin" pButton label="Login" icon="pi pi-sign-in" (click)="redirectToLogin()" *ngIf="!strUserName"></button>
+    <button class="buttonLogout" pButton label="Logout" icon="pi pi-power-off" (click)="redirectToLogout()" *ngIf="strUserName"></button>
+ 
+
+  </div>
+
+
+</p-menubar>
