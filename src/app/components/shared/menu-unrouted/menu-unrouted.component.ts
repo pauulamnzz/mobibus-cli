@@ -8,6 +8,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MenubarModule } from 'primeng/menubar';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -15,6 +17,8 @@ import { MenubarModule } from 'primeng/menubar';
   templateUrl: './menu-unrouted.component.html',
   styleUrls: ['./menu-unrouted.component.css'],
   imports:[MenubarModule,
+    ButtonModule,
+    InputTextModule,
     
   ],
   
@@ -77,8 +81,7 @@ export class MenuUnroutedComponent implements OnInit {
           },
           {
             label: 'Plist',
-            icon: 'pi pi-list',
-            
+            icon: 'pi-car' 
           },
           
         ]

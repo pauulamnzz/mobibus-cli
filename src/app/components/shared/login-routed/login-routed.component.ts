@@ -6,13 +6,22 @@ import { MessageService } from 'primeng/api';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { CryptoService } from '../../../services/crypto.service';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-login-routed',
   standalone: true,
   templateUrl: './login-routed.component.html',
   styleUrls: ['./login-routed.component.css'],
- imports:[FormsModule, ReactiveFormsModule]
+ imports:[
+  FormsModule, 
+  ReactiveFormsModule,
+  ButtonModule,
+  MessagesModule,
+  DynamicDialogModule
+]
 })
 export class LoginRoutedComponent implements OnInit {
 
