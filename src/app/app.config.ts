@@ -6,6 +6,7 @@ import { SessionAjaxService } from './services/session.ajax.service';
 import { provideHttpClient } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     SessionAjaxService,
     provideHttpClient(),
     DialogService,
-    MessageService
+    MessageService,
+    provideAnimations(),
   ]
 };

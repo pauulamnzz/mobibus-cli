@@ -3,7 +3,7 @@
   }
   
   .login-form {
-    max-width: 400px;
+   
     margin: 0 auto;
   }
   
@@ -15,6 +15,8 @@
     width: 365px; /* Ajusta el valor según tus preferencias */
   }
   .input {
+    margin: 0 auto;
+    width: 200px;
     margin-bottom: 20px;
   
   }
