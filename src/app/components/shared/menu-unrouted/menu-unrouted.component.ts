@@ -81,7 +81,7 @@ export class MenuUnroutedComponent implements OnInit {
           },
           {
             label: 'Plist',
-            icon: 'pi-car' 
+            icon: 'pi pi-align-center' 
           },
           
         ]
