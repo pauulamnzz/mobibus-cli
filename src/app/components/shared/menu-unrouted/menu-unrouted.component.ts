@@ -67,7 +67,7 @@ export class MenuUnroutedComponent implements OnInit {
       },
       {
         label: 'Líneas',
-        icon: 'pi-bookmark',
+        icon: 'pi pi-bookmark',
 
       },
       {
