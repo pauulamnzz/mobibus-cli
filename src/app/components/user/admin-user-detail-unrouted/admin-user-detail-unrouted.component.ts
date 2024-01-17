@@ -7,7 +7,8 @@ import { UserAjaxService } from '../../../services/user.ajax.service';
 @Component({
   selector: 'app-admin-user-detail-unrouted',
   templateUrl: './admin-user-detail-unrouted.component.html',
-  styleUrls: ['./admin-user-detail-unrouted.component.css']
+  styleUrls: ['./admin-user-detail-unrouted.component.css'],
+  standalone: true,
 })
 export class AdminUserDetailUnroutedComponent implements OnInit {
   @Input() id: number = 1;

@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { SessionAjaxService } from './services/session.ajax.service';
 import { provideHttpClient } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
@@ -16,5 +16,6 @@ export const appConfig: ApplicationConfig = {
     DialogService,
     MessageService,
     provideAnimations(),
+    ConfirmationService
   ]
 };

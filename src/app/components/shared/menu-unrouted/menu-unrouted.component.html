@@ -5,7 +5,9 @@
 
     @if(strUserName){
     <span class="userInfo">
+      
       <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
+   
     </span>
     <button class="buttonLogout" pButton label="Logout" icon="pi pi-power-off" (click)="redirectToLogout()"></button>
     }@else{

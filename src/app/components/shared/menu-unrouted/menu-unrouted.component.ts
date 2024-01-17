@@ -121,7 +121,8 @@ export class MenuUnroutedComponent implements OnInit {
   redirectToLogout() {
     this.oRouter.navigateByUrl('/logout');
   }
-    doSessionUserView($event: Event) {
+
+     doSessionUserView($event: Event) {
     if (this.oSessionUser) {
       let ref: DynamicDialogRef | undefined;
       ref = this.oDialogService.open(UserUserDetailUnroutedComponent, {
@@ -137,5 +138,6 @@ export class MenuUnroutedComponent implements OnInit {
     }
     return false;
   } 
+
 
 }
