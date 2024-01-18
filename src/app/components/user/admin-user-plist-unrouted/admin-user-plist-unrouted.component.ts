@@ -11,6 +11,7 @@ import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { MessagesModule } from 'primeng/messages';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-user-plist-unrouted',
@@ -23,7 +24,8 @@ import { MessagesModule } from 'primeng/messages';
     ButtonModule,
     RouterModule,
     MessagesModule,
-    AdminUserDetailUnroutedComponent
+    AdminUserDetailUnroutedComponent,
+    
     
   ],
 
