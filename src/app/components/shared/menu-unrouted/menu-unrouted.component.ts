@@ -81,7 +81,8 @@ export class MenuUnroutedComponent implements OnInit {
           },
           {
             label: 'Plist',
-            icon: 'pi pi-align-center' 
+            icon: 'pi pi-align-center',
+            command: () => this.oRouter.navigateByUrl('/admin/user/plist') 
           },
           
         ]
