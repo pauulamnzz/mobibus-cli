@@ -1,35 +1,32 @@
 
-<div class="p-container">
-  <div class="p-row">
-    <div class="p-col">
       <div class="p-d-flex p-jc-center">
-        <h1 class="p-my-3">USERS</h1>
+        <h1 class="titulo">USERS</h1>
       </div>
-     
 
-        @if(bLoading){
 
- <div class="p-card-body">
-          <h3 class="p-text-danger">Processing... wait, please.</h3>
-          <p-progressSpinner styleClass="custom-spinner" strokeWidth="5" fill="#EEEEEE"
+      @if(bLoading){
+
+      <div class="p-card-body">
+        <h3 class="p-text-danger">Processing... wait, please.</h3>
+        <p-progressSpinner styleClass="custom-spinner" strokeWidth="5" fill="#EEEEEE"
           animationDuration=".5s"></p-progressSpinner>
+      </div>
+
+      }@else {
+        <div class="botonera">
+          <p-button class="boton" label="Añadir usuario" [raised]="true" [routerLink]="['/admin','user','new']" size="small"></p-button>
+          <p-button class="boton" label="+10" [raised]="true" (click)="doGenerateRandom(10)" severity="warning" size="small"></p-button>
+          <p-button class="boton" label="+100" [raised]="true" (click)="doGenerateRandom(100)" severity="warning" size="small"></p-button>
+          <p-button class="boton" label="+1000" [raised]="true" (click)="doGenerateRandom(1000)" severity="warning" size="small"></p-button>
+          <p-button class="boton" label="Vaciar" [raised]="true" (click)="doEmpty($event)" severity="danger" size="small"></p-button>
         </div>
+        
+      }
 
-        }@else {
-
-        <button pButton type="button" class="p-button p-button-primary" [routerLink]="['/admin','user','new']">New user</button>
-        <button pButton type="button" class="p-button p-button-warning" (click)="doGenerateRandom(10)">+10</button>
-        <button pButton type="button" class="p-button p-button-warning" (click)="doGenerateRandom(100)">+100</button>
-        <button pButton type="button" class="p-button p-button-warning" (click)="doGenerateRandom(1000)">+1000</button>
-        <button pButton type="button" class="p-button p-button-danger" (click)="doEmpty($event)">Empty</button>
-
-        }
-    </div>
 
     @if(!bLoading){
-      <app-admin-user-plist-unrouted [forceReload]="forceReload" ></app-admin-user-plist-unrouted>
+    <app-admin-user-plist-unrouted [forceReload]="forceReload"></app-admin-user-plist-unrouted>
 
     }
-  </div>
-</div>
-<p-confirmPopup></p-confirmPopup>
+
+<!--<p-confirmPopup></p-confirmPopup>-->

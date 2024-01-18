@@ -1,12 +1,5 @@
-body {
-    margin: 0; /* Asegura que no haya márgenes en el cuerpo de la página */
-    padding: 0; /* Asegura que no haya relleno en el cuerpo de la página */
-    min-height: 100vh; /* Establece la altura mínima de la vista al 100% del viewport */
-    position: relative; /* Establece la posición relativa para los elementos posicionados dentro de él */
-  }
-  
+
   footer {
-    position: absolute; /* Fija el pie de página en una posición absoluta */
     bottom: 0; /* Lo fija al fondo de la página */
     width: 100%; /* Establece el ancho al 100% del contenedor padre */
     background-color: #f1f1f1; /* Color de fondo opcional */

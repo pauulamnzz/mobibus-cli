@@ -67,7 +67,8 @@ export class MenuUnroutedComponent implements OnInit {
       },
       {
         label: 'Líneas',
-        icon: 'pi pi-bookmark',
+        icon: 'pi pi-sort-numeric-down-alt',
+
 
       },
       {
@@ -75,12 +76,13 @@ export class MenuUnroutedComponent implements OnInit {
         icon: 'pi pi-users',
         items: [
           {
-            label: 'New',
+            label: 'Añadir usuario',
             icon: 'pi pi-fw pi-user-plus',
+            command: () => this.oRouter.navigateByUrl('/admin/user/new') 
 
           },
           {
-            label: 'Plist',
+            label: 'Lista de usuarios',
             icon: 'pi pi-align-center',
             command: () => this.oRouter.navigateByUrl('/admin/user/plist') 
           },
@@ -90,6 +92,18 @@ export class MenuUnroutedComponent implements OnInit {
       {
         label: 'Paradas',
         icon: 'pi pi-map-marker',
+        items:[
+          {
+            label: 'Añadir parada',
+            icon: 'pi pi-heart',
+          },
+          {
+            label: 'Lista de paradas',
+            icon: 'pi pi-align-center',
+            command: () => this.oRouter.navigateByUrl('/admin/user/plist') 
+          },
+       
+        ]
      
       },
       {
@@ -130,7 +144,7 @@ export class MenuUnroutedComponent implements OnInit {
         data: {
           id: this.oSessionUser.id
         },
-        header: 'View of user',
+        header: 'Vista de usuario',
         width: '50%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,

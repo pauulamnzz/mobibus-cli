@@ -1,3 +1,42 @@
-<p>
-  admin-user-detail-unrouted works!
-</p>
+<!--FLECHITA PARA VER INFO SIEMPRE SE VE-->
+
+
+@if(status != null){
+<div class="p-alert p-alert-danger" role="alert">
+  {{ status!.error.message }} - {{ status!.message }}
+</div>
+}@else{
+
+
+@if(status == null){
+  <table class="p-table p-table-striped p-table-hover custom-table">
+    @if(oUser){
+<tbody>
+        <tr>
+          <th>Property</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <th>ID</th>
+          <td>{{ oUser.id }}</td>
+        </tr>
+        <tr>
+          <th>USERNAME</th>
+          <td>{{ oUser.username }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ oUser.email }}</td>
+        </tr>
+        <tr>
+          <th>ROLE</th>
+          <td>{{ oUser.role }}</td>
+        </tr>
+
+      </tbody>
+    }
+
+  </table>
+}
+
+}

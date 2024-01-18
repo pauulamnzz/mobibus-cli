@@ -1,68 +1,66 @@
-
-
-
 @if (status != null) {
 
 
 }@else {
- <div class="p-flex p-justify-center mb-3">
+<div class="container">
+  <div>
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
       [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
+
+
+  <p-table class="tabla"[value]="users">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Herramientas</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          @if(user.role==true){
+          <span>User</span>
+          }@else {
+          <span>Admin</span>
+          }
+        </td>
+
+        <td>
+          <p-button class="boton" icon="pi pi-eye" [raised]="true" [routerLink]="['/admin','user','view',user.id]"
+            size="small"></p-button>
+          <p-button class="boton" icon="pi pi-arrow-circle-up" [raised]="true" (click)="doView(user)"
+            size="small"></p-button>
+          <p-button class="boton" icon="pi pi-pencil" [raised]="true" [routerLink]="['/admin','user','edit',user.id]"
+            severity="warning" size="small"></p-button>
+          <p-button class="boton" icon="pi pi-trash" [raised]="true" (click)="doRemove(user)" severity="danger"
+            size="small"></p-button>
+
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div>
+        Se estan viendo {{users ? users.length : 0 }} users.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
   </div>
-
-  <div class="mb-5 ">
-    <table class="p-table p-table-bordered p-table-striped p-table-hover p-table-sm">
-      <thead>
-        <tr>
-          <th (click)="doOrder('id')">ID</th>
-          <th (click)="doOrder('username')">Username</th>
-          <th (click)="doOrder('email')">Nivel</th>
-          <th (click)="doOrder('role')">Role</th>
-       
-          <th>Herramientas</th>
-        </tr>
-      </thead>
-
-      <tbody>
-@for( oPage of oPage?.content ; track oPage;){
-          <tr class="p-align-middle">
-          <td class="p-text-end"><strong>{{ oPage.id }}</strong></td>
-          <td>{{ oPage.username }}</td>
-          <td>{{ oPage.email }}</td>
-          <td class="text-center">
-            @if(oPage.role==true){
-              <span >User</span>
-            }@else {
-              <span >Admin</span>
-            }
-            
-            
-          </td>
-
-          <td class="p-text-center">
-            <div class="p-button-group p-button-group-sm" role="group" aria-label="Basic example">
-              <button class="p-button p-button-primary" [routerLink]="['/admin','user','view',oPage.id]"><i class="pi pi-eye"></i></button>
-              <button class="p-button p-button-primary" (click)="doView(oPage)"><i class="pi pi-arrow-circle-up"></i></button>
-              <button class="p-button p-button-warning" [routerLink]="['/admin','user','edit',oPage.id]"><i class="pi pi-pencil"></i></button>
-              <button  class="p-button p-button-danger" (click)="doRemove(oPage)"><i class="pi pi-trash"></i></button>
-
-            </div>
-          </td>
-        </tr>
-}
-        
-      </tbody>
-    </table>
-  </div>
-  
 }
 
 
 
 
-<p-confirmDialog #cd [style]="{ width: '30vw' }">
+<p-confirmDialog #cd>
   <ng-template pTemplate="header">
-    <h5><i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem"></i> Eliminación de Jugador</h5>
+    <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de Jugador</h5>
   </ng-template>
   <ng-template pTemplate="message">
     <div class="p-container p-d-flex p-align-items-center p-justify-content-center">
@@ -71,12 +69,11 @@
   </ng-template>
   <ng-template pTemplate="footer">
     <p>¿Seguro que quieres eliminar el Jugador?</p>
-    <button class="p-button p-button-primary mx-1" icon="pi pi-times" (click)="cd.reject()">
+    <button class="p-button p-button-primary mxy-1" icon="pi pi-times" (click)="cd.reject()">
       <span class="p-button-label">No</span>
     </button>
-    <button class="p-button p-button-danger mx-1" icon="pi pi-check" (click)="cd.accept()">
+    <button class="p-button p-button-danger mxy-1" icon="pi pi-check" (click)="cd.accept()">
       <span class="p-button-label">Sí</span>
     </button>
   </ng-template>
 </p-confirmDialog>
-

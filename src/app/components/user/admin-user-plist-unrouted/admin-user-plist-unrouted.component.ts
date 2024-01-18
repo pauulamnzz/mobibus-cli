@@ -8,11 +8,13 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
-import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { MessagesModule } from 'primeng/messages';
-import { CommonModule } from '@angular/common';
-
+import { PrimeNGConfig } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
 @Component({
   selector: 'app-admin-user-plist-unrouted',
   standalone: true,
@@ -25,7 +27,9 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     MessagesModule,
     AdminUserDetailUnroutedComponent,
-    
+    TableModule,
+    ButtonModule,
+    TagModule,
     
   ],
 
@@ -39,16 +43,20 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oUserToRemove: IUser | null = null;
   ref: DynamicDialogRef | undefined;
+  users: any[] = [];
 
   constructor(
     private oUserAjaxService: UserAjaxService,
     public oDialogService: DialogService,
     private oConfirmationService: ConfirmationService,
-    private oMessageService: MessageService
+    private oMessageService: MessageService,
+    private primengConfig: PrimeNGConfig
 
   ) { }
 
   ngOnInit() {
+    this.primengConfig.ripple = true;
+    
     this.getPage();
     this.forceReload.subscribe({
       next: (v) => {
@@ -64,6 +72,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
       next: (data: IUserPage) => {
         this.oPage = data;
+        this.users = data.content;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);
       },
@@ -96,7 +105,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       data: {
         id: u.id
       },
-      header: 'View of user',
+      header: 'Vista de usuario',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -122,6 +131,4 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.oMessageService.add({ severity: 'error', summary: "The user hasn't been removed.", detail: "The user hasn't been removed.", life: 2000 });      }
     });
   }
-
-
 }

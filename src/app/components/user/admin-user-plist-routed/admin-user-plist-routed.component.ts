@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { UserAjaxService } from '../../../services/user.ajax.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -9,6 +9,7 @@ import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/
 import { RouterModule } from '@angular/router';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { AdminUserPlistUnroutedComponent } from "../admin-user-plist-unrouted/admin-user-plist-unrouted.component";
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-admin-user-plist-routed',
@@ -21,7 +22,8 @@ import { AdminUserPlistUnroutedComponent } from "../admin-user-plist-unrouted/ad
         AdminUserDetailUnroutedComponent,
         RouterModule,
         ConfirmPopupModule,
-        AdminUserPlistUnroutedComponent
+        AdminUserPlistUnroutedComponent,
+        ButtonModule,
     ]
 })
 export class AdminUserPlistRoutedComponent implements OnInit {
@@ -30,10 +32,10 @@ export class AdminUserPlistRoutedComponent implements OnInit {
   bLoading: boolean = false;
 
   constructor(
+    private primengConfig: PrimeNGConfig,
     private oUserAjaxService: UserAjaxService,
     private oConfirmationService: ConfirmationService,
-    private oMessageService: MessageService
-
+    private oMessageService: MessageService,
   ) { }
 
   ngOnInit() {

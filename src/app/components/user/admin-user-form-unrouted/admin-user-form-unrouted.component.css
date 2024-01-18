@@ -1,0 +1,31 @@
+/* Agrega este estilo a tu hoja de estilos CSS */
+.form-group {
+    margin-bottom: 35px; /* Puedes ajustar este valor según tus preferencias */
+  }
+  
+  .p-error.block {
+    margin-top: 5px; /* Puedes ajustar este valor según tus preferencias */
+    margin-bottom: 25px; /* Puedes ajustar este valor según tus preferencias */
+  
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .btn{
+  text-align: center;
+  margin: 60px;
+
+  }
+  .info{
+  margin-top: 10px; /* Puedes ajustar este valor según tus preferencias */
+  margin-bottom: 35px; /* Puedes ajustar este valor según tus preferencias */
+  
+  }
+  .p-field-radiobutton{
+  margin: 10px;
+  }

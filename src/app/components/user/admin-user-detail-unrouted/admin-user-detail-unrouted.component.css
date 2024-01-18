@@ -1,0 +1,30 @@
+/* Estilo para centrar vertical y horizontalmente */
+.center-container {
+    display: flex;
+      text-align: center;
+    align-items: center;
+  
+  }
+  
+  /* Estilo para la tabla */
+  .custom-table {
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  /* Estilo para resaltar las filas impares */
+  .custom-table tbody tr:nth-child(odd) {
+    background-color: #f5f5f5;
+  }
+  
+  /* Estilo para enlaces dentro de la tabla */
+  .custom-table a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  /* Estilo para enlaces al pasar el ratón */
+  .custom-table a:hover {
+    text-decoration: underline;
+  }
+  

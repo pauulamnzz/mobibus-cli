@@ -1,3 +1,8 @@
-.table{
-    margin: auto, 0;
+.boton{
+    margin: 10px;
+
+}
+.tabla{
+    margin: 10px;
+    justify-content: center;
 }

@@ -3,6 +3,8 @@ import { HomeRoutedComponent } from './components/shared/home-routed/home-routed
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
+import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
+import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -11,7 +13,8 @@ export const routes: Routes = [
     { path: 'logout', component: LogoutRoutedComponent },
   
     { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },    
-
-   
+    { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
+    { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
+    
 
 ];
