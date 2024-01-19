@@ -1,7 +1,8 @@
 
-      <div class="flex justify-content-end">
-        <h1 class="titulo">USERS</h1>
-      </div>
+<div class="is-flex is-justify-content-center has-text-centered">
+  <h1 class="titulo is-size-1 has-text-weight-bold">USUARIOS</h1>
+</div>
+
 
 
       @if(bLoading){
@@ -13,13 +14,13 @@
       </div>
 
       }@else {
-        <div class="botonera">
-          <p-button class="boton" label="Añadir usuario" [raised]="true" [routerLink]="['/admin','user','new']" size="small"></p-button>
-          <p-button class="boton" label="+10" [raised]="true" (click)="doGenerateRandom(10)" severity="warning" size="small"></p-button>
-          <p-button class="boton" label="+100" [raised]="true" (click)="doGenerateRandom(100)" severity="warning" size="small"></p-button>
-          <p-button class="boton" label="+1000" [raised]="true" (click)="doGenerateRandom(1000)" severity="warning" size="small"></p-button>
-          <p-button class="boton" label="Vaciar" [raised]="true" (click)="doEmpty($event)" severity="danger" size="small"></p-button>
-          <button class="button is-white">Button</button>
+        <div class="is-flex is-justify-content-center has-text-centered">          
+          <p-button class=" m-3" label="Añadir usuario" [raised]="true" [routerLink]="['/admin','user','new']" size="small"></p-button>
+          <p-button class=" m-3" label="+10" [raised]="true" (click)="doGenerateRandom(10)" severity="warning" size="small"></p-button>
+          <p-button class=" m-3" label="+100" [raised]="true" (click)="doGenerateRandom(100)" severity="warning" size="small"></p-button>
+          <p-button class=" m-3" label="+1000" [raised]="true" (click)="doGenerateRandom(1000)" severity="warning" size="small"></p-button>
+          <p-button class=" m-3" label="Vaciar" [raised]="true" (click)="doEmpty($event)" severity="danger" size="small"></p-button>
+          <button class="button is-primary m-3">Button</button>
         </div>
         
       }
