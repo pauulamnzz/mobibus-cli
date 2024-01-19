@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "css-build": "sass  --no-source-map node_modules/bulma/bulma.sass node_modules/bulma/bulma.css",
+    "css-build": "sass  --no-source-map node_modules/bulma/bulma.sass src/bulma.css",
     "css-watch": "npm run css-build -- --watch",
     "start-css": "npm run css-watch"
   },
