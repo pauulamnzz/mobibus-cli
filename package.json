@@ -1,12 +1,16 @@
 {
   "name": "mobibus-cli",
+  "main": "mobibus-cli/node_modules/bulma/bulma.sass",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "css-build": "sass  --no-source-map node_modules/bulma/bulma.sass node_modules/bulma/bulma.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start-css": "npm run css-watch"
   },
   "private": true,
   "dependencies": {
@@ -20,11 +24,11 @@
     "@angular/router": "^17.0.0",
     "@fortawesome/angular-fontawesome": "^0.14.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "bulma": "^0.9.4",
     "crypto-js": "^4.2.0",
     "primeicons": "^6.0.1",
     "primeng": "^17.3.2",
     "rxjs": "~7.8.0",
+    "sass": "^1.70.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
@@ -34,12 +38,14 @@
     "@angular/compiler-cli": "^17.0.0",
     "@types/crypto-js": "^4.2.1",
     "@types/jasmine": "~5.1.0",
+    "bulma": "^0.9.4",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "node-sass": "^9.0.0",
     "typescript": "~5.2.2"
   }
 }
