@@ -33,13 +33,13 @@
         </td>
 
         <td>
-          <p-button class="boton" icon="pi pi-eye" [raised]="true" [routerLink]="['/admin','user','view',user.id]"
+          <p-button class=" m-3" icon="pi pi-eye" [raised]="true" [routerLink]="['/admin','user','view',user.id]"
             size="small"></p-button>
-          <p-button class="boton" icon="pi pi-arrow-circle-up" [raised]="true" (click)="doView(user)"
+          <p-button class=" m-3" icon="pi pi-arrow-circle-up" [raised]="true" (click)="doView(user)"
             size="small"></p-button>
-          <p-button class="boton" icon="pi pi-pencil" [raised]="true" [routerLink]="['/admin','user','edit',user.id]"
+          <p-button class=" m-3" icon="pi pi-pencil" [raised]="true" [routerLink]="['/admin','user','edit',user.id]"
             severity="warning" size="small"></p-button>
-          <p-button class="boton" icon="pi pi-trash" [raised]="true" (click)="doRemove(user)" severity="danger"
+          <p-button class=" m-3" icon="pi pi-trash" [raised]="true" (click)="doRemove(user)" severity="danger"
             size="small"></p-button>
 
         </td>
