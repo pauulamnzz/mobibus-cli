@@ -1,11 +1,4 @@
 
-  footer {
-    bottom: 0; /* Lo fija al fondo de la página */
-    width: 100%; /* Establece el ancho al 100% del contenedor padre */
-    background-color: #f1f1f1; /* Color de fondo opcional */
-    padding: 10px; /* Relleno opcional */
-    text-align: center;
-  }
   .icons {
       width: 32px;
       height: 32px;

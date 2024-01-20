@@ -1,68 +1,76 @@
+<!--BULMA-->
 <div class="container">
+  <div class="container has-text-centered">
+    <div class="column is-6 is-offset-3">
+      <div class="box mt-5">
 
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <div class="p-d-flex p-justify-content-center mb-3">
-        <h1 class="my-5">Login Form</h1>
-      </div>
-    </div>
-  </div>
+        <!--USERNAME-->
+        <h1 class="titulo is-size-4 has-text-weight-bold mb-5">INICIO DE SESIÓN</h1>
 
-  <div class="login-form">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <!-- Username input -->
-      <div class="input">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">
-            <i class="pi pi-user"></i>
-          </span>
+        <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="onSubmit()">
+          
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input is-size-6" type="username" placeholder="Username" autofocus=""
+                formControlName="username" required (blur)="lostFocus.username = true">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            @if(loginForm.get('username')?.hasError('required') && lostFocus.username){
+            <small class="p-error block"> Username es requerido</small>
+            }
+          </div>
 
-          <input class= pInputText placeholder="Username" formControlName="username" required
-            (blur)="lostFocus.username = true">
-        </div>
-        @if(loginForm.get('username')?.hasError('required') && lostFocus.username){
-        <small class="p-error block"> Username es requerido</small>
-        }
-      </div>
 
-      <!-- Password input -->
-      <div class="input">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">
-            <i class="pi pi-lock"></i>
-          </span>
-          <input class="password-input" placeholder="Password" formControlName="password" type="password" required
-            (blur)="lostFocus.password = true">
-        </div>
-        @if(loginForm.get('password')?.hasError('required') && lostFocus.password){
-           <small class="p-error block">Password es requerida</small>
-        }
-       
-        @if(loginForm.get('password')?.hasError('minlength') && lostFocus.password){
-           
-        <small class="p-error block"> La contraseña debe tener al menos 6 caracteres</small>
-        }
-       
-      </div>
+          <!--PASSWORD-->
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input is-size-6" type="password" placeholder="Password" formControlName="password" required
+                (blur)="lostFocus.password = true">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+            @if(loginForm.get('password')?.hasError('required') && lostFocus.password){
+            <small class="p-error block">Password es requerida</small>
+            }
 
-      <!-- Control group -->
-      <div class="control-group">
-        <button pButton type="submit" class="botonesLog p-button-primary" label="Iniciar sesión"
-          icon="pi pi-sign-in"></button>
-        <button pButton type="button" class="botonesLog p-button-secondary" label="Reset" icon="pi pi-refresh"
-          (click)="onReset()"></button>
-      </div>
-    </form>
+            @if(loginForm.get('password')?.hasError('minlength') && lostFocus.password){
 
-    <!-- Additional buttons -->
-    <div class="p-card">
-      <div class="p-card-body">
+            <small class="p-error block"> La contraseña debe tener al menos 6 caracteres</small>
+            }
+          </div>
+          <div>
+            <div class="field">
+              <p class="has-text-grey">
+                <a href="../">Crear cuenta</a> &nbsp;·&nbsp;
+                <a href="../">He olvidado la contraseña</a> &nbsp;·&nbsp;
+                <a href="../">¿Necesita ayuda?</a>
+              </p>
+              <button class="button is-success is-medium is-size-6 m-4">Entrar
+              </button>
+
+              <button class="button is-danger is-medium is-size-6 m-4" (click)="onReset()"> 
+                Borrar
+              </button>
+              
+            </div>
+          </div>
+        </form>
+
+        <!-- Additional buttons -->
         <div class="control-group text-center">
-          <button pButton type="button" class="p-button-danger" label="log in as admin" icon="pi pi-user"
-            (click)="loginAdmin()"></button>
-          <button pButton type="button" class="p-button-success" label="log in as user" icon="pi pi-user-plus"
-            (click)="loginUser()"></button>
+          <button pButton type="button" class="p-button-info m-3" label="Iniciar sesión como admin"
+            (click)="loginAdmin()">
+            <i class="fa-solid fa-screwdriver-wrench m-1"></i></button>
+          <button pButton type="button" class="p-button-info m-3" label="Iniciar sesión como user"
+            (click)="loginUser()">
+            <i class="fa-regular fa-user m-1"></i>
+                    </button>
         </div>
+
+
       </div>
     </div>
   </div>

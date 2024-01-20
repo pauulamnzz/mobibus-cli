@@ -9,9 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
-import { Toast, ToastModule } from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-login-routed',
@@ -24,7 +22,7 @@ import { Toast, ToastModule } from 'primeng/toast';
   ButtonModule,
   MessagesModule,
   DynamicDialogModule,
-  ToastModule
+  ToastModule,
 
 ]
 })

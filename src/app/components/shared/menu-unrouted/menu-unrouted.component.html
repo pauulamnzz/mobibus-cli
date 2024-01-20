@@ -1,20 +1,28 @@
+<!--PRIMENG Y CLASE BULMA-->
 <p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <img src="../../../../assets/img/loguito-inverso.png"height="40" width="40"/>
+</ng-template>
   <div>
 
     <input id="searchBar" type="text" pInputText placeholder="Search">
 
     @if(strUserName){
-    <span class="userInfo">
+    <span class="navbar-text m-3" >
       
       <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
    
     </span>
-    <button class="buttonLogout" pButton label="Logout" icon="pi pi-power-off" (click)="redirectToLogout()"></button>
+    <button class="button is-primary"  (click)="redirectToLogout()">
+      <i class="fa-solid fa-power-off"></i>
+    </button>
     }@else{
-    <span class="userInfo" class="navbar-text mx-1">
+    <span class="navbar-text m-3">
       Not logged in
     </span>
-    <button class="buttonLogin" pButton label="Login" icon="pi pi-sign-in" (click)="redirectToLogin()"></button>
+    <button class="button is-primary"  (click)="redirectToLogin()">
+      <i class="fa-solid fa-right-to-bracket"></i>
+    </button>
     }
 
   </div>

@@ -15,6 +15,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
+import { RatingModule } from 'primeng/rating';
 @Component({
   selector: 'app-admin-user-plist-unrouted',
   standalone: true,
@@ -30,6 +31,7 @@ import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-us
     TableModule,
     ButtonModule,
     TagModule,
+    RatingModule
     
   ],
 

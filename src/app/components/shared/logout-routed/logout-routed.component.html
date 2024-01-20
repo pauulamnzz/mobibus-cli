@@ -1,26 +1,45 @@
-
-<h1 class="my-5">Logout</h1>
+<!--BULMA-->
+<div class="is-flex is-justify-content-center has-text-centered">
+  <h1 class="titulo is-size-4 has-text-weight-bold">Cerrar sesión</h1>
+</div>
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <div class="p-d-flex p-justify-content-center mb-3"></div>
-      <div class="p-d-flex p-justify-content-center">
-        <div class="card mt-3">
-          <div class="card-header">
-            <p class="lead">Do you really want to log out?</p>
-          </div>
-          <div class="card-body">
-            <div class="p-d-flex p-justify-content-center">
-              <button pButton type="button" class="p-button-primary" (click)="logout()">
-                <span class="pi pi-check"></span> Yes
-              </button>
-              <button pButton type="button" class="p-button-warning" (click)="cancel()">
-                <span class="pi pi-times"></span> No
-              </button>
-            </div>
+
+
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        Está seguro de que desea cerrar la sesión?
+      </p>
+      <button class="card-header-icon" aria-label="more options">
+        <span class="icon">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <div class="has-text-centered mt-3">
+          <div class="buttons is-centered">
+            <button class="button is-primary" (click)="logout()">
+              <span class="icon">
+                <i class="fas fa-check"></i>
+              </span>
+              <span>Yes</span>
+            </button>
+            <button class="button is-warning" (click)="cancel()">
+              <span class="icon">
+                <i class="fas fa-times"></i>
+              </span>
+              <span>No</span>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
+
+
+
 </div>

@@ -33,15 +33,12 @@
         </td>
 
         <td>
-          <p-button class=" m-3" icon="pi pi-eye" [raised]="true" [routerLink]="['/admin','user','view',user.id]"
-            size="small"></p-button>
-          <p-button class=" m-3" icon="pi pi-arrow-circle-up" [raised]="true" (click)="doView(user)"
-            size="small"></p-button>
-          <p-button class=" m-3" icon="pi pi-pencil" [raised]="true" [routerLink]="['/admin','user','edit',user.id]"
-            severity="warning" size="small"></p-button>
-          <p-button class=" m-3" icon="pi pi-trash" [raised]="true" (click)="doRemove(user)" severity="danger"
-            size="small"></p-button>
 
+
+            <button class="button is-info m-3" [routerLink]="['/admin','user','view',user.id]" ><i class="fa-solid fa-eye"></i></button>
+            <button class="button is-info m-3" (click)="doView(user)" ><i class="fa-solid fa-arrow-up"></i></button>
+            <button class="button is-link m-3" [routerLink]="['/admin','user','edit',user.id]" ><i class="fa-solid fa-pencil"></i></button>
+            <button class="button is-primary m-3" (click)="doRemove(user)"><i class="fa-solid fa-trash"></i></button>
         </td>
       </tr>
     </ng-template>

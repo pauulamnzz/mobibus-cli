@@ -10,7 +10,6 @@ import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-
 @Component({
   selector: 'app-menu-unrouted',
   standalone: true,
@@ -19,12 +18,12 @@ import { InputTextModule } from 'primeng/inputtext';
   imports:[MenubarModule,
     ButtonModule,
     InputTextModule,
+ 
     
   ],
   
 })
 export class MenuUnroutedComponent implements OnInit {
-
   strUserName: string = "";
   oSessionUser: IUser | null = null;
   strUrl: string = "";
@@ -63,7 +62,8 @@ export class MenuUnroutedComponent implements OnInit {
       {
         label: 'Inicio',
         icon: 'pi pi-fw pi-home',
-        command: () => this.oRouter.navigateByUrl('/home') 
+        command: () => this.oRouter.navigateByUrl('/home'),
+        
       },
       {
         label: 'Líneas',
@@ -102,14 +102,15 @@ export class MenuUnroutedComponent implements OnInit {
             icon: 'pi pi-align-center',
             command: () => this.oRouter.navigateByUrl('/admin/user/plist') 
           },
-       
+  
         ]
      
       },
       {
         label: 'Más',
         icon: 'pi pi-info-circle'
-      }
+      },
+      
     ];
     this.oSessionService.on().subscribe({
       next: (data: SessionEvent) => {
