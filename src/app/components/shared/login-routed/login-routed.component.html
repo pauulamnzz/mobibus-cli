@@ -5,10 +5,8 @@
       <div class="box mt-5">
 
         <!--USERNAME-->
-        <h1 class="titulo is-size-4 has-text-weight-bold mb-5">INICIO DE SESIÓN</h1>
-
+        <h1 class="titulo is-size-4 has-text-weight-bold mb-5 has-text-white">INICIO DE SESIÓN</h1>
         <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="onSubmit()">
-          
           <div class="field">
             <div class="control has-icons-left">
               <input class="input is-size-6" type="username" placeholder="Username" autofocus=""
@@ -48,7 +46,9 @@
                 <a href="../">He olvidado la contraseña</a> &nbsp;·&nbsp;
                 <a href="../">¿Necesita ayuda?</a>
               </p>
-              <button class="button is-success is-medium is-size-6 m-4">Entrar
+
+              
+              <button class="button is-link is-medium is-size-6 m-4">Entrar
               </button>
 
               <button class="button is-danger is-medium is-size-6 m-4" (click)="onReset()"> 
@@ -61,13 +61,14 @@
 
         <!-- Additional buttons -->
         <div class="control-group text-center">
-          <button pButton type="button" class="p-button-info m-3" label="Iniciar sesión como admin"
-            (click)="loginAdmin()">
-            <i class="fa-solid fa-screwdriver-wrench m-1"></i></button>
-          <button pButton type="button" class="p-button-info m-3" label="Iniciar sesión como user"
-            (click)="loginUser()">
+          <button class="button is-primary is-medium is-size-6 m-4 is-outlined" (click)="loginAdmin()">
+            <i class="fa-solid fa-screwdriver-wrench m-1"></i>
+            Iniciar sesión como admin
+          </button>
+          <button class="button is-primary is-medium is-size-6 m-4 is-outlined"  (click)="loginUser()">
             <i class="fa-regular fa-user m-1"></i>
-                    </button>
+            Iniciar sesión como user
+          </button>
         </div>
 
 

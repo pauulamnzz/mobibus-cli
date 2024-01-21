@@ -1,7 +1,5 @@
-@if (status != null) {
+<!--
 
-
-}@else {
 <div class="container">
   <div>
     <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
@@ -9,49 +7,52 @@
 
 
 
-  <p-table class="tabla"[value]="users">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Herramientas</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
-      <tr>
-        <td>{{user.id}}</td>
-        <td>{{user.username}}</td>
-        <td>{{user.email}}</td>
-        <td>
-          @if(user.role==true){
-          <span>User</span>
-          }@else {
-          <span>Admin</span>
-          }
-        </td>
+    <p-table [value]="users">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Herramientas</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{user.id}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>
+            @if(user.role==true){
+            <span>User</span>
+            }@else {
+            <span>Admin</span>
+            }
+          </td>
 
-        <td>
+          <td>
 
 
-            <button class="button is-info m-3" [routerLink]="['/admin','user','view',user.id]" ><i class="fa-solid fa-eye"></i></button>
-            <button class="button is-info m-3" (click)="doView(user)" ><i class="fa-solid fa-arrow-up"></i></button>
-            <button class="button is-link m-3" [routerLink]="['/admin','user','edit',user.id]" ><i class="fa-solid fa-pencil"></i></button>
-            <button class="button is-primary m-3" (click)="doRemove(user)"><i class="fa-solid fa-trash"></i></button>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="summary">
-      <div>
-        Se estan viendo {{users ? users.length : 0 }} users.
-      </div>
-    </ng-template>
-  </p-table>
-</div>
+            <button class="button is-rounded m-3" [routerLink]="['/admin','user','view',user.id]"><i
+                class="fa-solid fa-eye"></i></button>
+            <button class="button is-rounded 
+            m-3" (click)="doView(user)"><i class="fa-solid fa-arrow-up"></i></button>
+            <button class="button is-rounded m-3" [routerLink]="['/admin','user','edit',user.id]"><i
+                class="fa-solid fa-pencil"></i></button>
+            <button class="button is-rounded  m-3" (click)="doRemove(user)"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div>
+          Se estan viendo {{users ? users.length : 0 }} users.
+        </div>
+      </ng-template>
+    </p-table>
   </div>
+</div>
 }
-
+-->
 
 
 
@@ -60,17 +61,88 @@
     <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de Jugador</h5>
   </ng-template>
   <ng-template pTemplate="message">
-    <div class="p-container p-d-flex p-align-items-center p-justify-content-center">
+    <div class="container justify-content-center">
       <app-admin-user-detail-unrouted [id]="oUserToRemove!.id"></app-admin-user-detail-unrouted>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
     <p>¿Seguro que quieres eliminar el Jugador?</p>
-    <button class="p-button p-button-primary mxy-1" icon="pi pi-times" (click)="cd.reject()">
+    <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
       <span class="p-button-label">No</span>
     </button>
-    <button class="p-button p-button-danger mxy-1" icon="pi pi-check" (click)="cd.accept()">
+    <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
       <span class="p-button-label">Sí</span>
     </button>
   </ng-template>
 </p-confirmDialog>
+
+
+
+@if (status != null) {
+
+
+}@else {
+  <div class="has-text-centered m-6">
+    Se estan viendo {{users ? users.length : 0 }} users.
+  </div>
+<table class="table is-hoverable is-fullwidth mt-6 mb-6">
+  <thead>
+    <tr>
+      <th class="has-text-centered ">ID</th>
+      <th class="has-text-centered">USERNAME</th>
+      <th class="has-text-centered">EMAIL</th>
+      <th class="has-text-centered">ROL</th>
+      <th class="has-text-centered">HERRAMIENTAS</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(user of users; track user){
+    <tr>
+      <td class="has-text-centered is-vcentered">{{ user.id }}</td>
+      <td class="has-text-centered is-vcentered">{{ user.username }}</td>
+      <td class="has-text-centered is-vcentered">{{ user.email }}</td>
+      <td class="has-text-centered is-vcentered">
+        @if(user.role==true){
+        Admin
+        }@else {
+        User
+        }
+
+      </td>
+      <td class="has-text-centered">
+        <button class="button is-rounded is-info m-3" [routerLink]="['/admin','user','view', user.id]">
+          <i class="fa-solid fa-eye"></i>
+        </button>
+        <button class="button is-rounded is-info m-3" (click)="doView(user)">
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
+        <button class="button is-rounded is-info m-3" [routerLink]="['/admin','user','edit', user.id]">
+          <i class="fa-solid fa-pencil"></i>
+        </button>
+        <button class="button is-rounded is-info m-3" (click)="doRemove(user)">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+
+    </tr>
+    }
+  </tbody>
+</table>
+
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+  <a class="pagination-previous">Previous</a>
+  <a class="pagination-next">Next page</a>
+  <ul class="pagination-list">
+    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+    <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+    <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+  </ul>
+</nav>
+
+<p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+[totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+}

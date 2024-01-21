@@ -21,7 +21,8 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; //new or edit
 
-
+  showRoleError: boolean = false;
+  selectedRole: boolean = false;
   userForm!: FormGroup;
   oUser: IUser = {} as IUser;
   status: HttpErrorResponse | null = null;
@@ -38,7 +39,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   initializeForm(oUser: IUser) {
     this.userForm = this.oFormBuilder.group({
       id: [oUser.id],
-      username: [oUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('^[a-zA-Z0-9]+$')]],
+      username: [oUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('^[a-zA-Z0-9]+$'), ]],
       email: [oUser.email, [Validators.required, Validators.email]],
       role: [oUser.role, Validators.required]
     });
@@ -49,6 +50,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
       this.oUserAjaxService.getOne(this.id).subscribe({
         next: (data: IUser) => {
           this.oUser = data;
+          this.selectedRole = this.oUser.role;
           this.initializeForm(this.oUser);
         },
         error: (error: HttpErrorResponse) => {
@@ -67,12 +69,13 @@ export class AdminUserFormUnroutedComponent implements OnInit {
     if (this.userForm.valid) {
       if (this.operation == 'NEW') {
         this.oUserAjaxService.newOne(this.userForm.value).subscribe({
-          next: (data: IUser) => {
+          next: (data: IUser) => {       
             this.oUser = data;
             this.initializeForm(this.oUser);
             // avisar al usuario que se ha creado correctamente
             this.oMessageService.add({ severity: 'info', summary: 'Usuario creado', life: 2000 });
             this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
+            this.userForm.reset();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
@@ -104,4 +107,11 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
 
   };
+
+  checkRoleError() {
+    if (!this.userForm.get('role')?.value) {
+      this.showRoleError = true;
+    }
+  }
+
 }

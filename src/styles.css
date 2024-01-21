@@ -11,4 +11,6 @@
 /* Aplica la fuente a la etiqueta body o a los elementos que desees */
 body {
   font-family: 'Nunito', sans-serif;
+  background-color: #000000; /* Puedes ajustar el color a tus preferencias */
+color:white;
 }

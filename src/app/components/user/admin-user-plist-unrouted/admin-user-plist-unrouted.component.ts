@@ -16,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
 import { RatingModule } from 'primeng/rating';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-admin-user-plist-unrouted',
   standalone: true,
@@ -31,7 +33,8 @@ import { RatingModule } from 'primeng/rating';
     TableModule,
     ButtonModule,
     TagModule,
-    RatingModule
+    RatingModule,
+    CommonModule
     
   ],
 
@@ -46,6 +49,13 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   oUserToRemove: IUser | null = null;
   ref: DynamicDialogRef | undefined;
   users: any[] = [];
+
+
+
+  currentPage: number = 1; // Página actual
+  itemsPerPage: number = 10; // Número de elementos por página
+  totalItems: number = 100; // Número total de elementos (deberías obtener esto según tu lógica)
+
 
   constructor(
     private oUserAjaxService: UserAjaxService,
@@ -85,6 +95,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   }
 
   onPageChang(event: PaginatorState) {
+
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
     this.getPage();
@@ -133,4 +144,5 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.oMessageService.add({ severity: 'error', summary: "The user hasn't been removed.", detail: "The user hasn't been removed.", life: 2000 });      }
     });
   }
+  
 }

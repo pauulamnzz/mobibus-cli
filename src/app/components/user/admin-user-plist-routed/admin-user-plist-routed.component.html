@@ -15,13 +15,11 @@
 
       }@else {
         <div class="is-flex is-justify-content-center has-text-centered">          
-          <p-button class=" m-3" label="Añadir usuario" [raised]="true" [routerLink]="['/admin','user','new']" size="small"></p-button>
-          <p-button class=" m-3" label="+10" [raised]="true" (click)="doGenerateRandom(10)" severity="warning" size="small"></p-button>
-          <p-button class=" m-3" label="+100" [raised]="true" (click)="doGenerateRandom(100)" severity="warning" size="small"></p-button>
-          <p-button class=" m-3" label="+1000" [raised]="true" (click)="doGenerateRandom(1000)" severity="warning" size="small"></p-button>
-          <p-button class=" m-3" label="Vaciar" [raised]="true" (click)="doEmpty($event)" severity="danger" size="small"></p-button>
-          <button class="button is-primary m-3">Button</button>
-        
+          <button class="button is-primary m-3" [routerLink]="['/admin','user','new']" >Añadir usuario</button>
+          <button class="button is-link m-3" (click)="doGenerateRandom(10)">+10</button>
+          <button class="button is-link m-3 " (click)="doGenerateRandom(100)">+100</button>
+          <button class="button is-link m-3 "  (click)="doGenerateRandom(1000)">+1000</button>
+          <button class="button is-primary m-3" (click)="doEmpty($event)">Vaciar</button>
         </div>
         
       }
@@ -32,4 +30,3 @@
 
     }
 
-<!--<p-confirmPopup></p-confirmPopup>-->

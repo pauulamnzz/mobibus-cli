@@ -1,29 +1,128 @@
-<!--PRIMENG Y CLASE BULMA-->
-<p-menubar [model]="items">
+<!--<p-menubar [model]="items " [style]="{
+  'background-color': '#121212',
+  'border-color': '#121212', 
+}">
   <ng-template pTemplate="start">
-    <img src="../../../../assets/img/loguito-inverso.png"height="40" width="40"/>
-</ng-template>
+    <img src="../../../../assets/img/loguito-inverso.png" height="40" width="40" />
+  </ng-template>
   <div>
 
-    <input id="searchBar" type="text" pInputText placeholder="Search">
 
     @if(strUserName){
-    <span class="navbar-text m-3" >
-      
+    <span class="navbar-text m-3">
+
       <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
-   
+
     </span>
-    <button class="button is-primary"  (click)="redirectToLogout()">
+    <button class="button is-link" (click)="redirectToLogout()">
       <i class="fa-solid fa-power-off"></i>
     </button>
     }@else{
     <span class="navbar-text m-3">
       Not logged in
     </span>
-    <button class="button is-primary"  (click)="redirectToLogin()">
+    <button class="button is-link" (click)="redirectToLogin()">
       <i class="fa-solid fa-right-to-bracket"></i>
     </button>
     }
 
   </div>
 </p-menubar>
+-->
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <img src="../../../../assets/img/moo-inv.png" />
+    </a>
+
+    <a style="height: 90px;" role="button" class="navbar-burger" aria-label="Abrir menú" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start ">
+      <a class="navbar-item "routerLink="/home">
+        <i class="pi pi-fw pi-home m-2"></i>
+        Inicio
+      </a>
+
+      <a class="navbar-item">
+        <i class="pi pi-sort-numeric-down-alt m-2" routerLink="/user/user/plist"></i>
+        Lineas
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable" >
+        <a class="navbar-link">
+          <i class="pi pi-users m-2"></i>
+          Usuarios
+        </a>
+
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item " routerLink="/admin/user/new">
+            <i class="pi pi-user-plus m-2 "></i>
+            Añadir usuario
+          </a>
+          <a class="navbar-item" routerLink="/admin/user/plist">
+            <i class="pi pi-align-center m-2"></i>
+            Lista de usuarios
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          <i class="pi pi-map-marker m-2"></i>
+          Paradas
+        </a>
+
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item " routerLink="/admin/parada_fav/plist">
+          <i class="pi pi-heart m-2"></i>
+            Añadir parada
+          </a>
+          <a class="navbar-item">
+            <i class="pi pi-align-center m-2" routerLink="/admin/parada_fav/plist"></i>
+            Lista de paradas
+          </a>
+        </div>
+
+      </div>
+      <a class="navbar-item">
+        <i class="pi pi-info-circle m-2"routerLink="/user/user/more"></i>
+        Más
+      </a>
+      <a class="nabvbar-item">
+        
+      </a>
+    </div>
+
+
+
+    <div class="navbar-end">
+      @if(strUserName){
+      <div class="navbar-item">
+        <span class="navbar-text m-3">
+          <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
+        </span>
+        <button class="button is-link" (click)="redirectToLogout()">
+          <i class="fa-solid fa-power-off"></i>
+        </button>
+      </div>
+    }@else{
+      <div class="navbar-item">
+        <span class="navbar-text m-3">
+          Not logged in
+        </span>
+        <button class="button is-link" (click)="redirectToLogin()">
+          <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+      </div>
+    }
+    </div>
+  </div>
+</nav>
