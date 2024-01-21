@@ -130,18 +130,18 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.oUserToRemove = u;
     this.oConfirmationService.confirm({
       accept: () => {
-        this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The user has been removed.', life: 2000 });       
+        this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
         this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMessageService.add({ severity: 'error', summary: 'Danger', detail: "The user hasn't been removed.", life: 2000 });          }
+            this.oMessageService.add({ severity: 'error', summary: 'Danger', detail: "The jugador hasn't been removed.", life: 2000 });          }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMessageService.add({ severity: 'error', summary: "The user hasn't been removed.", detail: "The user hasn't been removed.", life: 2000 });      }
+        this.oMessageService.add({ severity: 'error', summary: "The jugador hasn't been removed.", detail: "The jugador hasn't been removed.", life: 2000 });       }
     });
   }
   
