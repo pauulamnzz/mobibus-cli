@@ -111,7 +111,7 @@
 
 
 <div class="container mb-5">
-  <div class="container has-text-centered">
+  <div class="columns has-text-centered is-centered">
 
     <div class="box mt-5">
       @if (status != null){
@@ -119,7 +119,6 @@
         {{ status!.error.message }} - {{ status!.message }}
       </div>
       }@else{
-      <div class="columns is-centered mt-3">
 
         <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
           <!-- Campo 'ID' -->
@@ -217,11 +216,10 @@
 
           <div class="field m-3">
             <button class="button is-link" type="button" (click)="onSubmit()" [disabled]="!userForm.valid">
-              Save Jugador
+              Guardar User
             </button>
           </div>
         </form>
-      </div>
 
       }
     </div>
