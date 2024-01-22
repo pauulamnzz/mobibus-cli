@@ -7,7 +7,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MenubarModule } from 'primeng/menubar';
-import { AdminParadaFavViewRoutedComponent } from '../../parada_fav/admin-paradaFav-view-routed/admin-paradaFav-view-routed.component';
 
 @Component({
   selector: 'app-menu-unrouted',

@@ -35,7 +35,9 @@ removeOne(id: number | undefined): Observable<number> {
 newOne(oParadaFav: IParadaFav): Observable<IParadaFav> {
   return this.oHttpClient.post<IParadaFav>(this.sUrl, oParadaFav);
 }
-
+updateOne(oParadaFav: IParadaFav): Observable<IParadaFav> {
+  return this.oHttpClient.put<IParadaFav>(this.sUrl, oParadaFav);
+}
 generateRandom(amount: number): Observable<number> {
   return this.oHttpClient.post<number>(this.sUrl + "/populate/" + amount, null);
 }

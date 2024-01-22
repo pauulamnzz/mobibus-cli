@@ -1,0 +1,88 @@
+
+<div class="container mb-5">
+  <div class="container has-text-centered">
+
+    <div class="box mt-5">
+      @if (status != null){
+      <div class="notification is-danger mt-3">
+        {{ status!.error.message }} - {{ status!.message }}
+      </div>
+      }@else{
+      <div class="columns is-centered mt-3">
+
+        <form [formGroup]="paradaFavForm" (ngSubmit)="onSubmit()">
+          <!-- Campo 'ID' -->
+          @if(operation=='EDIT'){
+          <div class="field">
+            <label class="label  has-text-white">ID</label>
+            <div class="control has-icons-left">
+              <input class="input" formControlName="id" placeholder="ID" required readonly>
+              <span class="icon is-left">
+                <i class="fas fa-id-card"></i>
+              </span>
+            </div>
+          </div>
+          }
+          <!-- Campo 'denominacion' -->
+          <div class="field">
+            <label class="label  has-text-white">Denominación</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input" formControlName="denominacion" required (blur)="lostFocus.denominacion = true">
+              <span class="icon  is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+          </div>
+          @if(lostFocus.denominacion){
+
+          @if(hasError('denominacion', 'required')){
+          <i class="fas fa-exclamation-triangle has-text-danger"></i>
+          <div class="has-text-danger">La denominación es requerida</div>
+          }
+        
+          @if(hasError('denominacion', 'minlength')){
+          <i class="fas fa-exclamation-triangle has-text-danger"></i>
+          <div class="has-text-danger">La denominación debe tener más de 3 caracteres</div>
+          }
+          @if(hasError('denominacion', 'maxlength')){
+          <i class="fas fa-exclamation-triangle has-text-danger"></i>
+          <div class="has-text-danger">La denominación debe tener menos de 15 caracteres</div>
+          }
+          }
+
+
+          <!-- Campo 'id_parada_api' -->
+          <div class="field">
+            <label class="label has-text-white">ID Parada API</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input" formControlName="id_parada_api" required (blur)="lostFocus.id_parada_api = true">
+              <span class="icon is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+
+          @if(lostFocus.id_parada_api){
+
+          @if(hasError('id_parada_api', 'required')){
+          <i class="fas fa-exclamation-triangle has-text-danger"></i>
+          <div class="has-text-danger">El ID de la API es requerido</div>
+          }
+          @if(hasError('id_parada_api', 'pattern')){
+          <i class="fas fa-exclamation-triangle has-text-danger"></i>
+          <div class="has-text-danger">El ID de la API debe ser númerico </div>
+          }
+
+          }
+
+          <div class="field m-3">
+            <button class="button is-link" type="button" (click)="onSubmit()" [disabled]="!paradaFavForm.valid">
+              Save Parada Favorita
+            </button>
+          </div>
+        </form>
+      </div>
+
+      }
+    </div>
+  </div>
