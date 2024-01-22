@@ -80,22 +80,16 @@
 
 @if (status != null) {
 
-  <article class="message is-danger">
-    <div class="message-header">
-      <p>Error Message</p>
-      <button class="delete" aria-label="delete"></button>
-    </div>
-    <div class="message-body">
-      {{ status!.error.message }} - {{ status!.message }}
-    </div>
-  </article>
+  <div class="notification is-danger mt-3">
+    {{ status!.error.message }} - {{ status!.message }}
+  </div>
   
 
 }@else {
   <div class="has-text-centered m-6">
     Se estan viendo {{users ? users.length : 0 }} users.
   </div>
-<table class="table is-hoverable is-fullwidth mt-6 mb-6">
+<table class="table is-hoverable is-fullwidth mt-6 mb-0">
   <thead>
     <tr>
       <th class="has-text-centered ">ID</th>
@@ -139,20 +133,11 @@
   </tbody>
 </table>
 
-<nav class="pagination is-centered" role="navigation" aria-label="pagination">
-  <a class="pagination-previous">Previous</a>
-  <a class="pagination-next">Next page</a>
-  <ul class="pagination-list">
-    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-    <li><span class="pagination-ellipsis">&hellip;</span></li>
-    <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-    <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-    <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-    <li><span class="pagination-ellipsis">&hellip;</span></li>
-    <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-  </ul>
-</nav>
 
 <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
 [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
+
 }
+
+

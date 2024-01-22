@@ -1,3 +1,46 @@
-<p>
-  user-user-detail-unrouted works!
-</p>
+
+@if(status != null){
+  <div class="notification is-danger mt-3">
+    {{ status!.error.message }} - {{ status!.message }}
+  </div>
+  }@else{
+  
+  
+  @if(status == null){
+  <table class="table is-fullwidth mt-6 mb-6"> @if(oUser){
+    <tbody>
+      <tr>
+        <th class="has-text-centered has-text-white">PORPIEDAD</th>
+        <th class="has-text-centered has-text-white">INFORMACIÓN</th>
+      </tr>
+      <tr>
+        <td class="has-text-centered has-text-white">ID</td>
+        <td class="has-text-centered is-vcentered">{{ oUser.id }}</td>
+      </tr>
+      <tr>
+        <td class="has-text-centered has-text-white">Username</td>
+        <td class="has-text-centered is-vcentered">{{ oUser.username }}</td>
+      </tr>
+      <tr>
+        <td class="has-text-centered has-text-white">Email</td>
+        <td class="has-text-centered is-vcentered">{{ oUser.email }}</td>
+      </tr>
+      <tr>
+        <td class="has-text-centered has-text-white">Rol</td>
+        <td class="has-text-centered is-vcentered">
+          @if(oUser.role==true){
+          Admin
+          }@else {
+          User
+          }
+        </td>
+  
+      </tr>
+  
+    </tbody>
+    }
+  
+  </table>
+  }
+  
+  }

@@ -15,11 +15,10 @@ import { InputTextModule } from 'primeng/inputtext';
   standalone: true,
   templateUrl: './menu-unrouted.component.html',
   styleUrls: ['./menu-unrouted.component.css'],
-  imports:[MenubarModule,
-    ButtonModule,
-    InputTextModule,
- 
-    
+  imports:[
+
+    MenubarModule,
+
   ],
   
 })
@@ -55,63 +54,10 @@ export class MenuUnroutedComponent implements OnInit {
     });
    }
 
-  items: MenuItem[] | undefined;
+
 
   ngOnInit() {
-    this.items = [
-      {
-        label: 'Inicio',
-        icon: 'pi pi-fw pi-home',
-        command: () => this.oRouter.navigateByUrl('/home'),
-        
-      },
-      {
-        label: 'Líneas',
-        icon: 'pi pi-sort-numeric-down-alt',
-
-
-      },
-      {
-        label: 'Usuarios',
-        icon: 'pi pi-users',
-        items: [
-          {
-            label: 'Añadir usuario',
-            icon: 'pi pi-fw pi-user-plus',
-            command: () => this.oRouter.navigateByUrl('/admin/user/new') 
-
-          },
-          {
-            label: 'Lista de usuarios',
-            icon: 'pi pi-align-center',
-            command: () => this.oRouter.navigateByUrl('/admin/user/plist') 
-          },
-          
-        ]
-      },
-      {
-        label: 'Paradas',
-        icon: 'pi pi-map-marker',
-        items:[
-          {
-            label: 'Añadir parada',
-            icon: 'pi pi-heart',
-          },
-          {
-            label: 'Lista de paradas',
-            icon: 'pi pi-align-center',
-            command: () => this.oRouter.navigateByUrl('/admin/user/plist') 
-          },
   
-        ]
-     
-      },
-      {
-        label: 'Más',
-        icon: 'pi pi-info-circle'
-      },
-      
-    ];
     this.oSessionService.on().subscribe({
       next: (data: SessionEvent) => {
         if (data.type == 'login') {

@@ -2,41 +2,58 @@
 
 
 @if(status != null){
-<div class="p-alert p-alert-danger" role="alert">
+<div class="notification is-danger mt-3">
   {{ status!.error.message }} - {{ status!.message }}
 </div>
 }@else{
 
 
 @if(status == null){
-  <table class="p-table p-table-striped p-table-hover custom-table">
-    @if(oUser){
-<tbody>
-        <tr>
-          <th>Property</th>
-          <th>Value</th>
-        </tr>
-        <tr>
-          <th>ID</th>
-          <td>{{ oUser.id }}</td>
-        </tr>
-        <tr>
-          <th>USERNAME</th>
-          <td>{{ oUser.username }}</td>
-        </tr>
-        <tr>
-          <th>Email</th>
-          <td>{{ oUser.email }}</td>
-        </tr>
-        <tr>
-          <th>ROLE</th>
-          <td>{{ oUser.role }}</td>
-        </tr>
+<table class="table is-fullwidth mt-6 mb-6"> @if(oUser){
+  <tbody>
+    <tr>
+      <th class="has-text-centered has-text-white">PORPIEDAD</th>
+      <th class="has-text-centered has-text-white">INFORMACIÓN</th>
+    </tr>
+    <tr>
+      <th class="has-text-centered has-text-white">ID</th>
+      <td class="has-text-centered is-vcentered">{{ oUser.id }}</td>
+    </tr>
+    <tr>
+      <th class="has-text-centered has-text-white">Username</th>
+      <td class="has-text-centered is-vcentered">{{ oUser.username }}</td>
+    </tr>
+    <tr>
+      <th class="has-text-centered has-text-white">Email</th>
+      <td class="has-text-centered is-vcentered">{{ oUser.email }}</td>
+    </tr>
+    <tr>
+      <th class="has-text-centered has-text-white">Rol</th>
+      <td class="has-text-centered is-vcentered">
+        @if(oUser.role==true){
+        Admin
+        }@else {
+        User
+        }
+      </td>
 
-      </tbody>
-    }
+    </tr>
+    <tr>
+      <th class="has-text-centered has-text-white">Paradas Favs</th>
+      <td class="has-text-centered is-vcentered">
+        <!-- el id esta en la tabla user_parada_fav
+        <a [routerLink]="['/admin','parada_fav','plist','byuser',oUser.id]"
+        *ngIf="oUser.paradas_fav>0">{{oUser.paradas_fav}}</a>
+    <span *ngIf="oUser.paradas_fav==0">0</span>
 
-  </table>
+    -->
+      </td>
+    </tr>
+
+  </tbody>
+  }
+
+</table>
 }
 
 }

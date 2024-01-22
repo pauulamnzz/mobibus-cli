@@ -1,0 +1,77 @@
+
+<p-confirmDialog #cd>
+  <ng-template pTemplate="header">
+    <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de parada favorita</h5>
+  </ng-template>
+  <ng-template pTemplate="message">
+    <div class="container justify-content-center">
+      <app-admin-paradaFav-detail-unrouted [id]="oParadaFavToRemove!.id"></app-admin-paradaFav-detail-unrouted>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p>¿Seguro que quieres eliminar la parada favorita?</p>
+    <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
+      <span class="p-button-label">No</span>
+    </button>
+    <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
+      <span class="p-button-label">Sí</span>
+    </button>
+  </ng-template>
+</p-confirmDialog>
+
+
+
+@if (status != null) {
+
+  <div class="notification is-danger mt-3">
+    {{ status!.error.message }} - {{ status!.message }}
+  </div>
+  
+
+}@else {
+  <div class="has-text-centered m-6">
+    Se estan viendo {{paradas_favs ? paradas_favs.length : 0 }} paradas favoritas.
+  </div>
+<table class="table is-hoverable is-fullwidth mt-6 mb-0">
+  <thead>
+    <tr>
+      <th class="has-text-centered ">ID</th>
+      <th class="has-text-centered">DENOMINACIÓN</th>
+      <th class="has-text-centered">ID_PARADA_API</th>
+      <th class="has-text-centered">HERRAMIENTAS</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(parada_fav of paradas_favs; track parada_fav){
+    <tr>
+      <td class="has-text-centered is-vcentered">{{ parada_fav.id }}</td>
+      <td class="has-text-centered is-vcentered">{{ parada_fav.denominacion }}</td>
+      <td class="has-text-centered is-vcentered">{{ parada_fav.id_parada_api }}</td>
+      <td class="has-text-centered">
+        <button class="button is-rounded is-info m-3" [routerLink]="['/admin','paradaFav','view', parada_fav.id]">
+          <i class="fa-solid fa-eye"></i>
+        </button>
+        <button class="button is-rounded is-info m-3" (click)="doView(parada_fav)">
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
+        <button class="button is-rounded is-info m-3" [routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
+          <i class="fa-solid fa-pencil"></i>
+        </button>
+        <button class="button is-rounded is-info m-3" (click)="doRemove(parada_fav)">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+
+    </tr>
+    }
+  </tbody>
+</table>
+
+
+<p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+[totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
+
+}
+
+

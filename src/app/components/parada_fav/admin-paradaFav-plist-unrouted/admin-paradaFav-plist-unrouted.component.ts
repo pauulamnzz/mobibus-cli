@@ -1,66 +1,51 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { IUser, IUserPage } from '../../../model/model.interface';
-import { HttpErrorResponse } from '@angular/common/http';
+import { IParadaFav, IParadaFavPage } from '../../../model/model.interface';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
-import { UserAjaxService } from '../../../services/user.ajax.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ParadaFavAjaxService } from '../../../services/paradaFav.ajax.service';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+import { AdminParadaFavDetailUnroutedComponent } from '../admin-paradaFav-detail-unrouted/admin-paradaFav-detail-unrouted.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { RouterModule } from '@angular/router';
 import { MessagesModule } from 'primeng/messages';
-import { PrimeNGConfig } from 'primeng/api';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
-import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
-import { RatingModule } from 'primeng/rating';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-admin-user-plist-unrouted',
+  selector: 'app-admin-paradaFav-plist-unrouted',
+  templateUrl: './admin-paradaFav-plist-unrouted.component.html',
+  styleUrls: ['./admin-paradaFav-plist-unrouted.component.css'],
   standalone: true,
-  templateUrl: './admin-user-plist-unrouted.component.html',
-  styleUrls: ['./admin-user-plist-unrouted.component.css'],
   imports:[
     PaginatorModule,
     ConfirmDialogModule,
-    ButtonModule,
     RouterModule,
     MessagesModule,
-    AdminUserDetailUnroutedComponent,
-    TableModule,
-    ButtonModule,
-    TagModule,
-    RatingModule,
+    AdminParadaFavDetailUnroutedComponent,
     CommonModule
     
   ],
-
 })
-export class AdminUserPlistUnroutedComponent implements OnInit {
+export class AdminParadaFavPlistUnroutedComponent implements OnInit {
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
-  oPage: IUserPage | undefined;
+  oPage: IParadaFavPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oUserToRemove: IUser | null = null;
+  oParadaFavToRemove: IParadaFav | null = null;
   ref: DynamicDialogRef | undefined;
-  users: any[] = [];
-
+  paradas_favs: any[] = [];
 
   constructor(
-    private oUserAjaxService: UserAjaxService,
+    private oParadaFavAjaxService: ParadaFavAjaxService,
     public oDialogService: DialogService,
     private oConfirmationService: ConfirmationService,
     private oMessageService: MessageService,
-
   ) { }
 
   ngOnInit() {
-    
     this.getPage();
     this.forceReload.subscribe({
       next: (v) => {
@@ -70,13 +55,11 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       }
     });
   }
-
-
   getPage(): void {
-    this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
-      next: (data: IUserPage) => {
+    this.oParadaFavAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
+      next: (data: IParadaFavPage) => {
         this.oPage = data;
-        this.users = data.content;
+        this.paradas_favs = data.content;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);
       },
@@ -85,7 +68,6 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       }
     })
   }
-
   onPageChang(event: PaginatorState) {
 
     this.oPaginatorState.rows = event.rows;
@@ -102,15 +84,12 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     }
     this.getPage();
   }
-
-
-
-  doView(u: IUser) {
-    this.ref = this.oDialogService.open(AdminUserDetailUnroutedComponent, {
+  doView(u: IParadaFav) {
+    this.ref = this.oDialogService.open(AdminParadaFavDetailUnroutedComponent, {
       data: {
         id: u.id
       },
-      header: 'Vista de usuario',
+      header: 'Vista de las Paradas favoritas',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -118,13 +97,12 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       styleClass:'my-custom-dialog'
     });
   }
-
-  doRemove(u: IUser) {
-    this.oUserToRemove = u;
+  doRemove(pf: IParadaFav) {
+    this.oParadaFavToRemove = pf;
     this.oConfirmationService.confirm({
       accept: () => {
         this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
-        this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
+        this.oParadaFavAjaxService.removeOne(this.oParadaFavToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
@@ -137,5 +115,4 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.oMessageService.add({ severity: 'error', summary: "The jugador hasn't been removed.", detail: "The jugador hasn't been removed.", life: 2000 });       }
     });
   }
-  
 }

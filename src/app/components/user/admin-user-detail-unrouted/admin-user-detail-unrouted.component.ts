@@ -3,18 +3,13 @@ import { IUser } from '../../../model/model.interface';
 import { Component, Input, OnInit, Optional } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserAjaxService } from '../../../services/user.ajax.service';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-admin-user-detail-unrouted',
   templateUrl: './admin-user-detail-unrouted.component.html',
   styleUrls: ['./admin-user-detail-unrouted.component.css'],
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    ButtonModule
-  ]
+
 })
 export class AdminUserDetailUnroutedComponent implements OnInit {
   @Input() id: number = 1;

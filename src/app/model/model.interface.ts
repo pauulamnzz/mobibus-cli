@@ -36,6 +36,14 @@ export interface IPage<T> {
 export interface IEntity {
     id: number,
 }
+
+export interface IUserPage extends IPage<IUser> {
+}
+export interface IParadaFavPage extends IPage<IParadaFav> {
+}
+export interface IUserParadaFavPage extends IPage<IUserParadaFav> {
+}
+
 export interface IUser extends IEntity {
     name: string,
     username: string,
@@ -43,24 +51,19 @@ export interface IUser extends IEntity {
     role: boolean,
 
 }
-export interface IUserPage extends IPage<IUser> {
-}
-
 export interface IParadaFav extends IEntity {
     linea: string,
     denominacion: string,
     id_parada_api: number
 
 }
-export interface IParadaFavPage extends IPage<IParadaFav> {
-}
+
 export interface IUserParadaFav extends IEntity {
     id_user: number,
     id_parada_fav: number
 
 }
-export interface IUserParadaFavPage extends IPage<IUserParadaFav> {
-}
+
 
 export type formOperation = 'EDIT' | 'NEW';
 
