@@ -3,22 +3,19 @@ import { UserUserDetailUnroutedComponent } from '../../user/user-user-detail-unr
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IUser, SessionEvent } from '../../../model/model.interface';
-import { MenuItem } from 'primeng/api';
 import { NavigationEnd, Router } from '@angular/router';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MenubarModule } from 'primeng/menubar';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
+import { AdminParadaFavViewRoutedComponent } from '../../parada_fav/admin-paradaFav-view-routed/admin-paradaFav-view-routed.component';
+
 @Component({
   selector: 'app-menu-unrouted',
   standalone: true,
   templateUrl: './menu-unrouted.component.html',
   styleUrls: ['./menu-unrouted.component.css'],
   imports:[
-
     MenubarModule,
-
   ],
   
 })
