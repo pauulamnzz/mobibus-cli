@@ -6,6 +6,7 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
      MenuUnroutedComponent,
      ToastModule,
      MessagesModule,
-     DynamicDialogModule
+     DynamicDialogModule,
+     ConfirmDialogModule
      
      ],
   templateUrl: './app.component.html',

@@ -30,3 +30,22 @@
 
     }
 
+<p-confirmDialog #cd>
+  <ng-template pTemplate="header">
+    <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de Jugador</h5>
+  </ng-template>
+  <ng-template pTemplate="message">
+    <div class="container justify-content-center">
+      <app-admin-user-detail-unrouted [id]="oUserToRemove!.id"></app-admin-user-detail-unrouted>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p>¿Seguro que quieres eliminar el Jugador?</p>
+    <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
+      <span class="p-button-label">No</span>
+    </button>
+    <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
+      <span class="p-button-label">Sí</span>
+    </button>
+  </ng-template>
+</p-confirmDialog>

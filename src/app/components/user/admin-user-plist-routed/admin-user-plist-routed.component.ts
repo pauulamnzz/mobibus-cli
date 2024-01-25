@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { AdminUserPlistUnroutedComponent } from "../admin-user-plist-unrouted/admin-user-plist-unrouted.component";
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialog, ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
     selector: 'app-admin-user-plist-routed',
@@ -22,6 +23,8 @@ import { ButtonModule } from 'primeng/button';
         RouterModule,
         ConfirmPopupModule,
         AdminUserPlistUnroutedComponent,
+        ConfirmDialogModule,
+        AdminUserDetailUnroutedComponent
      
     ]
 })
@@ -29,6 +32,7 @@ export class AdminUserPlistRoutedComponent implements OnInit {
   
   forceReload: Subject<boolean> = new Subject<boolean>();
   bLoading: boolean = false;
+oUserToRemove: any;
 
   constructor(
     private oUserAjaxService: UserAjaxService,
