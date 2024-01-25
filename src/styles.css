@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "primeng/resources/themes/mdc-dark-indigo/theme.css";
+/*@import "primeng/resources/themes/mdc-dark-indigo/theme.css";*/
+@import "primeng/resources/themes/mdc-light-indigo/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
@@ -11,6 +12,6 @@
 /* Aplica la fuente a la etiqueta body o a los elementos que desees */
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: #000000; /* Puedes ajustar el color a tus preferencias */
-  color:white;
+  background-color: rgb(90, 89, 89); /* Puedes ajustar el color a tus preferencias */
+  color:rgb(255, 255, 255);
 }

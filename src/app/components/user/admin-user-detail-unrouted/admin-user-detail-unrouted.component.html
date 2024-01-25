@@ -9,52 +9,62 @@
 
 
 @if(status == null){
-<table class="table is-fullwidth mt-6 mb-6"> 
-  @if(oUser){
-  <tbody>
-    <tr>
-      <th class="has-text-centered has-text-white">PORPIEDAD</th>
-      <th class="has-text-centered has-text-white">INFORMACIÓN</th>
-    </tr>
-    <tr>
-      <th class="has-text-centered has-text-white">ID</th>
-      <td class="has-text-centered is-vcentered">{{ oUser.id }}</td>
-    </tr>
-    <tr>
-      <th class="has-text-centered has-text-white">Username</th>
-      <td class="has-text-centered is-vcentered">{{ oUser.username }}</td>
-    </tr>
-    <tr>
-      <th class="has-text-centered has-text-white">Email</th>
-      <td class="has-text-centered is-vcentered">{{ oUser.email }}</td>
-    </tr>
-    <tr>
-      <th class="has-text-centered has-text-white">Rol</th>
-      <td class="has-text-centered is-vcentered">
-        @if(oUser.role==true){
-        Admin
-        }@else {
-        User
-        }
-      </td>
 
-    </tr>
-    <tr>
-      <th class="has-text-centered has-text-white">Paradas Favs</th>
-      <td class="has-text-centered is-vcentered">
-        @if(oUser.usersParadasFavs !== undefined && oUser.usersParadasFavs > 0){
-          {{ oUser.usersParadasFavs }}
-        }@else {
-          0
-        }
-        
-      </td>
-    </tr>
+<div class="columns is-centered m-6">
+  <div class="column is-9">
+    <div class="box">
+      <div class="is-flex is-justify-content-center">
+        <table class="table is-fullwidth mt-6 mb-6">
+          @if(oUser){
+          <tbody>
+            <tr>
+              <th class="has-text-centered ">PORPIEDAD</th>
+              <th class="has-text-centered ">INFORMACIÓN</th>
+            </tr>
+            <tr>
+              <th class="has-text-centered ">ID</th>
+              <td class="has-text-centered is-vcentered">{{ oUser.id }}</td>
+            </tr>
+            <tr>
+              <th class="has-text-centered ">Username</th>
+              <td class="has-text-centered is-vcentered">{{ oUser.username }}</td>
+            </tr>
+            <tr>
+              <th class="has-text-centered ">Email</th>
+              <td class="has-text-centered is-vcentered">{{ oUser.email }}</td>
+            </tr>
+            <tr>
+              <th class="has-text-centered ">Rol</th>
+              <td class="has-text-centered is-vcentered">
+                @if(oUser.role==true){
+                Admin
+                }@else {
+                User
+                }
+              </td>
 
-  </tbody>
-  }
+            </tr>
+            <tr>
+              <th class="has-text-centered ">Paradas Favs</th>
+              <td class="has-text-centered is-vcentered">
+                @if(oUser.usersParadasFavs !== undefined && oUser.usersParadasFavs > 0){
+                {{ oUser.usersParadasFavs }}
+                }@else {
+                0
+                }
 
-</table>
+              </td>
+            </tr>
+
+          </tbody>
+          }
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
 }
 
 }

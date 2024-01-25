@@ -5,11 +5,12 @@
       <div class="box mt-5">
 
         <!--USERNAME-->
-        <h1 class="titulo is-size-4 has-text-weight-bold mb-5 has-text-white">INICIO DE SESIÓN</h1>
+        <h1 class="titulo is-size-4 has-text-weight-bold mb-5 ">INICIO DE SESIÓN</h1>
         <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="onSubmit()">
           <div class="field">
+            <span>Username</span>
             <div class="control has-icons-left">
-              <input class="input is-size-6" type="username" placeholder="Username" autofocus=""
+              <input class="input is-size-6" type="username"  autofocus=""
                 formControlName="username" required (blur)="lostFocus.username = true">
               <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
@@ -23,8 +24,9 @@
 
           <!--PASSWORD-->
           <div class="field">
+            <span>Password</span>
             <div class="control has-icons-left">
-              <input class="input is-size-6" type="password" placeholder="Password" formControlName="password" required
+              <input class="input is-size-6" type="password"  formControlName="password" required
                 (blur)="lostFocus.password = true">
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>

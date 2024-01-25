@@ -124,7 +124,7 @@
           <!-- Campo 'ID' -->
           @if(operation=='EDIT'){
           <div class="field">
-            <label class="label  has-text-white">ID</label>
+            <label class="label ">ID</label>
             <div class="control has-icons-left">
               <input class="input" formControlName="id" placeholder="ID" required readonly>
               <span class="icon is-left">
@@ -135,7 +135,7 @@
           }
           <!-- Campo 'username' -->
           <div class="field">
-            <label class="label  has-text-white">Username</label>
+            <label class="label ">Username</label>
             <div class="control has-icons-left has-icons-right">
               <input class="input" formControlName="username" required (blur)="lostFocus.username = true">
               <span class="icon  is-left">
@@ -166,7 +166,7 @@
 
           <!-- Campo 'email' -->
           <div class="field">
-            <label class="label has-text-white">Email</label>
+            <label class="label">Email</label>
             <div class="control has-icons-left has-icons-right">
               <input class="input" formControlName="email" required (blur)="lostFocus.email = true">
               <span class="icon is-left">
@@ -189,7 +189,7 @@
           }
           <!-- Campo 'rol' -->
           <div class="field has-text-centered" (mouseleave)="checkRoleError()" tabindex="0">
-            <label class="label has-text-white">Rol</label>
+            <label class="label">Rol</label>
             <div class="control">
               <label class="radio">
                 <input type="radio" formControlName="role" [value]="true" [(ngModel)]="selectedRole">

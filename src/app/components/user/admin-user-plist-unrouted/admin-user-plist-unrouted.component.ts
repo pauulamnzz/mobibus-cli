@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IUser, IUserPage } from '../../../model/model.interface';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,6 +17,8 @@ import { TagModule } from 'primeng/tag';
 import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
 import { RatingModule } from 'primeng/rating';
 import { CommonModule } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @Component({
   selector: 'app-admin-user-plist-unrouted',
@@ -24,17 +26,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './admin-user-plist-unrouted.component.html',
   styleUrls: ['./admin-user-plist-unrouted.component.css'],
   imports:[
-    PaginatorModule,
-    ConfirmDialogModule,
-    ButtonModule,
-    RouterModule,
-    MessagesModule,
-    AdminUserDetailUnroutedComponent,
-    TableModule,
-    ButtonModule,
-    TagModule,
-    RatingModule,
-    CommonModule
+   RouterModule,
+   PaginatorModule,
+   ConfirmDialogModule,
+   AdminUserDetailUnroutedComponent
+    
     
   ],
 
@@ -57,7 +53,8 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     private oConfirmationService: ConfirmationService,
     private oMessageService: MessageService,
 
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
     
@@ -118,13 +115,12 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       styleClass:'my-custom-dialog'
     });
   }
-
   doRemove(u: IUser) {
     this.oUserToRemove = u;
     this.oConfirmationService.confirm({
       accept: () => {
         this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
-        this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
+         this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
@@ -134,8 +130,9 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMessageService.add({ severity: 'error', summary: "The jugador hasn't been removed.", detail: "The jugador hasn't been removed.", life: 2000 });       }
-    });
+        this.oMessageService.add({ severity: 'error', summary: "The jugador hasn't been removed.", detail: "The jugador hasn't been removed.", life: 2000 });          }
+      }
+    );
   }
   
 }

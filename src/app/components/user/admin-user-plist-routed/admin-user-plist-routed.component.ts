@@ -73,7 +73,7 @@ oUserToRemove: any;
             this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error in empty operation.'});
             this.bLoading = false;
           },
-        })
+        });
       },
       reject: () => {
         this.oMessageService.add({ severity: 'info', summary: 'Empty Cancelled', detail: 'Empty operation cancelled.' });

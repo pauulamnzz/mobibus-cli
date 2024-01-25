@@ -66,70 +66,78 @@
 
 
 }@else {
-<div class="has-text-centered m-6">
-  Se estan viendo {{users ? users.length : 0 }} users.
+<div class="columns is-centered">
+  <div class="column is-9">
+    <div class="box">
+      <div class="has-text-centered m-6">
+        Se estan viendo {{users ? users.length : 0 }} users.
+      </div>
+      <div class="is-flex is-justify-content-center">
+      <table class="table is-hoverable m-6 mb-0">
+        <thead>
+          <tr>
+            <th class="has-text-centered ">ID</th>
+            <th class="has-text-centered">USERNAME</th>
+            <th class="has-text-centered">EMAIL</th>
+            <th class="has-text-centered">ROL</th>
+            <th class="has-text-centered">PARADAS FAVS</th>
+
+            <th class="has-text-centered">HERRAMIENTAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(user of users; track user){
+          <tr>
+            <td class="has-text-centered is-vcentered">{{ user.id }}</td>
+            <td class="has-text-centered is-vcentered">{{ user.username }}</td>
+            <td class="has-text-centered is-vcentered">{{ user.email }}</td>
+            <td class="has-text-centered is-vcentered">
+              @if(user.role==true){
+              Admin
+              }@else {
+              User
+              }
+
+            </td>
+            <td class="has-text-centered is-vcentered">
+              @if(user.usersParadasFavs!== undefined && user.usersParadasFavs > 0){
+              <a [routerLink]="['/admin','user_parada_fav','plist','byuser',user.id]">
+                {{user.usersParadasFavs}}
+              </a>
+              }@else {
+              0
+              }
+            </td>
+
+            <td class="has-text-centered">
+              <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','user','view', user.id]">
+                <i class="fa-solid fa-circle-info"></i>
+              </button>
+              <button class="button is-rounded is-1 m-3" (click)="doView(user)">
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+              <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','user','edit', user.id]">
+                <i class="fa-regular fa-pen-to-square"></i>              </button>
+              <button class="button is-rounded is-1 m-3" (click)="doRemove(user)">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </td>
+
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
+    </div>
+
+
+  </div>
 </div>
-<table class="table is-hoverable is-fullwidth mt-6 mb-0">
-  <thead>
-    <tr>
-      <th class="has-text-centered ">ID</th>
-      <th class="has-text-centered">USERNAME</th>
-      <th class="has-text-centered">EMAIL</th>
-      <th class="has-text-centered">ROL</th>
-      <th class="has-text-centered">PARADAS FAVS</th>
-
-      <th class="has-text-centered">HERRAMIENTAS</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(user of users; track user){
-    <tr>
-      <td class="has-text-centered is-vcentered">{{ user.id }}</td>
-      <td class="has-text-centered is-vcentered">{{ user.username }}</td>
-      <td class="has-text-centered is-vcentered">{{ user.email }}</td>
-      <td class="has-text-centered is-vcentered">
-        @if(user.role==true){
-        Admin
-        }@else {
-        User
-        }
-
-      </td>
-      <td class="has-text-centered is-vcentered">
-        @if(user.usersParadasFavs!== undefined && user.usersParadasFavs > 0){
-          <a [routerLink]="['/admin','user_parada_fav','plist','byuser',user.id]" >
-           {{user.usersParadasFavs}}
-          </a>
-        }@else {
-          0
-        }
-        </td>
-
-      <td class="has-text-centered">
-        <button class="button is-rounded is-info m-3" [routerLink]="['/admin','user','view', user.id]">
-          <i class="fa-solid fa-eye"></i>
-        </button>
-        <button class="button is-rounded is-info m-3" (click)="doView(user)">
-          <i class="fa-solid fa-arrow-up"></i>
-        </button>
-        <button class="button is-rounded is-info m-3" [routerLink]="['/admin','user','edit', user.id]">
-          <i class="fa-solid fa-pencil"></i>
-        </button>
-        <button class="button is-rounded is-info m-3" (click)="doRemove(user)">
-          <i class="fa-solid fa-trash"></i>
-        </button>
-      </td>
-
-    </tr>
-    }
-  </tbody>
-</table>
-
-
-<p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-  [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-
-
 }
 
 
@@ -152,4 +160,3 @@
     </button>
   </ng-template>
 </p-confirmDialog>
-
