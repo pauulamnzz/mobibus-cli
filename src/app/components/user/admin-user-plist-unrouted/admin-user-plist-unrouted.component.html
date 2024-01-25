@@ -56,39 +56,19 @@
 
 
 
-<p-confirmDialog #cd>
-  <ng-template pTemplate="header">
-    <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de Jugador</h5>
-  </ng-template>
-  <ng-template pTemplate="message">
-    <div class="container justify-content-center">
-      <app-admin-user-detail-unrouted [id]="oUserToRemove!.id"></app-admin-user-detail-unrouted>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="footer">
-    <p>¿Seguro que quieres eliminar el Jugador?</p>
-    <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
-      <span class="p-button-label">No</span>
-    </button>
-    <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
-      <span class="p-button-label">Sí</span>
-    </button>
-  </ng-template>
-</p-confirmDialog>
-
 
 
 @if (status != null) {
 
-  <div class="notification is-danger mt-3">
-    {{ status!.error.message }} - {{ status!.message }}
-  </div>
-  
+<div class="notification is-danger mt-3">
+  {{ status!.error.message }} - {{ status!.message }}
+</div>
+
 
 }@else {
-  <div class="has-text-centered m-6">
-    Se estan viendo {{users ? users.length : 0 }} users.
-  </div>
+<div class="has-text-centered m-6">
+  Se estan viendo {{users ? users.length : 0 }} users.
+</div>
 <table class="table is-hoverable is-fullwidth mt-6 mb-0">
   <thead>
     <tr>
@@ -96,6 +76,8 @@
       <th class="has-text-centered">USERNAME</th>
       <th class="has-text-centered">EMAIL</th>
       <th class="has-text-centered">ROL</th>
+      <th class="has-text-centered">PARADAS FAVS</th>
+
       <th class="has-text-centered">HERRAMIENTAS</th>
     </tr>
   </thead>
@@ -113,6 +95,16 @@
         }
 
       </td>
+      <td class="has-text-centered is-vcentered">
+        @if(user.usersParadasFavs!== undefined && user.usersParadasFavs > 0){
+          <a [routerLink]="['/admin','user_parada_fav','plist','byuser',user.id]" >
+           {{user.usersParadasFavs}}
+          </a>
+        }@else {
+          0
+        }
+        </td>
+
       <td class="has-text-centered">
         <button class="button is-rounded is-info m-3" [routerLink]="['/admin','user','view', user.id]">
           <i class="fa-solid fa-eye"></i>
@@ -135,9 +127,28 @@
 
 
 <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-[totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
 
 
 }
 
 
+<p-confirmDialog #cd>
+  <ng-template pTemplate="header">
+    <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de Jugador</h5>
+  </ng-template>
+  <ng-template pTemplate="message">
+    <div class="container justify-content-center">
+      <app-admin-user-detail-unrouted [id]="oUserToRemove!.id"></app-admin-user-detail-unrouted>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p>¿Seguro que quieres eliminar el Jugador?</p>
+    <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
+      <span class="p-button-label">No</span>
+    </button>
+    <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
+      <span class="p-button-label">Sí</span>
+    </button>
+  </ng-template>
+</p-confirmDialog>

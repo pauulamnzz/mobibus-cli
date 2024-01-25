@@ -39,28 +39,25 @@ export interface IEntity {
 
 export interface IUserPage extends IPage<IUser> {
 }
-export interface IParadaFavPage extends IPage<IParadaFav> {
-}
+
 export interface IUserParadaFavPage extends IPage<IUserParadaFav> {
 }
 
 export interface IUser extends IEntity {
-    name: string,
+
     username: string,
+    password: string,
     email: string,
     role: boolean,
+    usersParadasFavs?: number,
 
 }
-export interface IParadaFav extends IEntity {
-    linea: string,
-    denominacion: string,
-    id_parada_api: number
 
-}
 
 export interface IUserParadaFav extends IEntity {
-    id_user: number,
-    id_parada_fav: number
+alias: string,
+id_parada: number,
+user: IUser,
 
 }
 

@@ -14,9 +14,10 @@ import { PrimeNGConfig } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
-import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
 import { RatingModule } from 'primeng/rating';
 import { CommonModule } from '@angular/common';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
 
 @Component({
   selector: 'app-admin-user-plist-unrouted',
@@ -34,7 +35,8 @@ import { CommonModule } from '@angular/common';
     ButtonModule,
     TagModule,
     RatingModule,
-    CommonModule
+    CommonModule,
+    ConfirmPopupModule
     
   ],
 

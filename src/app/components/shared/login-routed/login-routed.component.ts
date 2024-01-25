@@ -74,14 +74,14 @@ export class LoginRoutedComponent implements OnInit {
 
   loginAdmin() {
     this.loginForm.patchValue({
-      username: 'Pepa',
+      username: 'Paula',
       password: 'foxforum'
     });
   }
 
   loginUser() {
     this.loginForm.patchValue({
-      username: 'Pepe',
+      username: 'Hugo',
       password: 'foxforum'
     });
 }
