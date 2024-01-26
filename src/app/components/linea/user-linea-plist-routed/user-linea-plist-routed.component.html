@@ -1,0 +1,32 @@
+<input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Buscar parada">
+
+<div class="columns is-centered">
+  
+  <div class="column is-9">
+    <div class="box">
+      <div class="is-flex is-justify-content-center">
+
+        <table class="table is-hoverable m-6 mb-0">
+          <thead>
+            <tr>
+              <th class="has-text-centered">LINEAS</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let linea of lineas">
+              <td>{{ linea }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator> -->
+
+    </div>
+
+
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plis
 import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
 import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
 import { AdminUserViewRoutedComponent } from './components/user/admin-user-view-routed/admin-user-view-routed.component';
+import { UserLineaPlistRoutedComponent } from './components/linea/user-linea-plist-routed/user-linea-plist-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },    
 
 
+    { path: 'user/linea/plist', component: UserLineaPlistRoutedComponent },    
 
-
+    
 ];

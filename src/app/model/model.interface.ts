@@ -75,3 +75,40 @@ export interface IToken {
     exp: number;
     name: string;
 }
+
+
+export interface Root {
+    total_count: number
+    results: Result[]
+  }
+  
+  export interface Result {
+    id_parada: number
+    codvia?: number
+    numportal: string
+    suprimida: number
+    denominacion: string
+    lineas: string
+    proximas_llegadas: string
+    geo_shape: GeoShape
+    geo_point_2d: GeoPoint2d
+  }
+  
+  export interface GeoShape {
+    type: string
+    geometry: Geometry
+    properties: Properties
+  }
+  
+  export interface Geometry {
+    coordinates: number[]
+    type: string
+  }
+  
+  export interface Properties {}
+  
+  export interface GeoPoint2d {
+    lon: number
+    lat: number
+  }
+  

@@ -1,34 +1,4 @@
-<!--<p-menubar [model]="items " [style]="{
-  'background-color': '#121212',
-  'border-color': '#121212', 
-}">
-  <ng-template pTemplate="start">
-    <img src="../../../../assets/img/loguito-inverso.png" height="40" width="40" />
-  </ng-template>
-  <div>
 
-
-    @if(strUserName){
-    <span class="navbar-text m-3">
-
-      <a class="nav-link" (click)="doSessionUserView($event)" href="#">{{strUserName}}</a>
-
-    </span>
-    <button class="button is-link" (click)="redirectToLogout()">
-      <i class="fa-solid fa-power-off"></i>
-    </button>
-    }@else{
-    <span class="navbar-text m-3">
-      Not logged in
-    </span>
-    <button class="button is-link" (click)="redirectToLogin()">
-      <i class="fa-solid fa-right-to-bracket"></i>
-    </button>
-    }
-
-  </div>
-</p-menubar>
--->
 
 <!--BULMA-->
 <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -53,14 +23,16 @@
         Inicio
       </a>
 
-      <a class="navbar-item">
-        <i class="pi pi-sort-numeric-down-alt m-2" routerLink="/user/user/plist"></i>
+      <a class="navbar-item " routerLink="user/linea/plist">
+        <i class="pi pi-sort-numeric-down-alt m-2"></i>
         Lineas
       </a>
+      @if(strUserName && oSessionUser?.role==false){
+       
       <div class="navbar-item has-dropdown is-hoverable" >
         <a class="navbar-link">
           <i class="pi pi-users m-2"></i>
-          Usuarios
+          Usuarios admin
         </a>
 
         <div class="navbar-dropdown is-boxed">
@@ -74,7 +46,9 @@
           </a>
         </div>
       </div>
-
+ 
+    }
+    @if(strUserName && oSessionUser?.role==false){
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           <i class="pi pi-map-marker m-2"></i>
@@ -91,8 +65,8 @@
             Lista de paradas
           </a>
         </div>
-
       </div>
+    }
       <a class="navbar-item">
         <i class="pi pi-info-circle m-2"routerLink="/user/user/more"></i>
         Más
