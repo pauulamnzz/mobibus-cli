@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ApiEmtService } from '../../../services/api-emt.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-linea-plist-routed',
@@ -14,6 +15,7 @@ import { ApiEmtService } from '../../../services/api-emt.service';
 
   imports: [
     CommonModule,
+    FormsModule
 
 
   ]
