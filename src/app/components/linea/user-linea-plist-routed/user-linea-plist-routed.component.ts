@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ApiEmtService } from '../../../services/api-emt.service';
 import { FormsModule } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-user-linea-plist-routed',
@@ -23,9 +24,13 @@ import { FormsModule } from '@angular/forms';
 export class UserLineaPlistRoutedComponent implements OnInit {
   constructor(private ApiEmtService: ApiEmtService) { }
   lineas: string[] = [];
+  searchTerm: string = '';
+  filterLineas: string[] = [];
+
 
   ngOnInit() {
 this.ApiEmtService.getAllLineas().subscribe(result => {
+  this.filterLineas = result;
   this.lineas = result;
   console.log(result);
 
@@ -35,10 +40,19 @@ this.ApiEmtService.getAllLineas().subscribe(result => {
 //  console.log(result);
 
 //   });
-
-
-
+}
+getValue(event: any): string {
+  return event.target.value;
 }
 
 
+search() {
+  if (this.searchTerm) {
+    this.lineas = this.filterLineas.filter(linea =>
+      linea.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  } else {
+    this.lineas = this.filterLineas;
+  }
+}
 }
