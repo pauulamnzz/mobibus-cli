@@ -3,7 +3,8 @@
   
   <div class="column is-2 ">
     <div class="box m-5">
-      <input [(ngModel)]="searchTerm" (input)="search()" placeholder="Buscar línea">
+      <input class="input is-info" type="text" placeholder="Buscar línea" [(ngModel)]="searchTerm" (input)="search()">
+      
       <div class="is-flex is-justify-content-center">
 
         <table class="table is-hoverable m-6 mb-0">
