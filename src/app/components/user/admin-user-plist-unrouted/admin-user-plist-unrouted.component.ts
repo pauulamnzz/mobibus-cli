@@ -9,17 +9,6 @@ import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/a
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { RouterModule } from '@angular/router';
-import { MessagesModule } from 'primeng/messages';
-import { PrimeNGConfig } from 'primeng/api';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
-import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
-import { RatingModule } from 'primeng/rating';
-import { CommonModule } from '@angular/common';
-import { ToastModule } from 'primeng/toast';
-import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
-
 @Component({
   selector: 'app-admin-user-plist-unrouted',
   standalone: true,
@@ -75,7 +64,8 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         this.oPage = data;
         this.users = data.content;
         this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.oPaginatorState);
+        console.log(this.users);
+    
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
