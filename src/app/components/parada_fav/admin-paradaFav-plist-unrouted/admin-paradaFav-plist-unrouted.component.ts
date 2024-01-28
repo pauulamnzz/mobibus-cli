@@ -35,7 +35,7 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oParadaFavToRemove: IParadaFav | null = null;
   ref: DynamicDialogRef | undefined;
-  paradas_favs: any[] = [];   
+
   constructor(
     private oUserAjaxService: UserAjaxService,
     private oParadaFavAjaxService: ParadaFavAjaxService,
@@ -62,7 +62,6 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
     this.oParadaFavAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({
       next: (data: IParadaFavPage) => {
         this.oPage = data;
-        this.paradas_favs=data.content;
         this.oPaginatorState.pageCount = data.totalPages;
       },
       error: (error: HttpErrorResponse) => {

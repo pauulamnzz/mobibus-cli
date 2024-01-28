@@ -33,7 +33,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oUserToRemove: IUser | null = null;
   ref: DynamicDialogRef | undefined;
-  users: any[] = [];
+
 
 
   constructor(
@@ -62,9 +62,8 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
       next: (data: IUserPage) => {
         this.oPage = data;
-        this.users = data.content;
         this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.users);
+     
     
       },
       error: (error: HttpErrorResponse) => {
