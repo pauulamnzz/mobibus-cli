@@ -36,14 +36,13 @@ this.ApiEmtService.getAllLineas().subscribe(result => {
 
 
   });
-// this.ApiEmtService.getAll().subscribe(result => {
+
+// this.ApiEmtService.getEmtData().subscribe(result => {
 //  console.log(result);
 
 //   });
 }
-getValue(event: any): string {
-  return event.target.value;
-}
+
 
 
 search() {

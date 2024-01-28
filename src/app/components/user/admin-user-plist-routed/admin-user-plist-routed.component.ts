@@ -32,7 +32,7 @@ export class AdminUserPlistRoutedComponent implements OnInit {
   
   forceReload: Subject<boolean> = new Subject<boolean>();
   bLoading: boolean = false;
-oUserToRemove: any;
+
 
   constructor(
     private oUserAjaxService: UserAjaxService,
