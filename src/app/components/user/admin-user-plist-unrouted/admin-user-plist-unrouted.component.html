@@ -41,11 +41,11 @@
 
               <td class="has-text-centered is-vcentered">
                 @if(user.paradas_favs==0){
-                  0
+                0
                 }@else {
-                  <a [routerLink]="['/admin','parada_fav','plist','byuser',user.id]">
-                    {{  user.paradas_favs}}  
-                  </a>
+                <a [routerLink]="['/admin','paradaFav','plist','byuser',user.id]">
+                  {{ user.paradas_favs}}
+                </a>
                 }
               </td>
 
@@ -58,9 +58,14 @@
                 </button>
                 <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','user','edit', user.id]">
                   <i class="fa-regular fa-pen-to-square"></i> </button>
+
+                @if(user.paradas_favs==0){
                 <button class="button is-rounded is-1 m-3" (click)="doRemove(user)">
                   <i class="fa-regular fa-trash-can"></i>
                 </button>
+                }
+
+
               </td>
 
             </tr>

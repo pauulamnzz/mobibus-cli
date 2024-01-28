@@ -29,7 +29,7 @@ export const routes: Routes = [
     { path: 'admin/paradaFav/plist', component: AdminParadaFavPlistRoutedComponent },    
     { path: 'admin/paradaFav/view/:id', component: AdminParadaFavViewRoutedComponent },    
     { path: 'admin/paradaFav/new', component: AdminParadaFavNewRoutedComponent },
-
+    { path: 'admin/paradaFav/plist/byuser/:id', component: AdminParadaFavPlistRoutedComponent },
     
 
     
