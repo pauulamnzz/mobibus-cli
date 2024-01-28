@@ -40,7 +40,7 @@ export interface IEntity {
 export interface IUserPage extends IPage<IUser> {
 }
 
-export interface IUserParadaFavPage extends IPage<IUserParadaFav> {
+export interface IParadaFavPage extends IPage<IParadaFav> {
 }
 
 export interface IUser extends IEntity {
@@ -49,12 +49,12 @@ export interface IUser extends IEntity {
     password: string,
     email: string,
     role: boolean,
-    usersParadasFavs?: number,
+    paradas_favs: number,
 
 }
 
 
-export interface IUserParadaFav extends IEntity {
+export interface IParadaFav extends IEntity {
 alias: string,
 id_parada: number,
 user: IUser,

@@ -1,0 +1,89 @@
+
+@if (status != null) {
+
+  <div class="notification is-danger mt-3">
+    {{ status!.error.message }} - {{ status!.message }}
+  </div>
+  
+  
+  }@else {
+  <div class="columns is-centered">
+    <div class="column is-9">
+      <div class="box">
+        <div class="has-text-centered m-6">
+        Se estan viendo {{paradas_favs ? paradas_favs.length : 0 }} Paradas favs.
+        </div>
+        <div class="is-flex is-justify-content-center">
+        <table class="table is-hoverable m-6 mb-0">
+          <thead>
+            <tr>
+              <th class="has-text-centered" (click)="doOrder('id')">ID</th>
+              <th class="has-text-centered" (click)="doOrder('alias')">ALIAS</th>
+              <th class="has-text-centered" (click)="doOrder('id_parada')">ID PARADA</th>
+              <th class="has-text-centered">USER</th>
+              <th class="has-text-centered">HERRAMIENTAS</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(parada_fav of oPage?.content; track parada_fav.id){
+            <tr>
+              <td class="has-text-centered is-vcentered">{{ parada_fav.id }}</td>
+              <td class="has-text-centered is-vcentered">{{ parada_fav.alias }}</td>
+              <td class="has-text-centered is-vcentered">{{ parada_fav.id_parada }}</td>
+              <td class="has-text-centered is-vcentered">
+                <a [routerLink]="['/admin','parada_fav','plist','byuser',parada_fav.id]">
+                  {{parada_fav.user.id}} {{parada_fav.user.username}}
+                </a>
+              </td>
+  
+              <td class="has-text-centered">
+                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','paradaFav','view', parada_fav.id]">
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+                <button class="button is-rounded is-1 m-3" (click)="doView(parada_fav)">
+                  <i class="fa-solid fa-arrow-up"></i>
+                </button>
+                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','parada_fav','edit', parada_fav.id]">
+                  <i class="fa-regular fa-pen-to-square"></i>              </button>
+                <button class="button is-rounded is-1 m-3" (click)="doRemove(parada_fav)">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </td>
+  
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+  
+  
+        <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+          [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  
+      </div>
+  
+  
+    </div>
+  </div>
+  }
+  
+  
+  <p-confirmDialog #cd>
+    <ng-template pTemplate="header">
+      <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de Jugador</h5>
+    </ng-template>
+    <ng-template pTemplate="message">
+      <div class="container justify-content-center">
+       <app-admin-paradaFav-detail-unrouted [id]="oParadaFavToRemove!.id"></app-admin-paradaFav-detail-unrouted>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p>¿Seguro que quieres eliminar el Jugador?</p>
+      <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
+        <span class="p-button-label">No</span>
+      </button>
+      <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
+        <span class="p-button-label">Sí</span>
+      </button>
+    </ng-template>
+  </p-confirmDialog>

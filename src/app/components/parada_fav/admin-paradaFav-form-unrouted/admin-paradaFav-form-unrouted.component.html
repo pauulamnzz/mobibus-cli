@@ -1,0 +1,102 @@
+<div class="container mb-5">
+  <div class="columns has-text-centered is-centered">
+
+    <div class="box mt-5">
+      @if (status != null){
+      <div class="notification is-danger mt-3">
+        {{ status!.error.message }} - {{ status!.message }}
+      </div>
+      }@else{
+
+      <form [formGroup]="paradaFavForm" (ngSubmit)="onSubmit()">
+        <!-- Campo 'ID' -->
+        @if(operation=='EDIT'){
+        <div class="field">
+          <label class="label ">ID</label>
+          <div class="control has-icons-left">
+            <input class="input" formControlName="id" placeholder="ID" required readonly>
+            <span class="icon is-left">
+              <i class="fas fa-id-card"></i>
+            </span>
+          </div>
+        </div>
+        }
+        <!-- Campo 'alias' -->
+        <div class="field">
+          <label class="label ">Alias</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" formControlName="alias" required (blur)="lostFocus.alias = true">
+            <span class="icon  is-left">
+              <i class="fa-solid fa-tag"></i>
+            </span>
+          </div>
+        </div>
+        @if(lostFocus.alias){
+
+        @if(hasError('alias', 'required')){
+        <i class="fas fa-exclamation-triangle has-text-danger"></i>
+        <div class="has-text-danger">El alias es requerido</div>
+        }
+        @if(hasError('alias', 'minlength')){
+        <i class="fas fa-exclamation-triangle has-text-danger"></i>
+        <div class="has-text-danger">El alias debe tener más de 3 caracteres</div>
+        }
+        @if(hasError('alias', 'maxlength')){
+        <i class="fas fa-exclamation-triangle has-text-danger"></i>
+        <div class="has-text-danger">El alias debe tener menos de 15 caracteres</div>
+        }
+        }
+
+
+        <!-- Campo 'id_parada' -->
+        <div class="field">
+          <label class="label">ID Parada</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" formControlName="id_parada" required (blur)="lostFocus.id_parada = true">
+            <span class="icon is-left">
+              <i class="fa-solid fa-gears"></i>
+            </span>
+          </div>
+        </div>
+        @if(lostFocus.id_parada){
+        @if(hasError('id_parada', 'required')){
+        <i class="fas fa-exclamation-triangle has-text-danger"></i>
+        <div class="has-text-danger">El ID Parada es requerido</div>
+        }
+        }
+        <!-- Campo 'user' -->
+        <div formGroupName="user">
+        <div class="field ">
+          <label class="label">User</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" formControlName="id" placeholder="Add user" readonly required (blur)="onIdFieldBlurU()" (blur)="lostFocus.user = true">
+            
+            <span class="icon is-left">
+              <i class="fa-solid fa-user"></i>
+            </span>
+            <button class="button is-primary m-2" type="button" (click)="onShowUsersSelection()">
+              <i class="pi pi-search"></i>
+            </button>
+            
+          
+          </div>
+        </div>
+      </div>
+        @if(lostFocus.user){
+        @if(paradaFavForm.get('user.id')?.hasError('required')){
+        <i class="fas fa-exclamation-triangle has-text-danger"></i>
+        <div class="has-text-danger">El user es requerido</div>
+        }
+        }
+
+
+        <div class="field m-3">
+          <button class="button is-link" type="button" (click)="onSubmit()" [disabled]="!paradaFavForm.valid">
+            Guardar Parada Favorita
+          </button>
+        </div>
+      </form>
+
+      }
+    </div>
+  </div>

@@ -1,64 +1,55 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { IUser, IUserPage } from '../../../model/model.interface';
-import { HttpErrorResponse } from '@angular/common/http';
+import { IParadaFav, IParadaFavPage, IUser } from '../../../model/model.interface';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
-import { UserAjaxService } from '../../../services/user.ajax.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserAjaxService } from '../../../services/user.ajax.service';
+import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 import { RouterModule } from '@angular/router';
-import { MessagesModule } from 'primeng/messages';
-import { PrimeNGConfig } from 'primeng/api';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { TagModule } from 'primeng/tag';
-import { AdminUserEditRoutedComponent } from '../admin-user-edit-routed/admin-user-edit-routed.component';
-import { RatingModule } from 'primeng/rating';
-import { CommonModule } from '@angular/common';
-import { ToastModule } from 'primeng/toast';
-import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { AdminParadaFavDetailUnroutedComponent } from '../admin-paradaFav-detail-unrouted/admin-paradaFav-detail-unrouted.component';
 
 @Component({
-  selector: 'app-admin-user-plist-unrouted',
+  selector: 'app-admin-paradaFav-plist-unrouted',
+  templateUrl: './admin-paradaFav-plist-unrouted.component.html',
+  styleUrls: ['./admin-paradaFav-plist-unrouted.component.css'],
   standalone: true,
-  templateUrl: './admin-user-plist-unrouted.component.html',
-  styleUrls: ['./admin-user-plist-unrouted.component.css'],
-  imports:[
-   RouterModule,
-   PaginatorModule,
-   ConfirmDialogModule,
-   AdminUserDetailUnroutedComponent
-    
-    
-  ],
-
+  imports: [
+    RouterModule,
+    PaginatorModule,
+    ConfirmDialogModule,
+    AdminParadaFavDetailUnroutedComponent
+  ]
 })
-export class AdminUserPlistUnroutedComponent implements OnInit {
+export class AdminParadaFavPlistUnroutedComponent implements OnInit {
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
-  oPage: IUserPage | undefined;
+  @Input() id_user: number = 0; //filter by user
+
+  oPage: IParadaFavPage | undefined;
+  oUser: IUser | null = null; // data of user if id_user is set for filter
   orderField: string = "id";
   orderDirection: string = "asc";
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  oUserToRemove: IUser | null = null;
+  oParadaFavToRemove: IParadaFav | null = null;
   ref: DynamicDialogRef | undefined;
-  users: any[] = [];
-
-
+  paradas_favs: any[] = [];   
   constructor(
     private oUserAjaxService: UserAjaxService,
+    private oParadaFavAjaxService: ParadaFavAjaxService,
     public oDialogService: DialogService,
     private oConfirmationService: ConfirmationService,
     private oMessageService: MessageService,
 
-  ) { 
-  }
+  ) { }
 
   ngOnInit() {
-    
     this.getPage();
+    if (this.id_user > 0) {
+      this.getUser();
+    }
     this.forceReload.subscribe({
       next: (v) => {
         if (v) {
@@ -67,24 +58,19 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       }
     });
   }
-
-
   getPage(): void {
-    this.oUserAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection).subscribe({
-      next: (data: IUserPage) => {
+    this.oParadaFavAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({
+      next: (data: IParadaFavPage) => {
         this.oPage = data;
-        this.users = data.content;
+        this.paradas_favs=data.content;
         this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
       }
     })
   }
-
   onPageChang(event: PaginatorState) {
-
     this.oPaginatorState.rows = event.rows;
     this.oPaginatorState.page = event.page;
     this.getPage();
@@ -99,42 +85,50 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     }
     this.getPage();
   }
-
-
-
-  doView(u: IUser) {
-    this.ref = this.oDialogService.open(AdminUserDetailUnroutedComponent, {
+     doView(u: IParadaFav) {
+    this.ref = this.oDialogService.open(AdminParadaFavDetailUnroutedComponent, {
       data: {
         id: u.id
       },
-      header: 'Vista de usuario',
+      header: 'View of Parada Fav',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      maximizable: false,
-      styleClass:'my-custom-dialog'
+      maximizable: false
     });
   }
-  doRemove(u: IUser) {
-    this.oUserToRemove = u;
+
+
+  doRemove(u: IParadaFav) {
+    this.oParadaFavToRemove = u;
     this.oConfirmationService.confirm({
       accept: () => {
         this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
-         this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
+        this.oParadaFavAjaxService.removeOne(this.oParadaFavToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
             this.oMessageService.add({ severity: 'error', summary: 'Danger', detail: "The jugador hasn't been removed.", life: 2000 });      
-              }
+          }
         });
       },
       reject: (type: ConfirmEventType) => {
         this.oMessageService.add({ severity: 'error', summary: "The jugador hasn't been removed.", detail: "The jugador hasn't been removed.", life: 2000 });       
-         }
       }
-    );
+    });
   }
-  
+
+  getUser(): void {
+    this.oUserAjaxService.getOne(this.id_user).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+
+    })
+  }
 }

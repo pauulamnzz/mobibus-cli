@@ -76,17 +76,16 @@
       <table class="table is-hoverable m-6 mb-0">
         <thead>
           <tr>
-            <th class="has-text-centered ">ID</th>
-            <th class="has-text-centered">USERNAME</th>
-            <th class="has-text-centered">EMAIL</th>
-            <th class="has-text-centered">ROL</th>
+            <th class="has-text-centered" (click)="doOrder('id')">ID</th>
+            <th class="has-text-centered" (click)="doOrder('username')">USERNAME</th>
+            <th class="has-text-centered" (click)="doOrder('email')">EMAIL</th>
+            <th class="has-text-centered" (click)="doOrder('role')">ROLE</th>
             <th class="has-text-centered">PARADAS FAVS</th>
-
             <th class="has-text-centered">HERRAMIENTAS</th>
           </tr>
         </thead>
         <tbody>
-          @for(user of users; track user){
+          @for(user of oPage?.content; track user.id){
           <tr>
             <td class="has-text-centered is-vcentered">{{ user.id }}</td>
             <td class="has-text-centered is-vcentered">{{ user.username }}</td>
@@ -100,9 +99,9 @@
 
             </td>
             <td class="has-text-centered is-vcentered">
-              @if(user.usersParadasFavs!== undefined && user.usersParadasFavs > 0){
-              <a [routerLink]="['/admin','user_parada_fav','plist','byuser',user.id]">
-                {{user.usersParadasFavs}}
+              @if(user.paradas_favs!== undefined && user.paradas_favs > 0){
+              <a [routerLink]="['/admin','parada_fav','plist','byuser',user.id]">
+                {{user.paradas_favs}}
               </a>
               }@else {
               0
