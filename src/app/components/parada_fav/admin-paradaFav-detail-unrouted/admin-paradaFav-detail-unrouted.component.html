@@ -2,55 +2,54 @@
 
 
 @if(status != null){
-  <div class="notification is-danger mt-3">
-    {{ status!.error.message }} - {{ status!.message }}
-  </div>
-  }@else{
-  
-  
-  @if(status == null){
-  
-  <div class="columns is-centered m-6">
-    <div class="column is-9">
-      <div class="box">
-        <div class="is-flex is-justify-content-center">
-          <table class="table is-fullwidth mt-6 mb-6">
-            @if(oParadaFav){
-            <tbody>
-              <tr>
-                <th class="has-text-centered ">PORPIEDAD</th>
-                <th class="has-text-centered ">INFORMACIÓN</th>
-              </tr>
-              <tr>
-                <th class="has-text-centered ">ID</th>
-                <td class="has-text-centered is-vcentered">{{ oParadaFav.id }}</td>
-              </tr>
-              <tr>
-                <th class="has-text-centered ">Alias</th>
-                <td class="has-text-centered is-vcentered">{{ oParadaFav.alias }}</td>
-              </tr>
-              <tr>
-                <th class="has-text-centered ">ID Parada</th>
-                <td class="has-text-centered is-vcentered">{{ oParadaFav.id_parada }}</td>
-              </tr>
-      
-              <tr>
-                <th class="has-text-centered ">User</th>
-                <td class="has-text-centered is-vcentered">
-                  <a [routerLink]="['/admin','user','view',oParadaFav.user.id]">{{oParadaFav.user.id}}
-                    {{oParadaFav.user.username}}</a>
-                </td>
-              </tr>
-  
-            </tbody>
-            }
-  
-          </table>
-        </div>
-  
+<div class="notification is-danger mt-3">
+  {{ status!.error.message }} - {{ status!.message }}
+</div>
+}@else{
+
+
+@if(status == null){
+
+<div class="columns is-centered m-6">
+  <div class="column is-9">
+    <div class="box">
+      <div class="is-flex is-justify-content-center">
+        <table class="table is-fullwidth mt-6 mb-6">
+          <tbody>
+            <tr>
+              <th class="has-text-centered ">PORPIEDAD</th>
+              <th class="has-text-centered ">INFORMACIÓN</th>
+            </tr>
+            <tr>
+              <th class="has-text-centered ">ID</th>
+              <td class="has-text-centered is-vcentered">{{ oParadaFav.id }}</td>
+            </tr>
+            <tr>
+              <th class="has-text-centered ">Alias</th>
+              <td class="has-text-centered is-vcentered">{{ oParadaFav.alias }}</td>
+            </tr>
+            <tr>
+              <th class="has-text-centered ">ID Parada</th>
+              <td class="has-text-centered is-vcentered">{{ oParadaFav.id_parada }}</td>
+            </tr>
+
+            <tr>
+              <th class="has-text-centered ">User</th>
+              <td class="has-text-centered is-vcentered">
+                <a [routerLink]="['/admin','user','view',oParadaFav.user.id]">{{oParadaFav.user.id}}
+                  {{oParadaFav.user.username}}</a>
+              </td>
+            </tr>
+
+          </tbody>
+
+
+        </table>
       </div>
+
     </div>
   </div>
-  }
-  
-  }
+</div>
+}
+
+}

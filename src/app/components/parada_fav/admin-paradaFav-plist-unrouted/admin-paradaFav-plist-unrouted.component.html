@@ -11,7 +11,18 @@
     <div class="column is-9">
       <div class="box">
         <div class="has-text-centered m-6">
-        Se estan viendo {{oPage?.numberOfElements }} Paradas favs.
+          @if(id_user>0){
+            <h3>Filtered by user ({{id_user}} - {{oUser?.username}})
+          
+            <a type="button" class="button is-rounded is-1 m-3"
+             [routerLink]="['/admin','paradaFav','plist']">
+
+             reset filter</a>
+            </h3>
+            }@else{
+              <h3>No active filter</h3>
+            }
+        <p>Se estan viendo {{oPage?.numberOfElements }} Paradas favs.</p>
         </div>
         <div class="is-flex is-justify-content-center">
         <table class="table is-hoverable m-6 mb-0">
@@ -32,7 +43,7 @@
               <td class="has-text-centered is-vcentered">{{ parada_fav.id_parada }}</td>
               
               <td class="has-text-centered is-vcentered">
-                <a [routerLink]="['/admin','paradaFav','plist','byuser',parada_fav.id]">
+                <a [routerLink]="['/admin','paradaFav','plist','byuser',parada_fav.user.id]">
                   {{parada_fav.user.id}} {{parada_fav.user.username}}
                 </a>
               </td>
@@ -42,7 +53,7 @@
                   <i class="fa-solid fa-circle-info"></i> </button>
                 <button class="button is-rounded is-1 m-3" (click)="doView(parada_fav)">
                   <i class="fa-solid fa-arrow-up"></i></button>
-                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','parada_fav','edit', parada_fav.id]">
+                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
                   <i class="fa-regular fa-pen-to-square"></i> </button>
                 <button class="button is-rounded is-1 m-3" (click)="doRemove(parada_fav)">
                   <i class="fa-regular fa-trash-can"></i></button>

@@ -11,7 +11,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AdminParadaFavDetailUnroutedComponent } from '../admin-paradaFav-detail-unrouted/admin-paradaFav-detail-unrouted.component';
 import { AdminParadaFavPlistUnroutedComponent } from '../admin-paradaFav-plist-unrouted/admin-paradaFav-plist-unrouted.component';
 import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-admin-paradaFav-plist-routed',
   templateUrl: './admin-paradaFav-plist-routed.component.html',
@@ -25,18 +25,21 @@ import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service'
     ConfirmDialogModule,
     AdminParadaFavDetailUnroutedComponent,
     AdminParadaFavPlistUnroutedComponent,
+    
   ]
 })
 export class AdminParadaFavPlistRoutedComponent implements OnInit {
   
   forceReload: Subject<boolean> = new Subject<boolean>();
   bLoading: boolean = false;
+  id_user: number;
   constructor(
+    private oActivatedRoute: ActivatedRoute,
     private oParadaFavAjaxService: ParadaFavAjaxService,
     private oConfirmationService: ConfirmationService,
     private oMessageService: MessageService,
   ) { 
-
+    this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "1");
   }
 
   ngOnInit() {

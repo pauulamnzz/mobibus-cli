@@ -3,12 +3,16 @@ import { IUser } from '../../../model/model.interface';
 import { Component, Input, OnInit, Optional } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserAjaxService } from '../../../services/user.ajax.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin-user-detail-unrouted',
   templateUrl: './admin-user-detail-unrouted.component.html',
   styleUrls: ['./admin-user-detail-unrouted.component.css'],
   standalone: true,
+  imports: [
+  RouterModule
+  ],
 
 })
 export class AdminUserDetailUnroutedComponent implements OnInit {

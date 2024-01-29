@@ -15,7 +15,6 @@ import { AdminParadaFavDetailUnroutedComponent } from '../admin-paradaFav-detail
 })
 export class AdminParadaFavViewRoutedComponent implements OnInit {
   id: number = 1;
-  status: HttpErrorResponse | null = null;
   
   constructor(
     private oActivatedRoute: ActivatedRoute,

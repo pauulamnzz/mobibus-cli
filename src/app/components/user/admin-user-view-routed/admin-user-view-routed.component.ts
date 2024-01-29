@@ -14,7 +14,6 @@ import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/
 })
 export class AdminUserViewRoutedComponent implements OnInit {
   id: number = 1;
-  status: HttpErrorResponse | null = null;
   
   constructor(
     private oActivatedRoute: ActivatedRoute,

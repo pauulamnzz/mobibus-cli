@@ -11,7 +11,7 @@
     <div class="column is-9">
       <div class="box">
         <div class="has-text-centered m-6">
-          Se estan viendo {{users ? users.length : 0 }} users.
+          Se están viendo {{oPage?.numberOfElements}} users.
         </div>
         <div class="is-flex is-justify-content-center">
         <table class="table is-hoverable m-6 mb-0">
@@ -38,8 +38,13 @@
                 User
                 }
               </td>
+
               <td class="has-text-centered is-vcentered">
-              {{user.paradas_favs}}
+                @if(user.paradas_favs!==undefined && user.paradas_favs>0){
+                  {{ user.paradas_favs}} 
+                }@else {
+                0
+                }
               </td>
   
               <td class="has-text-centered">

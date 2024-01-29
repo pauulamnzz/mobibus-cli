@@ -26,6 +26,7 @@ import { RouterModule } from '@angular/router';
 })
 export class AdminUserPlistUnroutedComponent implements OnInit {
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  
   oPage: IUserPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
@@ -39,7 +40,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   constructor(
     private oUserAjaxService: UserAjaxService,
     public oDialogService: DialogService,
-    private oConfirmationService: ConfirmationService,
+    private oCconfirmationService: ConfirmationService,
     private oMessageService: MessageService,
 
   ) { 
@@ -107,7 +108,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   doRemove(u: IUser) {
     this.oUserToRemove = u;
     console.log(this.oUserToRemove);
-    this.oConfirmationService.confirm({
+    this.oCconfirmationService.confirm({
       message: 'Do you want to remove this jugador?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

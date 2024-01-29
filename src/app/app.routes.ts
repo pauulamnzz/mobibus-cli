@@ -10,6 +10,7 @@ import { UserLineaPlistRoutedComponent } from './components/linea/user-linea-pli
 import { AdminParadaFavPlistRoutedComponent } from './components/parada_fav/admin-paradaFav-plist-routed/admin-paradaFav-plist-routed.component';
 import { AdminParadaFavViewRoutedComponent } from './components/parada_fav/admin-paradaFav-view-routed/admin-paradaFav-view-routed.component';
 import { AdminParadaFavNewRoutedComponent } from './components/parada_fav/admin-paradaFav-new-routed/admin-paradaFav-new-routed.component';
+import { AdminParadaFavEditRoutedComponent } from './components/parada_fav/admin-paradaFav-edit-routed/admin-paradaFav-edit-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -17,10 +18,11 @@ export const routes: Routes = [
     { path: 'login', component: LoginRoutedComponent },
     { path: 'logout', component: LogoutRoutedComponent },
   
-    { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },    
+    { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent }, 
+    { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },     
     { path: 'admin/user/new', component: AdminUserNewRoutedComponent },
     { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
-    { path: 'admin/user/view/:id', component: AdminUserViewRoutedComponent },    
+  
 
 
     { path: 'user/linea/plist', component: UserLineaPlistRoutedComponent },    
@@ -29,8 +31,8 @@ export const routes: Routes = [
     { path: 'admin/paradaFav/plist', component: AdminParadaFavPlistRoutedComponent },    
     { path: 'admin/paradaFav/view/:id', component: AdminParadaFavViewRoutedComponent },    
     { path: 'admin/paradaFav/new', component: AdminParadaFavNewRoutedComponent },
+    { path: 'admin/paradaFav/edit/:id', component: AdminParadaFavEditRoutedComponent },
     { path: 'admin/paradaFav/plist/byuser/:id', component: AdminParadaFavPlistRoutedComponent },
-
 
     
 ];

@@ -36,7 +36,7 @@
             <tr>
               <th class="has-text-centered ">Rol</th>
               <td class="has-text-centered is-vcentered">
-                @if(oUser.role==true){
+                @if(oUser.role==false){
                 Admin
                 }@else {
                 User
@@ -47,12 +47,12 @@
             <tr>
               <th class="has-text-centered ">Paradas Favs</th>
               <td class="has-text-centered is-vcentered">
-                @if(oUser.paradas_favs !== undefined && oUser.paradas_favs > 0){
-                {{ oUser.paradas_favs }}
+                @if(oUser.paradas_favs!==undefined && oUser.paradas_favs>0){
+                <a [routerLink]="['/admin','paradaFav','plist','byuser',oUser.id]">
+                  {{ oUser.paradas_favs}} </a>
                 }@else {
                 0
                 }
-
               </td>
             </tr>
 
