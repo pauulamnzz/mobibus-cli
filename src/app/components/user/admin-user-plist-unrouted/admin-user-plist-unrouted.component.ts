@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IUser, IUserPage } from '../../../model/model.interface';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -18,8 +18,8 @@ import { RouterModule } from '@angular/router';
    RouterModule,
    PaginatorModule,
    ConfirmDialogModule,
-   AdminUserDetailUnroutedComponent
-    
+   AdminUserDetailUnroutedComponent,
+  
     
   ],
 
@@ -106,7 +106,10 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   }
   doRemove(u: IUser) {
     this.oUserToRemove = u;
+    console.log(this.oUserToRemove);
     this.oConfirmationService.confirm({
+      message: 'Do you want to remove this jugador?',
+      icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
          this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
@@ -125,5 +128,5 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       }
     );
   }
-  
+
 }

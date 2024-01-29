@@ -40,12 +40,11 @@
               </td>
 
               <td class="has-text-centered is-vcentered">
-                @if(user.paradas_favs==0){
-                0
-                }@else {
+                @if(user.paradas_favs!==undefined && user.paradas_favs>0){
                 <a [routerLink]="['/admin','paradaFav','plist','byuser',user.id]">
-                  {{ user.paradas_favs}}
-                </a>
+                  {{ user.paradas_favs}} </a>
+                }@else {
+                0
                 }
               </td>
 
@@ -86,22 +85,4 @@
 }
 
 
-<p-confirmDialog #cd>
-  <ng-template pTemplate="header">
-    <h5><i class="pi pi-exclamation-triangle p-mr-3"></i> Eliminación de Jugador</h5>
-  </ng-template>
-  <ng-template pTemplate="message">
-    <div class="container justify-content-center">
-      <app-admin-user-detail-unrouted [id]="oUserToRemove!.id"></app-admin-user-detail-unrouted>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="footer">
-    <p>¿Seguro que quieres eliminar el Jugador?</p>
-    <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
-      <span class="p-button-label">No</span>
-    </button>
-    <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
-      <span class="p-button-label">Sí</span>
-    </button>
-  </ng-template>
-</p-confirmDialog>
+<p-confirmDialog></p-confirmDialog>

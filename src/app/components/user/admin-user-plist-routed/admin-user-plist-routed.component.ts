@@ -21,9 +21,7 @@ import { ConfirmDialog, ConfirmDialogModule } from 'primeng/confirmdialog';
         MessagesModule,
         ProgressSpinnerModule,
         RouterModule,
-        ConfirmPopupModule,
         AdminUserPlistUnroutedComponent,
-        ConfirmDialogModule,
         AdminUserDetailUnroutedComponent
      
     ]
