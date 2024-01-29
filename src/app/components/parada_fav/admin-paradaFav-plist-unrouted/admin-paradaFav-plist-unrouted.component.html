@@ -13,11 +13,11 @@
         <div class="has-text-centered m-6">
           @if(id_user>0){
             <h3>Filtered by user ({{id_user}} - {{oUser?.username}})
-          
+          <h3>
             <a type="button" class="button is-rounded is-1 m-3"
              [routerLink]="['/admin','paradaFav','plist']">
 
-             reset filter</a>
+             Reset filter</a></h3>
             </h3>
             }@else{
               <h3>No active filter</h3>
@@ -43,7 +43,7 @@
               <td class="has-text-centered is-vcentered">{{ parada_fav.id_parada }}</td>
               
               <td class="has-text-centered is-vcentered">
-                <a [routerLink]="['/admin','paradaFav','plist','byuser',parada_fav.user.id]">
+                <a [routerLink]="['/admin','paradaFav','plist','byuser', parada_fav.user.id]">
                   {{parada_fav.user.id}} {{parada_fav.user.username}}
                 </a>
               </td>

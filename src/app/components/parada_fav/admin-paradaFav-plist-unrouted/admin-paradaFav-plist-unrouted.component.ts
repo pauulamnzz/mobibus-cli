@@ -48,6 +48,7 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
   ngOnInit() {
     this.getPage();
     if (this.id_user > 0) {
+      console.log("filter by user: " + this.id_user);
       this.getUser();
     }
     this.forceReload.subscribe({

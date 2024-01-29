@@ -39,10 +39,11 @@ export class AdminParadaFavPlistRoutedComponent implements OnInit {
     private oConfirmationService: ConfirmationService,
     private oMessageService: MessageService,
   ) { 
-    this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "1");
+    this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") ?? "0");
   }
 
   ngOnInit() {
+    console.log("filterr by user: " + this.id_user);
   }
   doGenerateRandom(amount: number) {
     this.bLoading = true;

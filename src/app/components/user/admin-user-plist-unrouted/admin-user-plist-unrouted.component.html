@@ -42,6 +42,7 @@
 
               <td class="has-text-centered is-vcentered">
                 @if(user.paradas_favs!==undefined && user.paradas_favs>0){
+                  
                 <a [routerLink]="['/admin','paradaFav','plist','byuser',user.id]">
                   {{ user.paradas_favs}} </a>
                 }@else {
