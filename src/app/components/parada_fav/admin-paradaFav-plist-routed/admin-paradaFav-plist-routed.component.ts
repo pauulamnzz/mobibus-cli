@@ -61,8 +61,12 @@ export class AdminParadaFavPlistRoutedComponent implements OnInit {
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
       target: $event.target as EventTarget, 
-      message: 'Are you sure that you want to remove all the users?',
+      message: 'Estás seguro de que quieres eliminar todas las pardas favoritas?',
       icon: 'pi pi-exclamation-triangle',
+      header: 'Confirmación de eliminación',
+      acceptIcon:"none",
+      rejectIcon:"none",
+      rejectButtonStyleClass:"p-button-text",
       accept: () => {
         this.oParadaFavAjaxService.empty().subscribe({
           next: (oResponse: number) => {

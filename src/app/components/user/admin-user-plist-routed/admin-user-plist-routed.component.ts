@@ -58,8 +58,12 @@ export class AdminUserPlistRoutedComponent implements OnInit {
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
       target: $event.target as EventTarget, 
-      message: 'Are you sure that you want to remove all the users?',
+      message: 'Estás seguro de que quieres eliminar todos los usuarios?',
       icon: 'pi pi-exclamation-triangle',
+      header: 'Confirmación de eliminación',
+      acceptIcon:"none",
+      rejectIcon:"none",
+      rejectButtonStyleClass:"p-button-text",
       accept: () => {
         this.oUserAjaxService.empty().subscribe({
           next: (oResponse: number) => {

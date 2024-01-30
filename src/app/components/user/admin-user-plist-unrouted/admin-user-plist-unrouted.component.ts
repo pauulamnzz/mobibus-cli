@@ -109,8 +109,12 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.oUserToRemove = u;
     console.log(this.oUserToRemove);
     this.oCconfirmationService.confirm({
-      message: 'Do you want to remove this jugador?',
+      message: 'Estás seguro de que quieres eliminar a '+this.oUserToRemove.username+ '?',
       icon: 'pi pi-exclamation-triangle',
+      header: 'Confirmación de eliminación',
+      acceptIcon:"none",
+      rejectIcon:"none",
+      rejectButtonStyleClass:"p-button-text",
       accept: () => {
         this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
          this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({

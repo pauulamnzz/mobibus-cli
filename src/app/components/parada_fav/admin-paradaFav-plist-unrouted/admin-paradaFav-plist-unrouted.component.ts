@@ -102,6 +102,12 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
   doRemove(u: IParadaFav) {
     this.oParadaFavToRemove = u;
     this.oConfirmationService.confirm({
+      message: 'Estás seguro de que quieres eliminar la parada favorita con id: '+this.oParadaFavToRemove.id+ '?',
+      icon: 'pi pi-exclamation-triangle',
+      header: 'Confirmación de eliminación',
+      acceptIcon:"none",
+      rejectIcon:"none",
+      rejectButtonStyleClass:"p-button-text",
       accept: () => {
         this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
         this.oParadaFavAjaxService.removeOne(this.oParadaFavToRemove?.id).subscribe({

@@ -2,3 +2,14 @@
 <router-outlet></router-outlet>
 <app-footer-unrouted></app-footer-unrouted>
 <p-toast position="bottom-center"></p-toast> 
+ 
+<p-confirmDialog #cd>
+    <ng-template pTemplate="footer">
+      <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
+        <span class="p-button-label">No</span>
+      </button>
+      <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
+        <span class="p-button-label">Sí</span>
+      </button>
+    </ng-template>
+  </p-confirmDialog>
