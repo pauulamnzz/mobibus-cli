@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { API_EMT } from '../environment/environment';
+import { API_EMT, API_KEY } from '../environment/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, forkJoin, map } from 'rxjs';
 import { Result, Root } from '../model/model.interface';
+import { SessionAjaxService } from './session.ajax.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,11 @@ import { Result, Root } from '../model/model.interface';
 export class ApiEmtService {
 
   private apiUrl: string = API_EMT;
-
-  constructor(private oHttpClient: HttpClient) { }
+private apiKey: string= API_KEY
+  constructor(
+    private oHttpClient: HttpClient,
+  private oSessionAjaxService: SessionAjaxService) 
+    { }
 
 
   // Método para obtener datos de la API
@@ -19,14 +23,16 @@ export class ApiEmtService {
     return this.oHttpClient.get(this.apiUrl);
   }
 
-// Método para obtener lineas datos de la API SOLO 100
-   getLineas(): Observable<Result[]> {
-     const apiUrl ='https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?select=lineas&limit=100';
+/*   getEmtData(): Observable<any> {
+    const headers = this.oSessionAjaxService.getHeaders();
+    return this.oHttpClient.get(this.apiUrl, { headers });
+  } */
 
-     return this.oHttpClient.get<Root>(apiUrl).pipe(
-       map(({results}) => results)
-     );
-   }
+
+
+
+
+
 
 
   // Método para obtener toda la info de la EMT PAGINADA
@@ -57,12 +63,6 @@ export class ApiEmtService {
     const requestsPerPage = 100; // Resultados por página
     const totalPages = Math.ceil(totalResults / requestsPerPage); // Total de páginas
   
-     // Crear las cabeceras con la clave de API
-     const headers = new HttpHeaders({
-      'apikey': 'mobibus',
-      // otras cabeceras si es necesario
-    });
-    
     // Crea un array de observables, uno para cada página
     const observables = Array.from({ length: totalPages }, (_, i) =>
       this.oHttpClient.get<Root>(`${apiUrl}&start=${i * requestsPerPage + 1}`)

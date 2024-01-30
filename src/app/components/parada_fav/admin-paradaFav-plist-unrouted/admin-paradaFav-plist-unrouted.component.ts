@@ -63,6 +63,8 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
     this.oParadaFavAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({
       next: (data: IParadaFavPage) => {
         this.oPage = data;
+        console.log("filterrr by user: " + this.id_user);
+
         this.oPaginatorState.pageCount = data.totalPages;
       },
       error: (error: HttpErrorResponse) => {

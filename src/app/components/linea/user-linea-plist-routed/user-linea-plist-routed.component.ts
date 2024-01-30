@@ -37,10 +37,10 @@ this.ApiEmtService.getAllLineas().subscribe(result => {
 
   });
 
-// this.ApiEmtService.getEmtData().subscribe(result => {
-//  console.log(result);
+this.ApiEmtService.getEmtData().subscribe(result => {
+ console.log(result);
 
-//   });
+  });
 }
 
 

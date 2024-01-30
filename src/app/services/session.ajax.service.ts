@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { API_URL } from '../environment/environment';
+import { API_KEY, API_URL } from '../environment/environment';
 import { IToken, IUser, SessionEvent } from '../model/model.interface';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserAjaxService } from './user.ajax.service';
 @Injectable({
   
@@ -12,7 +12,8 @@ import { UserAjaxService } from './user.ajax.service';
 export class SessionAjaxService {
 
   sUrl: string = API_URL + "/session";
-
+  private apiKey: string = API_KEY;  // Agrega la API_KEY
+  
   subjectSession = new Subject<SessionEvent>();
   constructor(
     private oHttpClient: HttpClient,
@@ -86,5 +87,19 @@ getSessionUser(): Observable<IUser> | null {
       return null;
   }
 }
-}
+/*  getHeaders(): HttpHeaders {
+  const token = this.getToken();
+  let headers = new HttpHeaders();  // Usar let en lugar de const
+
+  if (this.isSessionActive()) {
+    headers = headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  headers = headers.set('Apikey', this.apiKey);
+
+  return headers;
+} */
+
+
+} 
 
