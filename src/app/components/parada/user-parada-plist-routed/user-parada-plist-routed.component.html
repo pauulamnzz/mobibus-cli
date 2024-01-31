@@ -1,3 +1,33 @@
-<p>
-  user-parada-plist-routed works!
-</p>
+<div class="columns is-centered">
+
+  <div class="column is-2 ">
+    <div class="box m-5">
+
+      <div class="is-flex is-justify-content-center">
+
+        <table class="table is-hoverable m-6 mb-0">
+          <thead>
+            <tr>
+              <th class="has-text-centered">PARADASSS</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            @for(parada of paradas; track paradas){
+              <tr>
+              <td class="has-text-centered"> {{ parada }}</td>
+            </tr>
+            }
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>

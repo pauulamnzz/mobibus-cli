@@ -87,18 +87,7 @@ getSessionUser(): Observable<IUser> | null {
       return null;
   }
 }
-/*  getHeaders(): HttpHeaders {
-  const token = this.getToken();
-  let headers = new HttpHeaders();  // Usar let en lugar de const
 
-  if (this.isSessionActive()) {
-    headers = headers.set('Authorization', `Bearer ${token}`);
-  }
-
-  headers = headers.set('Apikey', this.apiKey);
-
-  return headers;
-} */
 
 
 } 

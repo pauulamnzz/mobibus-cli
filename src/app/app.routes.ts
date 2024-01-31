@@ -11,6 +11,7 @@ import { AdminParadaFavPlistRoutedComponent } from './components/parada_fav/admi
 import { AdminParadaFavViewRoutedComponent } from './components/parada_fav/admin-paradaFav-view-routed/admin-paradaFav-view-routed.component';
 import { AdminParadaFavNewRoutedComponent } from './components/parada_fav/admin-paradaFav-new-routed/admin-paradaFav-new-routed.component';
 import { AdminParadaFavEditRoutedComponent } from './components/parada_fav/admin-paradaFav-edit-routed/admin-paradaFav-edit-routed.component';
+import { UserParadaPlistRoutedComponent } from './components/parada/user-parada-plist-routed/user-parada-plist-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -26,6 +27,7 @@ export const routes: Routes = [
 
 
     { path: 'user/linea/plist', component: UserLineaPlistRoutedComponent },    
+    { path: 'user/parada/plist', component: UserParadaPlistRoutedComponent },    
 
 
     { path: 'admin/paradaFav/plist', component: AdminParadaFavPlistRoutedComponent },    

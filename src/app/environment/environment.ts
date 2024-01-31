@@ -9,7 +9,7 @@ export const httpOptions = {
 };
 
 
-export const API_EMT: string = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?';
+export const API_EMT: string = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records';
     withCredentials: true 
 
 

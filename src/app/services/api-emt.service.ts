@@ -23,39 +23,6 @@ private apiKey: string= API_KEY
     return this.oHttpClient.get(this.apiUrl);
   }
 
-/*   getEmtData(): Observable<any> {
-    const headers = this.oSessionAjaxService.getHeaders();
-    return this.oHttpClient.get(this.apiUrl, { headers });
-  } */
-
-
-
-
-
-
-
-
-  // Método para obtener toda la info de la EMT PAGINADA
-  getAll(): Observable<Result[]> {
-    const apiUrl = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?limit=100';
-    const totalResults = 1129; // Total de resultados
-    const requestsPerPage = 100; // Resultados por página
-    const totalPages = Math.ceil(totalResults / requestsPerPage); // Total de páginas
-  
-    // Crea un array de observables, uno para cada página
-    const observables = Array.from({ length: totalPages }, (_, i) =>
-      this.oHttpClient.get<Root>(`${apiUrl}&start=${i * requestsPerPage + 1}`)
-    );
-  
-    // Combina todos los observables en uno
-    return forkJoin(observables).pipe(
-      map((responses: any[]) => {
-        // Combina todos los resultados en un solo array
-        return ([] as Result[]).concat(...responses.map(response => response.results));
-      })
-    );
-  }
-
   // Método para obtener todas las líneas de la EMT PAGINADAS
   getAllLineas(): Observable<string[]> {
     const apiUrl = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?select=lineas&limit=100';
@@ -81,4 +48,32 @@ private apiKey: string= API_KEY
       })
     );
   }
+
+
+  // Método para obtener todas las líneas de la EMT PAGINADAS
+  getAllParadas(): Observable<string[]> {
+    const apiUrl = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?select=id_parada&limit=100';
+    const totalResults = 1129; // Total de resultados
+    const requestsPerPage = 100; // Resultados por página
+    const totalPages = Math.ceil(totalResults / requestsPerPage); // Total de páginas
+  
+    // Crea un array de observables, uno para cada página
+    const observables = Array.from({ length: totalPages }, (_, i) =>
+      this.oHttpClient.get<Root>(`${apiUrl}&start=${i * requestsPerPage + 1}`)
+    );
+  
+    // Combina todos los observables en uno
+    return forkJoin(observables).pipe(
+      map((responses: any[]) => {
+        // Combina todos los resultados en un solo array
+        let results = ([] as Result[]).concat(...responses.map(response => response.results));
+        
+        // Map Result objects to strings
+        let stringResults = results.map(result => result.id_parada.toString());
+
+        return stringResults;
+      })
+    );
+  }
+
 }
