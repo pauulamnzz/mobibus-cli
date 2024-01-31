@@ -34,13 +34,9 @@ this.ApiEmtService.getAllLineas().subscribe(result => {
   this.lineas = result;
   console.log(result);
 
-
   });
 
-this.ApiEmtService.getEmtData().subscribe(result => {
- console.log(result);
 
-  });
 }
 
 

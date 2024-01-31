@@ -7,6 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MenubarModule } from 'primeng/menubar';
+import { Renderer2, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -31,7 +32,8 @@ export class MenuUnroutedComponent implements OnInit {
     private oSessionService: SessionAjaxService,
     public oDialogService: DialogService,
     private oUserAjaxService: UserAjaxService,
-    private oRouter: Router
+    private oRouter: Router,
+    private renderer: Renderer2, private el: ElementRef
   ) {
     this.oRouter.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
@@ -97,5 +99,16 @@ export class MenuUnroutedComponent implements OnInit {
     return false;
   } 
 
-
+  toggleNavbar() {
+    const navbarBurger = this.el.nativeElement.querySelector('.navbar-burger');
+    const targetId = navbarBurger.getAttribute('data-target');
+    const target = this.el.nativeElement.querySelector(`#${targetId}`);
+    if (navbarBurger.classList.contains('is-active')) {
+    this.renderer.removeClass(navbarBurger, 'is-active');
+    this.renderer.removeClass(target, 'is-active');
+    } else {
+    this.renderer.addClass(navbarBurger, 'is-active');
+    this.renderer.addClass(target, 'is-active');
+    }
+    }
 }
