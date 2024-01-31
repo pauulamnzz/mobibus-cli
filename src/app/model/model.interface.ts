@@ -43,6 +43,7 @@ export interface IUserPage extends IPage<IUser> {
 export interface IParadaFavPage extends IPage<IParadaFav> {
 }
 
+
 export interface IUser extends IEntity {
 
     username: string,
@@ -79,10 +80,10 @@ export interface IToken {
 
 export interface Root {
     total_count: number
-    results: Result[]
+    results: IResultApi[]
   }
   
-  export interface Result {
+  export interface IResultApi {
     id_parada: number
     codvia?: number
     numportal: string

@@ -1,3 +1,49 @@
-<p>
-  admin-parada-selection-unrouted works!
-</p>
+
+@if (status != null) {
+
+  <div class="notification is-danger mt-3">
+    {{ status!.error.message }} - {{ status!.message }}
+  </div>
+  
+  
+  }@else {
+  <div class="columns is-centered">
+    <div class="column is-9">
+      <div class="box">
+
+        <div class="is-flex is-justify-content-center">
+        <table class="table is-hoverable m-6 mb-0">
+          <thead>
+            <tr>
+              <th class="has-text-centered" >ID PARADA</th>
+
+              <th class="has-text-centered" >HERRAMIENTAS</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            @for(parada of paradas; track paradas){
+            <tr>
+              <td class="has-text-centered is-vcentered">{{ parada }}</td>
+              <td class="has-text-centered">
+          
+                <button class="button is-rounded is-1 m-3" (click)="onSelectParada(parada)">
+                  <i class="pi pi-plus-circle"></i>
+                </button>
+               
+              </td>
+  
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+  
+  
+  
+      </div>
+  
+  
+    </div>
+  </div>
+  }

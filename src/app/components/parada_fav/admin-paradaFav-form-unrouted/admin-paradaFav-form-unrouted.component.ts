@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IParadaFav, IUser, formOperation } from '../../../model/model.interface';
+import { IParadaFav, IResultApi, IUser, formOperation } from '../../../model/model.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
+import { AdminParadaSelectionUnroutedComponent } from '../../parada/admin-parada-selection-unrouted/admin-parada-selection-unrouted.component';
 
 @Component({
   selector: 'app-admin-paradaFav-form-unrouted',
@@ -23,6 +24,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; //new or edit
   paradaFavForm!: FormGroup;
+  oResultApi: IResultApi = { id_parada: {} } as IResultApi;
   oParadaFav: IParadaFav = { user: {} } as IParadaFav;
   status: HttpErrorResponse | null = null;
   oDynamicDialogRef: DynamicDialogRef | undefined;
@@ -132,9 +134,41 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       }
     });
   } 
+
+
+  onShowParadasSelection() {
+    this.showErrorOnClose = true;
+  
+    this.oDynamicDialogRef = this.oDialogService.open(AdminParadaSelectionUnroutedComponent, {
+      header: 'Select a Parada',
+      width: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    this.oDynamicDialogRef.onClose.subscribe((oResultApi: IResultApi) => {
+      this.showErrorOnClose = false;
+      if (oResultApi) {
+        this.oResultApi.id_parada = oResultApi.id_parada;
+        this.paradaFavForm.controls['id_parada'].patchValue(oResultApi);
+        this.lostFocus.id_parada = false; 
+
+      }else{
+        this.lostFocus.id_parada = true; 
+      }
+    });
+
+
+  }
   onIdFieldBlurU() {
     if (this.showErrorOnClose) {
       this.lostFocus.user = true;
+    }
+  }
+  onIdFieldBlurIP() {
+    if (this.showErrorOnClose) {
+      this.lostFocus.id_parada = true;
     }
   }
 }

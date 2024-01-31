@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_EMT, API_KEY } from '../environment/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, forkJoin, map } from 'rxjs';
-import { Result, Root } from '../model/model.interface';
+import { IResultApi, Root } from '../model/model.interface';
 import { SessionAjaxService } from './session.ajax.service';
 
 @Injectable({
@@ -39,7 +39,7 @@ private apiKey: string= API_KEY
     return forkJoin(observables).pipe(
       map((responses: any[]) => {
         // Combina todos los resultados en un solo array
-        let results = ([] as Result[]).concat(...responses.map(response => response.results));
+        let results = ([] as IResultApi[]).concat(...responses.map(response => response.results));
         
         // Aplana el array y elimina los duplicados
         let lineasUnicas = [...new Set(results.flatMap(result => result.lineas.split(',')))];
@@ -66,7 +66,7 @@ private apiKey: string= API_KEY
     return forkJoin(observables).pipe(
       map((responses: any[]) => {
         // Combina todos los resultados en un solo array
-        let results = ([] as Result[]).concat(...responses.map(response => response.results));
+        let results = ([] as IResultApi[]).concat(...responses.map(response => response.results));
         
         // Map Result objects to strings
         let stringResults = results.map(result => result.id_parada.toString());
