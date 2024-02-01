@@ -41,9 +41,15 @@ search() {
   if (this.searchTerm) {
     this.lineas = this.filterLineas.filter(linea =>
       linea.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    ).sort((a, b) => {
+      // Convierte a números y compara de menor a mayor
+      const numA = parseFloat(a);
+      const numB = parseFloat(b);
+      return numA - numB;
+    });
   } else {
-    this.lineas = this.filterLineas;
+    // Si no hay término de búsqueda, simplemente ordena de menor a mayor
+    this.lineas = this.filterLineas.slice().sort((a, b) => parseFloat(a) - parseFloat(b));
   }
 }
 }

@@ -78,11 +78,18 @@ export class UserParadaPlistRoutedComponent implements OnInit {
     if (this.searchTerm) {
       this.paradas = this.filterParadas.filter(parada =>
         parada.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
+      ).sort((a, b) => {
+        // Convierte a números y compara de menor a mayor
+        const numA = parseFloat(a);
+        const numB = parseFloat(b);
+        return numA - numB;
+      });
     } else {
-      this.paradas = this.filterParadas;
+      // Si no hay término de búsqueda, simplemente ordena de menor a mayor
+      this.paradas = this.filterParadas.slice().sort((a, b) => parseFloat(a) - parseFloat(b));
     }
   }
+  
 
  
 }
