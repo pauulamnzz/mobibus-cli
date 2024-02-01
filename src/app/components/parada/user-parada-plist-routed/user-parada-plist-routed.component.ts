@@ -33,7 +33,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   @Input() id_user: number = 0; //filter by user
   oUser: IUser | null = null; // data of user if id_user is set for filter
   status: HttpErrorResponse | null = null;
-
+sessionActive: boolean = false;
   constructor(
     private ApiEmtService: ApiEmtService,
     private oUserAjaxService: UserAjaxService,
@@ -51,7 +51,9 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   
     // Obtener paradas favoritas del usuario en sesión
     if (this.oSessionAjaxService.isSessionActive()) {
+      this.sessionActive = true;
       this.oSessionAjaxService.getSessionUser()?.subscribe({
+        
         next: (user: IUser) => {
           this.oUser = user;
           console.log(user);
