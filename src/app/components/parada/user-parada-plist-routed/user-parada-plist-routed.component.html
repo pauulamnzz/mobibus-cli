@@ -17,7 +17,7 @@
 
             @for(parada of paradas; track paradas){
             <tr>
-              <td class="has-text-centered"> {{ parada }} <i class="fa-regular fa-heart m-2"></i></td>
+              <td class="has-text-centered"> {{ parada }} </td>
             </tr>
             }
 
@@ -47,8 +47,7 @@
 
             @for(paradaFav of paradasFavs; track paradasFavs){
             <tr>
-              <td class="has-text-centered"> {{paradaFav.id_parada}} : {{ paradaFav.alias }}<i
-                  class="fa-solid fa-heart m-2"></i></td>
+              <td class="has-text-centered"> {{paradaFav.id_parada}} : {{ paradaFav.alias }}</td>
             </tr>
             }
 

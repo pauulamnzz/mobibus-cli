@@ -25,7 +25,7 @@ private apiKey: string= API_KEY
 
   // Método para obtener todas las líneas de la EMT PAGINADAS
   getAllLineas(): Observable<string[]> {
-    const apiUrl = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records';
+    const apiUrl = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?select=lineas&limit=100';
     const totalResults = 1129; // Total de resultados
     const requestsPerPage = 100; // Resultados por página
     const totalPages = Math.ceil(totalResults / requestsPerPage); // Total de páginas
@@ -48,24 +48,30 @@ private apiKey: string= API_KEY
       })
     );
   }
-
-
-  getAllParadas(): Observable<string[]> {
-    const apiUrl = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?order_by=id_parada%20ASC';
-    
-    // Realiza una única solicitud para obtener todos los resultados
-    return this.oHttpClient.get<Root>(apiUrl).pipe(
-      map((response: Root) => {
-        // Obtiene todos los resultados en un solo array
-        let results = response.results;
-        
-        // Mapea los objetos de resultado a strings
-        let stringResults = results.map(result => result.id_parada.toString());
   
-        return stringResults;
-      })
-    );
-  }
-  
+// Método para obtener todas las líneas de la EMT PAGINADAS
+getAllParadas(): Observable<string[]> {
+  const apiUrl = 'https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/emt/records?order_by=id_parada%20ASC&limit=100';
+  const totalResults = 1129; // Total de resultados
+  const requestsPerPage = 100; // Resultados por página
+  const totalPages = Math.ceil(totalResults / requestsPerPage); // Total de páginas
 
+  // Crea un array de observables, uno para cada página
+  const observables = Array.from({ length: totalPages }, (_, i) =>
+    this.oHttpClient.get<Root>(`${apiUrl}&start=${i * requestsPerPage + 1}`)
+  );
+
+  // Combina todos los observables en uno
+  return forkJoin(observables).pipe(
+    map((responses: any[]) => {
+      // Combina todos los resultados en un solo array
+      let results = ([] as IResultApi[]).concat(...responses.map(response => response.results));
+      
+      // Map Result objects to strings
+      let stringResults = results.map(result => result.id_parada.toString());
+
+      return stringResults;
+    })
+  );
+}
 }
