@@ -9,15 +9,15 @@
         <table class="table is-hoverable m-6 mb-0">
           <thead>
             <tr>
-              <th class="has-text-centered">PARADASSS</th>
+              <th class="has-text-centered">PARADAS</th>
 
             </tr>
           </thead>
           <tbody>
 
             @for(parada of paradas; track paradas){
-              <tr>
-              <td class="has-text-centered"> {{ parada }}</td>
+            <tr>
+              <td class="has-text-centered"> {{ parada }} <i class="fa-regular fa-heart m-2"></i></td>
             </tr>
             }
 
@@ -31,4 +31,37 @@
 
 
   </div>
+@if(paradasFavs){
+  <div class="column is-2 ">
+    <div class="box m-5">
+      <input class="input is-info" type="text" placeholder="Buscar parada" [(ngModel)]="searchTerm" (input)="search()">
+
+      <div class="is-flex is-justify-content-center">
+
+        <table class="table is-hoverable m-6 mb-0">
+          <thead>
+            <tr>
+              <th class="has-text-centered">TUS PARADAS FAVORITAS</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            @for(paradaFav of paradasFavs; track paradasFavs){
+            <tr>
+              <td class="has-text-centered"> {{paradaFav.id_parada}} : {{ paradaFav.alias }}<i
+                  class="fa-solid fa-heart m-2"></i></td>
+            </tr>
+            }
+
+
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+
+  </div>
+}
 </div>

@@ -49,4 +49,9 @@ generateRandom(amount: number): Observable<number> {
 empty(): Observable<number> {
   return this.oHttpClient.delete<number>(this.sUrl + "/empty");
 }
+
+getParadasFavByUser(id_user: number): Observable<IParadaFav[]> {
+  return this.oHttpClient.get<IParadaFav[]>(this.sUrl + "/fav/" + id_user);
+}
+
 }
