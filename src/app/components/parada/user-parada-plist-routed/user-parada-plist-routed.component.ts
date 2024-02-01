@@ -20,12 +20,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 })
 export class UserParadaPlistRoutedComponent implements OnInit {
-  paradas: string[] = [];
-  searchTerm: string = '';
-  filterParadas: string[] = [];
+  paradasAll: string[] = [];
+  searchTermAll: string = '';
+  filterParadasAll: string[] = [];
 
-  paradasFavs: IParadaFav[] | undefined;
 
+  searchTermFavs: string = '';
+  filterParadasFavs: IParadaFav[] = []; 
+  paradasFavs: IParadaFav[] = [];
+  
+  
   @Input() id_user: number = 0; //filter by user
   oUser: IUser | null = null; // data of user if id_user is set for filter
   status: HttpErrorResponse | null = null;
@@ -40,8 +44,8 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   ngOnInit() {
     // Obtener todas las paradas al iniciar el componente
     this.ApiEmtService.getAllParadas().subscribe(result => {
-      this.paradas = result;
-      this.filterParadas = result;
+      this.paradasAll = result;
+      this.filterParadasAll = result;
       console.log(result);
     });
   
@@ -56,6 +60,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
           this.oParadaFavAjaxService.getParadasFavByUser(this.oUser.id).subscribe({
             next: (paradasFavs: IParadaFav[]) => {
               this.paradasFavs = paradasFavs;
+              this.filterParadasFavs=paradasFavs;
               console.log(paradasFavs);
             },
             error: (error: any) => {
@@ -74,10 +79,10 @@ export class UserParadaPlistRoutedComponent implements OnInit {
 
 
   //Filtro
-  search() {
-    if (this.searchTerm) {
-      this.paradas = this.filterParadas.filter(parada =>
-        parada.toLowerCase().includes(this.searchTerm.toLowerCase())
+  searchAllParadas() {
+    if (this.searchTermAll) {
+      this.paradasAll = this.filterParadasAll.filter(parada =>
+        parada.toLowerCase().includes(this.searchTermAll.toLowerCase())
       ).sort((a, b) => {
         // Convierte a números y compara de menor a mayor
         const numA = parseFloat(a);
@@ -86,10 +91,27 @@ export class UserParadaPlistRoutedComponent implements OnInit {
       });
     } else {
       // Si no hay término de búsqueda, simplemente ordena de menor a mayor
-      this.paradas = this.filterParadas.slice().sort((a, b) => parseFloat(a) - parseFloat(b));
+      this.paradasAll = this.filterParadasAll.slice().sort((a, b) => parseFloat(a) - parseFloat(b));
     }
   }
   
-
- 
+  //Filtro
+  searchParadasFavs() {
+    if (this.searchTermFavs) {
+      this.paradasFavs = this.paradasFavs.filter(parada =>
+        parada && parada.alias && parada.alias.toLowerCase().includes(this.searchTermFavs.toLowerCase())
+      ).sort((a, b) => {
+        const numA = parseFloat(a.id_parada.toString());
+        const numB = parseFloat(b.id_parada.toString());
+        return numA - numB;
+      });
+    } else {
+      this.paradasFavs = this.filterParadasFavs.slice().sort((a, b) => {
+        const numA = parseFloat(a.id_parada.toString());
+        const numB = parseFloat(b.id_parada.toString());
+        return numA - numB;
+      });
+    }
+  }
+  
 }

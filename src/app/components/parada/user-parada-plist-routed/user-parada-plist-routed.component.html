@@ -2,7 +2,7 @@
 
   <div class="column is-2 ">
     <div class="box m-5">
-      <input class="input is-info" type="text" placeholder="Buscar parada" [(ngModel)]="searchTerm" (input)="search()">
+      <input class="input is-info" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll" (input)="searchAllParadas()">
 
       <div class="is-flex is-justify-content-center">
 
@@ -15,9 +15,10 @@
           </thead>
           <tbody>
 
-            @for(parada of paradas; track paradas){
+            @for(parada of paradasAll; track paradasAll){
             <tr>
-              <td class="has-text-centered"> {{ parada }} </td>
+              <td class="has-text-centered"> {{ parada }}
+               </td>
             </tr>
             }
 
@@ -31,9 +32,11 @@
 
 
   </div>
+
 @if(paradasFavs){
   <div class="column is-2 ">
     <div class="box m-5">
+      <input class="input is-info" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermFavs" (input)="searchParadasFavs()">
 
       <div class="is-flex is-justify-content-center">
 
