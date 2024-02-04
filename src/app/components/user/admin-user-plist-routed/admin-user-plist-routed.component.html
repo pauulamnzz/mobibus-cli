@@ -16,9 +16,6 @@
       }@else {
         <div class="is-flex is-justify-content-center has-text-centered">          
           <button class="button is-primary m-3" [routerLink]="['/admin','user','new']" >Añadir usuario</button>
-          <button class="button is-link m-3" (click)="doGenerateRandom(10)">+10</button>
-          <button class="button is-link m-3 " (click)="doGenerateRandom(100)">+100</button>
-          <button class="button is-link m-3 "  (click)="doGenerateRandom(1000)">+1000</button>
           <button class="button is-primary m-3" (click)="doEmpty($event)">Vaciar</button>
         </div>
         
