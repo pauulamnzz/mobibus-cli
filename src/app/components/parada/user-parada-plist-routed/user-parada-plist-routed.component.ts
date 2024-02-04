@@ -116,13 +116,15 @@ sessionActive: boolean = false;
     }
   }
   openParadaInfoFav(paradaId: number) {
-    this.ApiEmtService.getOneParada(paradaId).subscribe(
-      (paradaInfo) => {
+    this.ApiEmtService.getOneParada(paradaId).subscribe({
+      next: (paradaInfo) => {
         console.log('Información de la parada favorita:', paradaInfo);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al obtener la información de la parada favorita:', error);
       }
-    );
-  }
+    });
+    }
+      
+  
 }
