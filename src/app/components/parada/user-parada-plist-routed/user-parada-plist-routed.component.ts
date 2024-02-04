@@ -115,5 +115,14 @@ sessionActive: boolean = false;
       });
     }
   }
-  
+  openParadaInfoFav(paradaId: number) {
+    this.ApiEmtService.getOneParada(paradaId).subscribe(
+      (paradaInfo) => {
+        console.log('Información de la parada favorita:', paradaInfo);
+      },
+      (error) => {
+        console.error('Error al obtener la información de la parada favorita:', error);
+      }
+    );
+  }
 }

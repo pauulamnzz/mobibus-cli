@@ -74,4 +74,10 @@ getAllParadas(): Observable<string[]> {
     })
   );
 }
+
+getOneParada(paradaId: number): Observable<any> {
+  const apiUrl = `${this.apiUrl}?where=id_parada=${paradaId}&limit=1`;
+  return this.oHttpClient.get(apiUrl);
+}
+
 }

@@ -139,4 +139,5 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
 
     })
   }
+
 }
