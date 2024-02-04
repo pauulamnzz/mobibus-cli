@@ -7,6 +7,7 @@ import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { IParadaFav, IUser, SessionEvent } from '../../../model/model.interface';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-parada-plist-routed',
@@ -15,7 +16,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ]
 
 })
@@ -115,16 +117,10 @@ sessionActive: boolean = false;
       });
     }
   }
-  openParadaInfoFav(paradaId: number) {
-    this.ApiEmtService.getOneParada(paradaId).subscribe({
-      next: (paradaInfo) => {
-        console.log('Información de la parada favorita:', paradaInfo);
-      },
-      error: (error) => {
-        console.error('Error al obtener la información de la parada favorita:', error);
-      }
-    });
-    }
-      
+
+  redirigirAParada(paradaId: number) {
+    const enlace = `http://www.emtvalencia.es/QR.php?sec=est&p=${paradaId}`;
+    window.location.href = enlace;
+  } 
   
 }

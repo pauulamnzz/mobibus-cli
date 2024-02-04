@@ -37,4 +37,7 @@ export const routes: Routes = [
     { path: 'admin/paradaFav/plist/byuser/:id', component: AdminParadaFavPlistRoutedComponent },
 
     
+
+
+    
 ];
