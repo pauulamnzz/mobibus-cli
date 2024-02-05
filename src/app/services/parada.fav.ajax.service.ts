@@ -56,7 +56,7 @@ getParadasFavByUser(id_user: number): Observable<IParadaFav[]> {
 
 //todo
 checkParadaFavExistsForUser(idParada: number, userId: number): Observable<boolean> {
-  const url = `${this.sUrl}/paradafav/exists?idParada=${idParada}&userId=${userId}`;
+  const url = `${this.sUrl}/exists?idParada=${idParada}&userId=${userId}`;
   return this.oHttpClient.get<boolean>(url);
 }
 validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {

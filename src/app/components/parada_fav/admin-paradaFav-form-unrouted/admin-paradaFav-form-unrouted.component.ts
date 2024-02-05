@@ -130,7 +130,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
         this.oParadaFav.user = oUser;
         this.paradaFavForm.controls['user'].patchValue({ id: oUser.id })
         this.lostFocus.user = false; 
-
+        this.paradaFavForm.get('id_parada')?.enable();
       }else{
         this.lostFocus.user = true; 
       }
@@ -163,28 +163,27 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
 
 
   }
-  onIdFieldBlurU() {
-    if (this.showErrorOnClose) {
-      this.lostFocus.user = true;
-    }
-  }
-  onIdFieldBlurIP() {
-    if (this.showErrorOnClose) {
-      this.lostFocus.id_parada = true;
-    }
-  }
+
+
 
   //todo
   idParadaValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       const idParada = control.value;
       const userId = this.paradaFavForm.get('user.id')?.value;
-
-      return this.oParadaFavAjaxService.validateParadaFavExists(idParada, userId)
-        .pipe(
-          map((exists: boolean) => (exists ? { idParadaExists: true } : null)),
-          catchError(() => of(null))
-        );
+  
+      console.log("idParada:", idParada, "userId:", userId);  // Agregar el console.log aquí
+  
+      if (idParada !== null && userId !== null) {
+        return this.oParadaFavAjaxService.validateParadaFavExists(idParada, userId)
+          .pipe(
+            map((exists: boolean) => (exists ? { idParadaExists: true } : null)),
+            catchError(() => of(null))
+          );
+      }
+  
+      // Asegurarse de devolver algo, incluso si no se cumple la condición
+      return of(null);
     };
   }
 
