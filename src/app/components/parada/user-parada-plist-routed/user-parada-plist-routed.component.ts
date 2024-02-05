@@ -35,7 +35,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   @Input() id_user: number = 0; //filter by user
   oUser: IUser | null = null; // data of user if id_user is set for filter
   status: HttpErrorResponse | null = null;
-sessionActive: boolean = false;
+  sessionActive: boolean = false;
   constructor(
     private ApiEmtService: ApiEmtService,
     private oUserAjaxService: UserAjaxService,
@@ -118,9 +118,12 @@ sessionActive: boolean = false;
     }
   }
 
-  redirigirAParada(paradaId: number) {
+  redirigirAParadaFav(paradaId: number) {
     const enlace = `http://www.emtvalencia.es/QR.php?sec=est&p=${paradaId}`;
     window.location.href = enlace;
   } 
-  
+  redirigirAParada(paradaId: string) {
+    const enlace = `http://www.emtvalencia.es/QR.php?sec=est&p=${paradaId}`;
+    window.location.href = enlace;
+  } 
 }
