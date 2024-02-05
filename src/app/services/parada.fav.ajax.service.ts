@@ -54,4 +54,13 @@ getParadasFavByUser(id_user: number): Observable<IParadaFav[]> {
   return this.oHttpClient.get<IParadaFav[]>(this.sUrl + "/fav/" + id_user);
 }
 
+//todo
+checkParadaFavExistsForUser(idParada: number, userId: number): Observable<boolean> {
+  const url = `${this.sUrl}/paradafav/exists?idParada=${idParada}&userId=${userId}`;
+  return this.oHttpClient.get<boolean>(url);
+}
+validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {
+  return this.checkParadaFavExistsForUser(idParada, userId);
+}
+
 }

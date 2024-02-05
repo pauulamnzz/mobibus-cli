@@ -58,7 +58,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
         
         next: (user: IUser) => {
           this.oUser = user;
-          console.log(user);
+         // console.log(user);
   
           // Actualizar la llamada al servicio con la ruta correcta
           this.oParadaFavAjaxService.getParadasFavByUser(this.oUser.id).subscribe({
@@ -66,6 +66,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
               this.paradasFavs = paradasFavs;
               this.filterParadasFavs=paradasFavs;
               console.log(paradasFavs);
+              
             },
             error: (error: any) => {
               console.error("Error obteniendo las paradas favoritas del usuario:", error);

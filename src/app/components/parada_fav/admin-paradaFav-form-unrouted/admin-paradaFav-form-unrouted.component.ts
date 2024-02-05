@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { IParadaFav, IResultApi, IUser, formOperation } from '../../../model/model.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
@@ -8,6 +8,7 @@ import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service'
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminUserSelectionUnroutedComponent } from '../../user/admin-user-selection-unrouted/admin-user-selection-unrouted.component';
 import { AdminParadaSelectionUnroutedComponent } from '../../parada/admin-parada-selection-unrouted/admin-parada-selection-unrouted.component';
+import { Observable, catchError, map, of, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-admin-paradaFav-form-unrouted',
@@ -46,11 +47,12 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
    }
 
 
+   //todo
   initializeForm(oParadaFav: IParadaFav) {
     this.paradaFavForm = this.oFormBuilder.group({
       id: [oParadaFav.id],
       alias: [oParadaFav.alias, [Validators.required, Validators.minLength(3), Validators.maxLength(15) ]],
-      id_parada: [oParadaFav.id_parada, [Validators.required]],
+      id_parada: [oParadaFav.id_parada, [Validators.required], this.idParadaValidator()],
       user: this.oFormBuilder.group({
         id: [oParadaFav.user.id, Validators.required]      
       })
@@ -171,4 +173,20 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       this.lostFocus.id_parada = true;
     }
   }
+
+  //todo
+  idParadaValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      const idParada = control.value;
+      const userId = this.paradaFavForm.get('user.id')?.value;
+
+      return this.oParadaFavAjaxService.validateParadaFavExists(idParada, userId)
+        .pipe(
+          map((exists: boolean) => (exists ? { idParadaExists: true } : null)),
+          catchError(() => of(null))
+        );
+    };
+  }
+
+  
 }

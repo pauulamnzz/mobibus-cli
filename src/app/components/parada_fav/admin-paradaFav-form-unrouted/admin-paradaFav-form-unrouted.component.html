@@ -67,6 +67,10 @@
             <i class="fas fa-exclamation-triangle has-text-danger"></i>
             <div class="has-text-danger">El ID de la parada es requerido</div>
             }
+            @if(paradaFavForm.get('id_parada')?.hasError('idParadaValidator')){
+              <i class="fas fa-exclamation-triangle has-text-danger"></i>
+              <div class="has-text-danger">El ID de la parada ya existe en el user</div>
+              }
             }
         <!-- Campo 'user' -->
         <div formGroupName="user">
