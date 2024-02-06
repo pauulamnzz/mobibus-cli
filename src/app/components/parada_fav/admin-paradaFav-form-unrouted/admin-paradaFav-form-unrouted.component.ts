@@ -168,7 +168,9 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
         this.paradaFavForm.controls['id_parada'].patchValue(oResultApi);
       
         this.lostFocus.id_parada = false; 
-
+        this.paradaExists().subscribe(exists => {
+          this.paradaExistsOnUser = exists;
+        });
       }else{
         this.lostFocus.id_parada = true; 
       }
