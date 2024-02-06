@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_URL } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { IParadaFav, IParadaFavPage } from '../model/model.interface';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +60,11 @@ checkParadaFavExistsForUser(idParada: number, userId: number): Observable<boolea
   return this.oHttpClient.get<boolean>(url);
 }
 validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {
-  return this.checkParadaFavExistsForUser(idParada, userId);
+  return this.checkParadaFavExistsForUser(idParada, userId)
+    .pipe(
+      map(result => !!result), // Convertir el resultado en un booleano
+      catchError(() => of(false)) // En caso de error, devolver falso
+    );
 }
 
 }

@@ -30,6 +30,8 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oDynamicDialogRef: DynamicDialogRef | undefined;
   showErrorOnClose: boolean = false;
+  paradaExistsOnUser: boolean = false;
+
   lostFocus = {
     alias: false,
     id_parada: false,
@@ -122,7 +124,9 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true
-    });
+    }
+    
+    );
 
     this.oDynamicDialogRef.onClose.subscribe((oUser: IUser) => {
       this.showErrorOnClose = false;
@@ -131,10 +135,18 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
         this.paradaFavForm.controls['user'].patchValue({ id: oUser.id })
         this.lostFocus.user = false; 
         this.paradaFavForm.get('id_parada')?.enable();
+           // Suscripción a paradaExists() después de seleccionar un usuario
+      this.paradaExists().subscribe(exists => {
+        this.paradaExistsOnUser = exists;
+      });
+      console.log("paradaExistsOnUser:", this.paradaExistsOnUser);
       }else{
         this.lostFocus.user = true; 
       }
+      
     });
+
+    
   } 
 
 
@@ -154,6 +166,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       if (oResultApi) {
         this.oResultApi.id_parada = oResultApi.id_parada;
         this.paradaFavForm.controls['id_parada'].patchValue(oResultApi);
+      
         this.lostFocus.id_parada = false; 
 
       }else{
@@ -166,7 +179,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
 
 
 
-  //todo
+  //validator
   idParadaValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       const idParada = control.value;
@@ -181,11 +194,27 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
             catchError(() => of(null))
           );
       }
-  
       // Asegurarse de devolver algo, incluso si no se cumple la condición
       return of(null);
     };
   }
 
+//para mostrar error devuelve booleano
+  paradaExists(): Observable<boolean> {
+    const idParada = this.paradaFavForm.get('id_parada')?.value;
+    const userId = this.paradaFavForm.get('user.id')?.value;
+  
+    if (idParada !== null && userId !== null) {
+      return this.oParadaFavAjaxService.validateParadaFavExists(idParada, userId)
+        .pipe(
+          map((exists: boolean) => exists),
+          catchError(() => of(false))
+        );
+    }
+  
+    // Si no se cumplen las condiciones, devolver falso
+    
+    return of(false);
+  }
   
 }

@@ -49,29 +49,30 @@
 
 
         <!-- Campo 'id_parada' -->
-          <div class="field ">
-            <label class="label">ID Parada</label>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input" formControlName="id_parada" placeholder="Add parada" readonly required
-                (blur)="lostFocus.id_parada = true">
-              <span class="icon is-left">
-                <i class="fa-solid fa-user"></i>
-              </span>
-              <button class="button is-primary m-2" type="button" (click)="onShowParadasSelection()">
-                <i class="pi pi-search"></i>
-              </button>
-            </div>
+        <div class="field ">
+          <label class="label">ID Parada</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" formControlName="id_parada" placeholder="Add parada" readonly required
+              (blur)="lostFocus.id_parada = true">
+            <span class="icon is-left">
+              <i class="fa-solid fa-user"></i>
+            </span>
+            <button class="button is-primary m-2" type="button" (click)="onShowParadasSelection()">
+              <i class="pi pi-search"></i>
+            </button>
           </div>
-          @if(lostFocus.id_parada){
-            @if(paradaFavForm.get('id_parada')?.hasError('required')){
-            <i class="fas fa-exclamation-triangle has-text-danger"></i>
-            <div class="has-text-danger">El ID de la parada es requerido</div>
-            }
-            @if(paradaFavForm.get('id_parada')?.hasError('idParadaValidator')){
-              <i class="fas fa-exclamation-triangle has-text-danger"></i>
-              <div class="has-text-danger">El ID de la parada ya existe en el user</div>
-              }
-            }
+        </div>
+        @if(lostFocus.id_parada){
+        @if(paradaFavForm.get('id_parada')?.hasError('required')){
+        <i class="fas fa-exclamation-triangle has-text-danger"></i>
+        <div class="has-text-danger">El ID de la parada es requerido</div>
+        }
+        }
+        @if(paradaExistsOnUser){
+        <i class="fas fa-exclamation-triangle has-text-danger"></i>
+        <div class="has-text-danger">El ID de la parada ya existe en el user</div>
+        }
+
         <!-- Campo 'user' -->
         <div formGroupName="user">
           <div class="field ">
