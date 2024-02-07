@@ -51,7 +51,7 @@
 
             @for(paradaFav of paradasFavs; track paradasFavs){
             <tr>
-              <td class="has-text-centered" [routerLink]="['/user','parada','view',paradaFav]"> {{paradaFav.id_parada}} : {{ paradaFav.alias }}</td>
+              <td class="has-text-centered" [routerLink]="['/user','parada','view',paradaFav.id_parada]"> {{paradaFav.id_parada}} : {{ paradaFav.alias }}</td>
             </tr>
             }
 

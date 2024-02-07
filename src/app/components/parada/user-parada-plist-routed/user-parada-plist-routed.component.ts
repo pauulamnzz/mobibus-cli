@@ -4,7 +4,7 @@ import { ApiEmtService } from '../../../services/api-emt.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
-import { IParadaFav, IUser, SessionEvent } from '../../../model/model.interface';
+import { IParadaFav, IResultApi, IUser, SessionEvent } from '../../../model/model.interface';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -22,9 +22,9 @@ import { Router, RouterModule } from '@angular/router';
 
 })
 export class UserParadaPlistRoutedComponent implements OnInit {
-  paradasAll: string[] = [];
+  paradasAll: IResultApi[] = [];
   searchTermAll: string = '';
-  filterParadasAll: string[] = [];
+  filterParadasAll: IResultApi[] = [];
 
 
   searchTermFavs: string = '';
@@ -45,11 +45,23 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //STRING
     // Obtener todas las paradas al iniciar el componente
-    this.ApiEmtService.getAllParadas().subscribe(result => {
-      this.paradasAll = result;
-      this.filterParadasAll = result;
-      console.log(result);
+    // this.ApiEmtService.getAllParadas().subscribe(result => {
+    //   this.paradasAll = result;
+    //   this.filterParadasAll = result;
+    //   console.log(result);
+    // });
+    this.ApiEmtService.getAllParadas().subscribe({
+      next: (result: IResultApi[]) => {
+        this.paradasAll = result;
+        this.filterParadasAll = result;
+        console.log(result);
+      },
+      error: (error: any) => {
+        console.error(error);
+       
+      }
     });
   
     // Obtener paradas favoritas del usuario en sesión
@@ -88,19 +100,40 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   searchAllParadas() {
     if (this.searchTermAll) {
       this.paradasAll = this.filterParadasAll.filter(parada =>
-        parada.toLowerCase().includes(this.searchTermAll.toLowerCase())
+        parada && parada.denominacion && parada.denominacion.toLowerCase().includes(this.searchTermFavs.toLowerCase())
+
       ).sort((a, b) => {
         // Convierte a números y compara de menor a mayor
-        const numA = parseFloat(a);
-        const numB = parseFloat(b);
+        const numA = parseFloat(a.id_parada.toString());
+        const numB = parseFloat(b.id_parada.toString());
         return numA - numB;
       });
     } else {
       // Si no hay término de búsqueda, simplemente ordena de menor a mayor
-      this.paradasAll = this.filterParadasAll.slice().sort((a, b) => parseFloat(a) - parseFloat(b));
+      this.paradasAll = this.filterParadasAll.slice().sort((a, b) => {
+        const numA = parseFloat(a.id_parada.toString());
+        const numB = parseFloat(b.id_parada.toString());
+        return numA - numB;
+      });
     }
   }
-  
+
+  //STRING
+  // searchAllParadas() {
+  //   if (this.searchTermAll) {
+  //     this.paradasAll = this.filterParadasAll.filter(parada =>
+  //       parada.toLowerCase().includes(this.searchTermAll.toLowerCase())
+  //     ).sort((a, b) => {
+  //       // Convierte a números y compara de menor a mayor
+  //       const numA = parseFloat(a);
+  //       const numB = parseFloat(b);
+  //       return numA - numB;
+  //     });
+  //   } else {
+  //     // Si no hay término de búsqueda, simplemente ordena de menor a mayor
+  //     this.paradasAll = this.filterParadasAll.slice().sort((a, b) => parseFloat(a) - parseFloat(b));
+  //   }
+  // }
   //Filtro
   searchParadasFavs() {
     if (this.searchTermFavs) {
