@@ -36,7 +36,8 @@ export class AdminParadaFavDetailUnroutedComponent implements OnInit {
     this.getOne();
   }
   getOne(): void {
-    this.oParadaFavAjaxService.getOne(this.id).subscribe({
+    this.oParadaFavAjaxService.
+    getOne(this.id).subscribe({
       next: (data: IParadaFav) => {
         this.oParadaFav = data;
       },

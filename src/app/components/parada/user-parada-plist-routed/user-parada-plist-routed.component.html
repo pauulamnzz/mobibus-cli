@@ -1,3 +1,4 @@
+
 <div class="columns is-centered">
 
   <div class="column is-6 ">
@@ -17,7 +18,7 @@
 
             @for(parada of paradasAll; track paradasAll){
             <tr>
-              <td class="has-text-centered"(click)="redirigirAParada(parada)" > {{ parada }}
+              <td class="has-text-centered" [routerLink]="['/user','parada','view',parada]"> {{ parada }}
                </td>
             </tr>
             }
@@ -50,7 +51,7 @@
 
             @for(paradaFav of paradasFavs; track paradasFavs){
             <tr>
-              <td class="has-text-centered" (click)="redirigirAParadaFav(paradaFav.id_parada)"> {{paradaFav.id_parada}} : {{ paradaFav.alias }}</td>
+              <td class="has-text-centered" [routerLink]="['/user','parada','view',paradaFav]"> {{paradaFav.id_parada}} : {{ paradaFav.alias }}</td>
             </tr>
             }
 

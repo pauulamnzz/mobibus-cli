@@ -12,6 +12,7 @@ import { AdminParadaFavViewRoutedComponent } from './components/parada_fav/admin
 import { AdminParadaFavNewRoutedComponent } from './components/parada_fav/admin-paradaFav-new-routed/admin-paradaFav-new-routed.component';
 import { AdminParadaFavEditRoutedComponent } from './components/parada_fav/admin-paradaFav-edit-routed/admin-paradaFav-edit-routed.component';
 import { UserParadaPlistRoutedComponent } from './components/parada/user-parada-plist-routed/user-parada-plist-routed.component';
+import { UserParadaViewRoutedComponent } from './components/parada/user-parada-view-routed/user-parada-view-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -38,6 +39,7 @@ export const routes: Routes = [
 
     
 
+    { path: 'user/parada/view/:id', component: UserParadaViewRoutedComponent },    
 
     
 ];

@@ -32,6 +32,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   paradasFavs: IParadaFav[] = [];
   
   
+  
   @Input() id_user: number = 0; //filter by user
   oUser: IUser | null = null; // data of user if id_user is set for filter
   status: HttpErrorResponse | null = null;

@@ -42,6 +42,8 @@ export interface IUserPage extends IPage<IUser> {
 
 export interface IParadaFavPage extends IPage<IParadaFav> {
 }
+export interface IParadaEmt extends IPage<IParadaEmt> {
+}
 
 
 export interface IUser extends IEntity {
@@ -104,6 +106,14 @@ export interface Root {
   export interface Geometry {
     coordinates: number[]
     type: string
+  }
+
+  export interface IParadaEmt{
+    numParada: string,
+    nomParada: string,
+    nomLinea: string,
+    tiempo: string,
+    numLinea: string
   }
   
   export interface Properties {}

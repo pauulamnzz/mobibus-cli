@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_EMT, API_KEY } from '../environment/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, forkJoin, map } from 'rxjs';
-import { IResultApi, Root } from '../model/model.interface';
+import { IParadaEmt, IResultApi, Root } from '../model/model.interface';
 import { SessionAjaxService } from './session.ajax.service';
 
 @Injectable({
@@ -78,6 +78,11 @@ getAllParadas(): Observable<string[]> {
 getOneParada(paradaId: number): Observable<any> {
   const apiUrl = `${this.apiUrl}?where=id_parada=${paradaId}&limit=1`;
   return this.oHttpClient.get(apiUrl);
+}
+
+getInfoLlegadas(id: number): Observable<IParadaEmt> {
+  const apiUrl = `http://localhost:8083/api/data?id=${id}`; 
+  return this.oHttpClient.get<IParadaEmt>(apiUrl);
 }
 
 }
