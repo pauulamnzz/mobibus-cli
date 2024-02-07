@@ -24,8 +24,8 @@
           </thead>
           <tbody>
             
-              @for(parada of oParadaEmt; track parada){
-                @for(bus of parada.content; track bus){
+             
+                @for(bus of oParadaEmt; track bus){
 
                 
               <tr>
@@ -35,7 +35,7 @@
               <td>{{ bus.tiempo }}</td>
             </tr>
           }
-        }
+        
           </tbody>
         </table>
         
