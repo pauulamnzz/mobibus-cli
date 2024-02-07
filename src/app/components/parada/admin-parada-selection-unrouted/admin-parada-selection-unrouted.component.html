@@ -24,10 +24,10 @@
           <tbody>
             @for(parada of paradas; track paradas){
             <tr>
-              <td class="has-text-centered is-vcentered">{{ parada }}</td>
+              <td class="has-text-centered is-vcentered">{{ parada.denominacion }}</td>
               <td class="has-text-centered">
           
-                <button class="button is-rounded is-1 m-3" (click)="onSelectParada(parada)">
+                <button class="button is-rounded is-1 m-3" (click)="onSelectParada(parada.id_parada)">
                   <i class="pi pi-plus-circle"></i>
                 </button>
                

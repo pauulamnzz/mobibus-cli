@@ -99,9 +99,9 @@ getOneParada(paradaId: number): Observable<any> {
   return this.oHttpClient.get(apiUrl);
 }
 
-getInfoLlegadas(id: number): Observable<IParadaEmt> {
+getInfoLlegadas(id: number): Observable<IParadaEmt[][]> { 
   const apiUrl = `http://localhost:8083/api/data?id=${id}`; 
-  return this.oHttpClient.get<IParadaEmt>(apiUrl);
+  return this.oHttpClient.get<IParadaEmt[][]>(apiUrl);
 }
 
 }

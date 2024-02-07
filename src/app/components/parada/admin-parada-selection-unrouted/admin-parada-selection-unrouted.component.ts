@@ -13,7 +13,7 @@ import { IResultApi } from '../../../model/model.interface';
 export class AdminParadaSelectionUnroutedComponent implements OnInit {
 
   status: HttpErrorResponse | null = null;
-  paradas: string[] = [];
+  paradas: IResultApi[] = [];
 
   constructor(
 
@@ -32,7 +32,7 @@ export class AdminParadaSelectionUnroutedComponent implements OnInit {
   }
 
 
-  onSelectParada(id_parada: String) {
+  onSelectParada(id_parada: number) {
     this.oDynamicDialogRef.close(id_parada);
   }
 }

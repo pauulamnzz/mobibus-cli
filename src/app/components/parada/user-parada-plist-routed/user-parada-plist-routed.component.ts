@@ -52,7 +52,8 @@ export class UserParadaPlistRoutedComponent implements OnInit {
     //   this.filterParadasAll = result;
     //   console.log(result);
     // });
-    this.ApiEmtService.getAllParadas().subscribe({
+    this.ApiEmtService.
+    getAllParadas().subscribe({
       next: (result: IResultApi[]) => {
         this.paradasAll = result;
         this.filterParadasAll = result;

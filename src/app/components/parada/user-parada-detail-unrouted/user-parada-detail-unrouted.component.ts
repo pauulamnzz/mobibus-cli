@@ -17,8 +17,8 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   @Input() id: number = 1;
 
   status: HttpErrorResponse | null = null;
-  oParadaEmt: IParadaEmt[] = [];
-
+  oParadaEmt: IParadaEmt[]= [];
+buses: IParadaEmt[] = [];
   constructor(
     private oApiEmtAjaxService: ApiEmtService,
     @Optional() public ref: DynamicDialogRef,
@@ -35,15 +35,21 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     this.getOne();
   }
   getOne(): void {
-    this.oApiEmtAjaxService.
-      getInfoLlegadas(this.id).subscribe({
-        next: (data: IParadaEmt) => {
-          this.oParadaEmt = [data];
+    this.oApiEmtAjaxService.getInfoLlegadas(this.id).subscribe({
+      next: (data: IParadaEmt[][]) => { // Aquí esperamos un array anidado
+        // Verificamos si hay datos y si el primer elemento del array es un array
+        if (data && Array.isArray(data[0])) {
+          // Si es un array anidado, asignamos directamente el primer elemento a oParadaEmt
+          this.oParadaEmt = data[0];
           console.log(this.oParadaEmt);
-        },
-        error: (error: HttpErrorResponse) => {
-          this.status = error;
+        } else {
+          // Si no es un array anidado, asignamos los datos como están
+          console.log(this.oParadaEmt);
         }
-      })
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+      }
+    });
   }
 }

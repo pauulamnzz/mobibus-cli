@@ -18,7 +18,7 @@
 
             @for(parada of paradasAll; track paradasAll){
             <tr>
-              <td class="has-text-centered" [routerLink]="['/user','parada','view',parada]"> {{ parada }}
+              <td class="has-text-centered" [routerLink]="['/user','parada','view',parada.id_parada]">{{ parada.denominacion }}
                </td>
             </tr>
             }
