@@ -89,9 +89,31 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   }
 
 
-  addFav(){
-
+  addFav(): void {
+    // if (this.oUser && this.id) {
+    //   const newParadaFav: IParadaFav = {
+    //     id: 0,
+    //     alias: "Parada " + this.id,
+    //     id_parada: this.id,
+    //     user: this.oUser
+    //   };
+      
+    //   this.oParadaFavAjaxService.newOne(newParadaFav).subscribe({
+    //     next: (paradaFav: IParadaFav) => {
+    //       // Agregar la nueva parada favorita a la lista
+    //       this.paradasFavs.push(paradaFav);
+    //       this.isFavoriteParada = true;
+    //       console.log("Parada añadida a favoritos:", paradaFav);
+    //     },
+    //     error: (error: any) => {
+    //       console.error("Error al añadir la parada a favoritos:", error);
+    //     }
+    //   });
+    // } else {
+    //   console.error("No se puede añadir la parada a favoritos. Usuario o ID de parada no válido.");
+    // }
   }
+  
   removeFav(): void {
     if (this.oUser && this.id) {
       const paradaFavId = this.paradasFavs.find(paradaFav => paradaFav.id_parada === this.id)?.id;
