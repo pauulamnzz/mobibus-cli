@@ -87,4 +87,12 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       }
     });
   }
+
+
+  addFav(){
+
+  }
+  removeFav(){
+   
+  }
 }
