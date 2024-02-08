@@ -92,7 +92,26 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   addFav(){
 
   }
-  removeFav(){
-   
+  removeFav(): void {
+    if (this.oUser && this.id) {
+      const paradaFavId = this.paradasFavs.find(paradaFav => paradaFav.id_parada === this.id)?.id;
+      if (paradaFavId) {
+        this.oParadaFavAjaxService.removeOne(paradaFavId).subscribe({
+          next: () => {
+            // Actualizar la lista de paradas favoritas después de eliminar la parada
+            this.paradasFavs = this.paradasFavs.filter(paradaFav => paradaFav.id !== paradaFavId);
+            this.isFavoriteParada = false;
+            console.log("Parada eliminada de favoritos");
+          },
+          error: (error: any) => {
+            console.error("Error al eliminar la parada de favoritos:", error);
+          }
+        });
+      } else {
+        console.error("No se encontró el ID de la parada favorita para eliminar.");
+      }
+    } else {
+      console.error("No se puede eliminar la parada de favoritos. Usuario o ID de parada no válido.");
+    }
   }
 }
