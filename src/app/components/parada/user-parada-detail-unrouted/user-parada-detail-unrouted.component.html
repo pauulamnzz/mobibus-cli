@@ -12,30 +12,23 @@
   <div class="column is-9">
     <div class="box">
       <div class="is-flex is-justify-content-center">
-
         <table class="table">
+          <caption><strong>{{ oParadaEmt[0]?.numParada }} - {{ oParadaEmt[0]?.nomParada }}</strong><button class="button m-2"><span class="heart">❤️</span></button></caption>
           <thead>
             <tr>
-              <th>Número de Parada</th>
-              <th>Nombre de Parada</th>
-              <th>Línea</th>
-              <th>Tiempo</th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
-          <tbody>
-            
-             
+          <tbody>      
                 @for(bus of oParadaEmt; track bus){
-
-                
               <tr>
-              <td>{{ bus.numParada }}</td>
-              <td>{{ bus.nomParada }}</td>
               <td>{{ bus.nomLinea }}</td>
+              <td>{{ bus.numLinea }}</td>
               <td>{{ bus.tiempo }}</td>
             </tr>
           }
-        
           </tbody>
         </table>
         
