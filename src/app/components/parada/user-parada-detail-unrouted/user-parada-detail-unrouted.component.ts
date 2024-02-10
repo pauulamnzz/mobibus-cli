@@ -92,23 +92,24 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   }
 
 
-  addFav(p: IProxLlegada[]) {
-  
-
-      this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
-        data: {
-          id: p[0].numParada
-        },
-        header: 'Vista de usuario',
-        width: '50%',
-        contentStyle: { overflow: 'auto' },
-        baseZIndex: 10000,
-        maximizable: false,
-        styleClass:'my-custom-dialog'
-      });
+  addFav() {
+    const data = {
+      usuario: this.oUser,
+      id_parada: this.id
     
+    };
+     this.ref=this.oDialogService.open(UserParadaFormUnroutedComponent, {
+      header: 'Agregar Parada Favorita',
+      width: '40%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+      data: data,
+      
+    });
+
   }
-  
+
   removeFav(): void {
     if (this.oUser && this.id) {
       const paradaFavId = this.paradasFavs.find(paradaFav => paradaFav.id_parada === this.id)?.id;

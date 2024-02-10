@@ -81,6 +81,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
     return this.paradaFavForm.controls[controlName].hasError(errorName);
   }
   onSubmit() {
+    console.log(this.paradaFavForm.value);
     if (this.paradaFavForm.valid) {
       if (this.operation == 'NEW') {
         this.oParadaFavAjaxService.newOne(this.paradaFavForm.value).subscribe({

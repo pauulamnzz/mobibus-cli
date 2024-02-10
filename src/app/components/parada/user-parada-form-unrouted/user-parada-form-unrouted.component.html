@@ -1,2 +1,41 @@
+<div class="container mb-5">
+    <div class="columns has-text-centered is-centered">
 
-asdasd
+        <div class="box mt-5">
+            @if (status != null){
+            <div class="notification is-danger mt-3">
+                {{ status!.error.message }} - {{ status!.message }}
+            </div>
+            }@else{
+
+            <form [formGroup]="paradaForm" (ngSubmit)="onSubmit()">
+
+
+
+                <!-- Campo 'alaias' -->
+                <!--NOMBRE DE PARADA-->
+                <div class="field">
+                    <label class="label ">Agrega un alias a al parada</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" formControlName="alias" required (blur)="lostFocus.alias = true">
+                        <span class="icon  is-left">
+                            <i class="fa-solid fa-tag"></i>
+                        </span>
+                    </div>
+                </div>
+                @if(lostFocus.alias){
+
+                @if(hasError('alias', 'required')){
+                <i class="fas fa-exclamation-triangle has-text-danger"></i>
+                <div class="has-text-danger">El alias es requerido</div>
+                }
+                }
+                <div class="field m-3">
+                    <button class="button is-link" type="button" (click)="onSubmit()" [disabled]="!paradaForm.valid">
+                        Guardar parada
+                    </button>
+                </div>
+            </form>
+            }
+        </div>
+    </div>
