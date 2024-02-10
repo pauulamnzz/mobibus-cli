@@ -80,7 +80,6 @@ export interface IResultApi {
   suprimida: number
   denominacion: string
   lineas: string
-  proximas_llegadas: IProxLlegada//IParadaEmt ?
  // geo_shape: GeoShape
   //geo_point_2d: GeoPoint2d
 }
