@@ -1,11 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit, Optional } from '@angular/core';
 import { ApiEmtService } from '../../../services/api-emt.service';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { IParadaEmt, IParadaFav, IUser } from '../../../model/model.interface';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { IParadaFav, IProxLlegada, IUser } from '../../../model/model.interface';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service';
 import { CommonModule } from '@angular/common';
+import { UserParadaFormUnroutedComponent } from '../user-parada-form-unrouted/user-parada-form-unrouted.component';
 
 @Component({
   selector: 'app-user-parada-detail-unrouted',
@@ -20,8 +21,8 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   @Input() id: number = 1;
 
   status: HttpErrorResponse | null = null;
-  oParadaEmt: IParadaEmt[] = [];
-  buses: IParadaEmt[] = [];
+  oProxLlegada: IProxLlegada[] = [];
+
 
   paradasFavs: IParadaFav[] = [];
   oUser: IUser | null = null; // data of user if id_user is set for filter
@@ -32,7 +33,9 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     private oSessionAjaxService: SessionAjaxService,
     private oParadaFavAjaxService: ParadaFavAjaxService,
     @Optional() public ref: DynamicDialogRef,
-    @Optional() public config: DynamicDialogConfig
+    @Optional() public config: DynamicDialogConfig,
+    public oDialogService: DialogService,
+
   ) {
     if (config) {
       if (config.data) {
@@ -46,9 +49,9 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   }
   getOne(): void {
     this.oApiEmtAjaxService.getInfoLlegadas(this.id).subscribe({
-      next: (data: IParadaEmt[]) => {
-        this.oParadaEmt = data;
-        console.log(this.oParadaEmt);
+      next: (data: IProxLlegada[]) => {
+        this.oProxLlegada = data;
+        console.log(this.oProxLlegada);
 
 
         if (this.oSessionAjaxService.isSessionActive()) {
@@ -89,29 +92,21 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   }
 
 
-  addFav(): void {
-    // if (this.oUser && this.id) {
-    //   const newParadaFav: IParadaFav = {
-    //     id: 0,
-    //     alias: "Parada " + this.id,
-    //     id_parada: this.id,
-    //     user: this.oUser
-    //   };
-      
-    //   this.oParadaFavAjaxService.newOne(newParadaFav).subscribe({
-    //     next: (paradaFav: IParadaFav) => {
-    //       // Agregar la nueva parada favorita a la lista
-    //       this.paradasFavs.push(paradaFav);
-    //       this.isFavoriteParada = true;
-    //       console.log("Parada añadida a favoritos:", paradaFav);
-    //     },
-    //     error: (error: any) => {
-    //       console.error("Error al añadir la parada a favoritos:", error);
-    //     }
-    //   });
-    // } else {
-    //   console.error("No se puede añadir la parada a favoritos. Usuario o ID de parada no válido.");
-    // }
+  addFav(p: IProxLlegada[]) {
+  
+
+      this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
+        data: {
+          id: p[0].numParada
+        },
+        header: 'Vista de usuario',
+        width: '50%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: false,
+        styleClass:'my-custom-dialog'
+      });
+    
   }
   
   removeFav(): void {

@@ -42,10 +42,11 @@ export interface IUserPage extends IPage<IUser> {
 
 export interface IParadaFavPage extends IPage<IParadaFav> {
 }
-export interface IParadaEmt extends IPage<IParadaEmt> {
+export interface IProxLlegada extends IPage<IProxLlegada> {
 }
 
 
+//user 
 export interface IUser extends IEntity {
 
     username: string,
@@ -57,11 +58,55 @@ export interface IUser extends IEntity {
 }
 
 
+//parada fav bbdd
 export interface IParadaFav extends IEntity {
 alias: string,
 id_parada: number,
 user: IUser,
 
+}
+
+//resultados api 
+ export interface Root {
+  total_count: number
+  results: IResultApi[]
+}
+
+//resultados api 
+export interface IResultApi {
+  id_parada: number
+  codvia?: number
+  numportal: string
+  suprimida: number
+  denominacion: string
+  lineas: string
+  proximas_llegadas: IProxLlegada//IParadaEmt ?
+ // geo_shape: GeoShape
+  //geo_point_2d: GeoPoint2d
+}
+
+// export interface GeoShape {
+//   type: string
+//   geometry: Geometry
+//   properties: Properties
+// }
+
+// export interface Geometry {
+//   coordinates: number[]
+//   type: string
+// }
+// export interface GeoPoint2d {
+//   lon: number
+//   lat: number
+// }
+
+//parada respuesta prox llegadas
+export interface IProxLlegada{
+  numParada: string,
+  nomParada: string,
+  nomLinea: string,
+  tiempo: string,
+  numLinea: string
 }
 
 
@@ -80,46 +125,8 @@ export interface IToken {
 }
 
 
-export interface Root {
-    total_count: number
-    results: IResultApi[]
-  }
-  
-  export interface IResultApi {
-    id_parada: number
-    codvia?: number
-    numportal: string
-    suprimida: number
-    denominacion: string
-    lineas: string
-    proximas_llegadas: string
-    geo_shape: GeoShape
-    geo_point_2d: GeoPoint2d
-  }
-  
-  export interface GeoShape {
-    type: string
-    geometry: Geometry
-    properties: Properties
-  }
-  
-  export interface Geometry {
-    coordinates: number[]
-    type: string
-  }
 
-  export interface IParadaEmt{
-    numParada: string,
-    nomParada: string,
-    nomLinea: string,
-    tiempo: string,
-    numLinea: string
-  }
-  
   export interface Properties {}
   
-  export interface GeoPoint2d {
-    lon: number
-    lat: number
-  }
+
   
