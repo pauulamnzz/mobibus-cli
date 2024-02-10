@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-footer-unrouted',
   standalone: true,
   templateUrl: './footer-unrouted.component.html',
-  styleUrls: ['./footer-unrouted.component.css']
+  styleUrls: ['./footer-unrouted.component.scss']
 })
 export class FooterUnroutedComponent implements OnInit {
 

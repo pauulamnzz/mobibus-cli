@@ -5,7 +5,7 @@ import { AdminParadaFavFormUnroutedComponent } from '../admin-paradaFav-form-unr
 @Component({
   selector: 'app-admin-paradaFav-edit-routed',
   templateUrl: './admin-paradaFav-edit-routed.component.html',
-  styleUrls: ['./admin-paradaFav-edit-routed.component.css'],
+  styleUrls: ['./admin-paradaFav-edit-routed.component.scss'],
   standalone: true,
   imports: [
     RouterModule,

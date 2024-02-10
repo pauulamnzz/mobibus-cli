@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-admin-user-plist-unrouted',
   standalone: true,
   templateUrl: './admin-user-plist-unrouted.component.html',
-  styleUrls: ['./admin-user-plist-unrouted.component.css'],
+  styleUrls: ['./admin-user-plist-unrouted.component.scss'],
   imports:[
    RouterModule,
    PaginatorModule,

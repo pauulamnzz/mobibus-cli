@@ -6,7 +6,7 @@ import { AdminUserFormUnroutedComponent } from '../admin-user-form-unrouted/admi
   selector: 'app-admin-user-edit-routed',
   standalone: true,
   templateUrl: './admin-user-edit-routed.component.html',
-  styleUrls: ['./admin-user-edit-routed.component.css'],
+  styleUrls: ['./admin-user-edit-routed.component.scss'],
   imports: [
     AdminUserFormUnroutedComponent
   ]

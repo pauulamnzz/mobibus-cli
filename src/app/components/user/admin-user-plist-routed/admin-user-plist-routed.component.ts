@@ -16,7 +16,7 @@ import { ConfirmDialog, ConfirmDialogModule } from 'primeng/confirmdialog';
     selector: 'app-admin-user-plist-routed',
     standalone: true,
     templateUrl: './admin-user-plist-routed.component.html',
-    styleUrls: ['./admin-user-plist-routed.component.css'],
+    styleUrls: ['./admin-user-plist-routed.component.scss'],
     imports: [
         MessagesModule,
         ProgressSpinnerModule,

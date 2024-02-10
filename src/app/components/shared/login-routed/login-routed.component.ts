@@ -15,7 +15,7 @@ import { ToastModule } from 'primeng/toast';
   selector: 'app-login-routed',
   standalone: true,
   templateUrl: './login-routed.component.html',
-  styleUrls: ['./login-routed.component.css'],
+  styleUrls: ['./login-routed.component.scss'],
  imports:[
   FormsModule, 
   ReactiveFormsModule,

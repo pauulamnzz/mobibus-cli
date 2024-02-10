@@ -5,7 +5,7 @@ import { UserParadaDetailUnroutedComponent } from '../user-parada-detail-unroute
 @Component({
   selector: 'app-user-parada-view-routed',
   templateUrl: './user-parada-view-routed.component.html',
-  styleUrls: ['./user-parada-view-routed.component.css'],
+  styleUrls: ['./user-parada-view-routed.component.scss'],
   standalone: true,
   imports:[
     UserParadaDetailUnroutedComponent

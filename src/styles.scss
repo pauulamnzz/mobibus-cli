@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+/*@import "primeng/resources/themes/mdc-dark-indigo/theme.css";*/
+@import "primeng/resources/themes/mdc-light-indigo/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
+/* Importa la fuente Nunito */
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+//Aquí variables bulma
+$primary: #005B99;
+$secondary: #4e88ca;
+$succes: #FFD700;
+$text: #333333;
+// --primary-100:#005B99;
+// --primary-200:#4e88ca;
+// --primary-300:#b7e9ff;
+// --accent-100:#FFD700;
+// --accent-200:#e9aa2b;
+// --text-100:#333333;
+// --text-200:#5c5c5c;
+// --bg-100:#F5F5F5;
+// --bg-200:#ebebeb;
+// --bg-300:#c2c2c2;
+
+
+
+/*! bulma.io v0.9.4 | MIT License | github.com/jgthms/bulma */
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all";
+@import "../node_modules/bulma/sass/form/_all";
+@import "../node_modules/bulma/sass/components/_all";
+@import "../node_modules/bulma/sass/grid/_all";
+@import "../node_modules/bulma/sass/helpers/_all";
+@import "../node_modules/bulma/sass/layout/_all";
+@import "../node_modules/bulma/sass/base/_all";
+
+
+/* Aplica la fuente a la etiqueta body o a los elementos que desees */
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color:#ECF0F3; /* Puedes ajustar el color a tus preferencias */
+  color:rgb(255, 255, 255);
+}

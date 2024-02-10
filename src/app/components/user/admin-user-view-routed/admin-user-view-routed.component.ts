@@ -6,7 +6,7 @@ import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/
 @Component({
   selector: 'app-admin-user-view-routed',
   templateUrl: './admin-user-view-routed.component.html',
-  styleUrls: ['./admin-user-view-routed.component.css'],
+  styleUrls: ['./admin-user-view-routed.component.scss'],
   standalone: true,
   imports: [
   AdminUserDetailUnroutedComponent

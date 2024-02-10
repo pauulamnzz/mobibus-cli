@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-admin-paradaFav-detail-unrouted',
   templateUrl: './admin-paradaFav-detail-unrouted.component.html',
-  styleUrls: ['./admin-paradaFav-detail-unrouted.component.css'],
+  styleUrls: ['./admin-paradaFav-detail-unrouted.component.scss'],
   standalone: true,
   imports: [
     RouterModule

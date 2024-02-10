@@ -13,7 +13,7 @@ import { Renderer2, ElementRef } from '@angular/core';
   selector: 'app-menu-unrouted',
   standalone: true,
   templateUrl: './menu-unrouted.component.html',
-  styleUrls: ['./menu-unrouted.component.css'],
+  styleUrls: ['./menu-unrouted.component.scss'],
   imports:[
     MenubarModule,
   ],
@@ -99,7 +99,7 @@ export class MenuUnroutedComponent implements OnInit {
     return false;
   } 
 
-  toggleNavbar() {
+/*   toggleNavbar() {
     const navbarBurger = this.el.nativeElement.querySelector('.navbar-burger');
     const targetId = navbarBurger.getAttribute('data-target');
     const target = this.el.nativeElement.querySelector(`#${targetId}`);
@@ -110,5 +110,5 @@ export class MenuUnroutedComponent implements OnInit {
     this.renderer.addClass(navbarBurger, 'is-active');
     this.renderer.addClass(target, 'is-active');
     }
-    }
+    } */
 }

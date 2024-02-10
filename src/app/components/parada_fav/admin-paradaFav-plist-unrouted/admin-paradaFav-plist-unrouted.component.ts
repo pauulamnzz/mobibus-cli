@@ -14,7 +14,7 @@ import { AdminParadaFavDetailUnroutedComponent } from '../admin-paradaFav-detail
 @Component({
   selector: 'app-admin-paradaFav-plist-unrouted',
   templateUrl: './admin-paradaFav-plist-unrouted.component.html',
-  styleUrls: ['./admin-paradaFav-plist-unrouted.component.css'],
+  styleUrls: ['./admin-paradaFav-plist-unrouted.component.scss'],
   standalone: true,
   imports: [
     RouterModule,

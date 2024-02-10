@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-user-parada-detail-unrouted',
   templateUrl: './user-parada-detail-unrouted.component.html',
-  styleUrls: ['./user-parada-detail-unrouted.component.css'],
+  styleUrls: ['./user-parada-detail-unrouted.component.scss'],
   standalone: true,
   imports: [
     CommonModule

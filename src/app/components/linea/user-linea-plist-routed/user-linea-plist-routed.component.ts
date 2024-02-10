@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-user-linea-plist-routed',
   templateUrl: './user-linea-plist-routed.component.html',
   standalone: true,
-  styleUrls: ['./user-linea-plist-routed.component.css'],
+  styleUrls: ['./user-linea-plist-routed.component.scss'],
   imports: [
     CommonModule,
     FormsModule

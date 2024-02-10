@@ -6,7 +6,7 @@ import { AdminParadaFavDetailUnroutedComponent } from '../admin-paradaFav-detail
 @Component({
   selector: 'app-admin-paradaFav-view-routed',
   templateUrl: './admin-paradaFav-view-routed.component.html',
-  styleUrls: ['./admin-paradaFav-view-routed.component.css'],
+  styleUrls: ['./admin-paradaFav-view-routed.component.scss'],
   standalone: true, 
   imports: [
   AdminParadaFavDetailUnroutedComponent

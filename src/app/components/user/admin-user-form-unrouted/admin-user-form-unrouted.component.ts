@@ -10,7 +10,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-admin-user-form-unrouted',
   standalone: true,
   templateUrl: './admin-user-form-unrouted.component.html',
-  styleUrls: ['./admin-user-form-unrouted.component.css'],
+  styleUrls: ['./admin-user-form-unrouted.component.scss'],
   imports: [
     ReactiveFormsModule,
    

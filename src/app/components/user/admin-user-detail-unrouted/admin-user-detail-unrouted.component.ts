@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-admin-user-detail-unrouted',
   templateUrl: './admin-user-detail-unrouted.component.html',
-  styleUrls: ['./admin-user-detail-unrouted.component.css'],
+  styleUrls: ['./admin-user-detail-unrouted.component.scss'],
   standalone: true,
   imports: [
   RouterModule

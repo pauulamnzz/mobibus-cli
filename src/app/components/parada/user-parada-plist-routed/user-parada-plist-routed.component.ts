@@ -12,7 +12,7 @@ import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-user-parada-plist-routed',
   templateUrl: './user-parada-plist-routed.component.html',
-  styleUrls: ['./user-parada-plist-routed.component.css'],
+  styleUrls: ['./user-parada-plist-routed.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

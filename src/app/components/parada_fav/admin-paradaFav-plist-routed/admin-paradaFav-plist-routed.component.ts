@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-admin-paradaFav-plist-routed',
   templateUrl: './admin-paradaFav-plist-routed.component.html',
-  styleUrls: ['./admin-paradaFav-plist-routed.component.css'],
+  styleUrls: ['./admin-paradaFav-plist-routed.component.scss'],
   standalone: true,
   imports: [
     MessagesModule,

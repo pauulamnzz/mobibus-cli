@@ -13,7 +13,7 @@ import { Observable, catchError, map, of, switchMap, timer } from 'rxjs';
 @Component({
   selector: 'app-admin-paradaFav-form-unrouted',
   templateUrl: './admin-paradaFav-form-unrouted.component.html',
-  styleUrls: ['./admin-paradaFav-form-unrouted.component.css'],
+  styleUrls: ['./admin-paradaFav-form-unrouted.component.scss'],
   standalone: true,
   imports: [
     ReactiveFormsModule,

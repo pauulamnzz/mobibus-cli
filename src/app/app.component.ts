@@ -23,7 +23,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
      
      ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'mobibus-cli';

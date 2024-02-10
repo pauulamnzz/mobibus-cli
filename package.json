@@ -7,10 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "css-build": "sass  --no-source-map node_modules/bulma/bulma.sass src/bulma.css",
-    "css-watch": "npm run css-build -- --watch",
-    "start-css": "npm run css-watch"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +42,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "node-sass": "^9.0.0",
+    "schematics-scss-migrate": "^2.3.17",
     "typescript": "~5.2.2"
   }
 }

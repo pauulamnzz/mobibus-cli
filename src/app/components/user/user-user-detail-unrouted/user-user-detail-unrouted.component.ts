@@ -7,7 +7,7 @@ import { UserAjaxService } from '../../../services/user.ajax.service';
 @Component({
   selector: 'app-user-user-detail-unrouted',
   templateUrl: './user-user-detail-unrouted.component.html',
-  styleUrls: ['./user-user-detail-unrouted.component.css']
+  styleUrls: ['./user-user-detail-unrouted.component.scss']
 })
 export class UserUserDetailUnroutedComponent implements OnInit {
 

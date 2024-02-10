@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-logout-routed',
   templateUrl: './logout-routed.component.html',
-  styleUrls: ['./logout-routed.component.css'],
+  styleUrls: ['./logout-routed.component.scss'],
 
 })
 export class LogoutRoutedComponent implements OnInit {
