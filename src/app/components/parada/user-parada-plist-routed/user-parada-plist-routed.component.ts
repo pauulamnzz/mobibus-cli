@@ -45,13 +45,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //STRING
-    // Obtener todas las paradas al iniciar el componente
-    // this.ApiEmtService.getAllParadas().subscribe(result => {
-    //   this.paradasAll = result;
-    //   this.filterParadasAll = result;
-    //   console.log(result);
-    // });
+
     this.ApiEmtService.
     getAllParadas().subscribe({
       next: (result: IResultApi[]) => {
@@ -72,7 +66,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
         
         next: (user: IUser) => {
           this.oUser = user;
-         // console.log(user);
+       
   
           // Actualizar la llamada al servicio con la ruta correcta
           this.oParadaFavAjaxService.getParadasFavByUser(this.oUser.id).subscribe({
@@ -101,8 +95,8 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   searchAllParadas() {
     if (this.searchTermAll) {
       this.paradasAll = this.filterParadasAll.filter(parada =>
-        parada && parada.denominacion && parada.denominacion.toLowerCase().includes(this.searchTermFavs.toLowerCase())
-
+        (parada.id_parada && parada.id_parada.toString().includes(this.searchTermAll.toLowerCase())) ||
+        (parada.denominacion && parada.denominacion.toLowerCase().includes(this.searchTermAll.toLowerCase()))
       ).sort((a, b) => {
         // Convierte a números y compara de menor a mayor
         const numA = parseFloat(a.id_parada.toString());
@@ -118,28 +112,13 @@ export class UserParadaPlistRoutedComponent implements OnInit {
       });
     }
   }
-
-  //STRING
-  // searchAllParadas() {
-  //   if (this.searchTermAll) {
-  //     this.paradasAll = this.filterParadasAll.filter(parada =>
-  //       parada.toLowerCase().includes(this.searchTermAll.toLowerCase())
-  //     ).sort((a, b) => {
-  //       // Convierte a números y compara de menor a mayor
-  //       const numA = parseFloat(a);
-  //       const numB = parseFloat(b);
-  //       return numA - numB;
-  //     });
-  //   } else {
-  //     // Si no hay término de búsqueda, simplemente ordena de menor a mayor
-  //     this.paradasAll = this.filterParadasAll.slice().sort((a, b) => parseFloat(a) - parseFloat(b));
-  //   }
-  // }
+  
   //Filtro
   searchParadasFavs() {
     if (this.searchTermFavs) {
-      this.paradasFavs = this.paradasFavs.filter(parada =>
-        parada && parada.alias && parada.alias.toLowerCase().includes(this.searchTermFavs.toLowerCase())
+      this.paradasFavs = this.filterParadasFavs.filter(parada =>
+        (parada.alias && parada.alias.toLowerCase().includes(this.searchTermFavs.toLowerCase())) ||
+        (parada.id_parada && parada.id_parada.toString().includes(this.searchTermFavs.toLowerCase()))
       ).sort((a, b) => {
         const numA = parseFloat(a.id_parada.toString());
         const numB = parseFloat(b.id_parada.toString());
@@ -153,7 +132,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
       });
     }
   }
-
+  
   redirigirAParadaFav(paradaId: number) {
     const enlace = `http://www.emtvalencia.es/QR.php?sec=est&p=${paradaId}`;
     window.location.href = enlace;
