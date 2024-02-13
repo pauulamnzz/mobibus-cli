@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API_KEY, API_URL } from '../environment/environment';
 import { IToken, IUser, SessionEvent } from '../model/model.interface';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserAjaxService } from './user.ajax.service';
 @Injectable({
@@ -87,6 +87,13 @@ getSessionUser(): Observable<IUser> | null {
       return null;
   }
 }
+getSessionUserId():Observable<number | null>{
+  if(this.isSessionActive() && this.getUsername()){
+    return this.oUserAjaxService.getUsuarioIdByUsername(this.getUsername());
+  }else{
+return of(null);
+  }
+  }
 
 
 

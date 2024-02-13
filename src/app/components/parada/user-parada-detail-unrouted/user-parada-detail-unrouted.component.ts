@@ -23,7 +23,6 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   oProxLlegada: IProxLlegada[] = [];
 
-
   paradasFavs: IParadaFav[] = [];
   oUser: IUser | null = null; // data of user if id_user is set for filter
 
@@ -58,6 +57,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
           this.oSessionAjaxService.getSessionUser()?.subscribe({
             next: (user: IUser) => {
               this.oUser = user;
+             //this.oUser = { id: this.oSessionAjaxService.getSessionUserId() } as unknown as IUser;
               this.oParadaFavAjaxService.getParadasFavByUser(this.oUser.id).subscribe({
                 next: (paradasFavs: IParadaFav[]) => {
                   this.paradasFavs = paradasFavs;
@@ -96,7 +96,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     const data = {
       usuario: this.oUser,
       id_parada: this.id
-    
+   
     };
      this.ref=this.oDialogService.open(UserParadaFormUnroutedComponent, {
       header: 'Agregar Parada Favorita',

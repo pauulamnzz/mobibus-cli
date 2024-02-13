@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_URL } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { IUser, IUserPage } from '../model/model.interface';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +51,19 @@ generateRandom(amount: number): Observable<number> {
 
 empty(): Observable<number> {
     return this.oHttpClient.delete<number>(this.sUrl + "/empty");
+}
+
+
+getUsuarioIdByUsername(username: string): Observable<number | null> {
+    return this.oHttpClient.get<IUser[]>(this.sUrl + '/byUsername/' + username).pipe(
+        map((usuarios: IUser[]) => {
+        if (usuarios.length > 0) {
+            return usuarios[0].id;
+        } else {
+            return null;
+        }
+    }));
+        
 }
 
 }
