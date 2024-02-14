@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastModule } from 'primeng/toast';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-routed',
@@ -23,7 +24,7 @@ import { ToastModule } from 'primeng/toast';
   MessagesModule,
   DynamicDialogModule,
   ToastModule,
-
+  CommonModule
 ]
 })
 export class LoginRoutedComponent implements OnInit {
