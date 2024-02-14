@@ -7,7 +7,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
+import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -27,4 +27,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 })
 export class AppComponent {
   title = 'mobibus-cli';
-}
+
+  ngOnInit(): void {
+    initFlowbite();
+  }}

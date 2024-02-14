@@ -7,6 +7,12 @@
 /* Importa la fuente Nunito */
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 
+//tailwind
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
 //Aquí variables bulma
 $primary: #005B99;
 $secondary: #4e88ca;
