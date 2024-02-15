@@ -29,5 +29,4 @@ export class AppComponent {
   title = 'mobibus-cli';
 
   ngOnInit(): void {
-    initFlowbite();
   }}

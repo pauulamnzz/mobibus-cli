@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-home-routed',
@@ -10,6 +11,8 @@ export class HomeRoutedComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    initFlowbite();
+
   }
 
 }
