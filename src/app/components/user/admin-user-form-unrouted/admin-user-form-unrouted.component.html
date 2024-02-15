@@ -1,6 +1,6 @@
 
 
-<div class="bg-gray-100 flex items-center justify-center mb-10">
+<div class="bg-gray-100 flex items-center justify-center mb-10 mt-10">
   <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
     <div class="flex justify-center mb-5">
       <span class="inline-block bg-gray-200 rounded-full p-3">
@@ -15,7 +15,7 @@
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       @if(operation=='EDIT'){
       <div class="mb-4">
-        <label for="id" class="block text-gray-700 text-sm font-semibold mb-2">ID *</label>
+        <label for="id" class="block text-gray-700 text-sm font-semibold mb-2">ID </label>
         <input type="text" id="fullName" required readonly
           class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required
           formControlName="id" placeholder="ID">

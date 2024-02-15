@@ -1,21 +1,21 @@
 @if (status != null) {
 
-<div class="notification is-danger mt-3">
+<div class="bg-red-500 mt-3 text-white p-4">
   {{ status!.error.message }} - {{ status!.message }}
 </div>
 
 
 }@else {
-<div class="flex justify-center ">
+<div class="flex justify-center mb-10">
   <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12 ">
-    <div class="bg-white border rounded-lg shadow-md mb-20">
+    <div class="bg-white border rounded-lg shadow-md pb-4">
       <div class="text-center mt-14">
-        <h3 class="text-lg">No hay filtro</h3>
-        <p>Se están viendo {{oPage?.numberOfElements}} usuarios.</p>
+        <h3 class="text-lg">No active filter</h3>
+        <p>There are {{oPage?.numberOfElements}} users displayed.</p>
       </div>
 
 
-      <div class="overflow-x-auto">
+      <div class="overflow-x-auto m-4">
         <table class="mx-auto text-center divide-y mt-16">
           <thead class="text-md text-gray-700 uppercase">
             <tr>
@@ -23,8 +23,8 @@
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('username')">USERNAME</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('email')">EMAIL</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('role')">ROLE</th>
-              <th class="px-4 py-2 text-center">PARADAS FAVS</th>
-              <th class="px-4 py-2 text-center">TOOLS</th>
+              <th class="px-4 py-2 text-center cursor-pointer">PARADAS FAVS</th>
+              <th class="px-4 py-2 text-center cursor-pointer">TOOLS</th>
             </tr>
           </thead>
           <tbody>
@@ -40,7 +40,7 @@
                 {{ user.email }}
               </td>
               <td class="px-4 py-2 text-center">
-                @if(user.role==true){
+                @if(user.role==false){
                 Admin
                 }@else {
                 User
@@ -58,26 +58,24 @@
               </td>
               <td class="px-4 py-2 text-center">
 
-                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
-                hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
-                me-2 mb-2" [routerLink]="['/admin','user','view', user.id]"><i
+                <button type="button" class="rounded-full border border-gray-300 px-3 py-1 m-1
+                hover:bg-gray-200" [routerLink]="['/admin','user','view', user.id]"><i
                     class="fa-solid fa-circle-info"></i></button>
 
-                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
-                hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
-                me-2 mb-2" (click)="doView(user)"><i class="fa-solid fa-arrow-up"></i></button>
+                <button type="button" class="rounded-full border border-gray-300 px-3 py-1 m-1
+                hover:bg-gray-200" (click)="doView(user)">
+                <i class="fa-solid fa-arrow-up"></i></button>
 
 
-                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
-                hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
-                me-2 mb-2" [routerLink]="['/admin','user','edit', user.id]"> <i
-                    class="fa-regular fa-pen-to-square"></i></button>
+                <button type="button" class="rounded-full border border-gray-300 px-3 py-1 m-1
+                hover:bg-gray-200" [routerLink]="['/admin','user','edit', user.id]"> <i
+                    class="fas fa-edit"></i></button>
 
 
                 @if(user.paradas_favs==0){
-                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
-                  hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
-                  me-2 mb-2" (click)="doRemove(user)"><i class="fa-regular fa-trash-can"></i>
+                <button type="button" class="rounded-full border border-gray-300 px-3 py-1 m-1
+                hover:bg-gray-200" (click)="doRemove(user)">
+                <i class="fas fa-trash-alt"></i>
                 </button>
 
                 }
@@ -90,11 +88,12 @@
         </table>
       </div>
 
-   
-    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-  </div>
 
-</div>
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    </div>
+
+  </div>
 </div>
 }
+

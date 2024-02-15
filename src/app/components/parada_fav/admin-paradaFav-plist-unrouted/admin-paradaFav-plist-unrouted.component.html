@@ -1,79 +1,69 @@
-
 @if (status != null) {
+<div class="bg-red-500 mt-3 text-white p-4">
+  {{ status!.error.message }} - {{ status!.message }}
+</div>
+}@else{
+<div class="flex justify-center mb-10">
+  <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12 ">
+    <div class="bg-white border rounded-lg shadow-md pb-4">
+      <div class="text-center mt-14">
+        @if(id_user > 0){
+        <h3 class="text-lg" >Filtered by user ({{id_user}} - {{oUser?.username}})</h3>
+        <a  [routerLink]="['/admin','paradaFav','plist']" type="button" class="inline-block rounded-full border border-gray-300 px-3 py-1 m-1 hover:bg-gray-200 text-gray-800">Reset filter</a>
+        }@else{
+        <h3 class="text-lg">No active filter</h3>
+        }
+        <p>There are {{oPage?.numberOfElements}} favourite stops displayed.</p>
+      </div>
 
-  <div class="notification is-danger mt-3">
-    {{ status!.error.message }} - {{ status!.message }}
-  </div>
-  
-  
-  }@else {
-  <div class="columns is-centered">
-    <div class="column is-9">
-      <div class="box">
-        <div class="has-text-centered m-6">
-          @if(id_user>0){
-            <h3>Filtered by user ({{id_user}} - {{oUser?.username}})
-          <h3>
-            <a type="button" class="button is-rounded is-1 m-3"
-             [routerLink]="['/admin','paradaFav','plist']">
-
-             Reset filter</a></h3>
-            </h3>
-            }@else{
-              <h3>No active filter</h3>
-            }
-        <p>Se estan viendo {{oPage?.numberOfElements }} Paradas favs.</p>
-        </div>
-        <div class="is-flex is-justify-content-center">
-        <table class="table is-hoverable m-6 mb-0">
-          <thead>
+      <div class="overflow-x-auto m-4">
+        <table class="mx-auto text-center divide-y mt-16">
+          <thead class="text-md text-gray-700 uppercase">
             <tr>
-              <th class="has-text-centered" (click)="doOrder('id')">ID</th>
-              <th class="has-text-centered" (click)="doOrder('alias')">ALIAS</th>
-              <th class="has-text-centered" (click)="doOrder('id_parada')">ID PARADA</th>
-              <th class="has-text-centered">USER</th>
-              <th class="has-text-centered">HERRAMIENTAS</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('id')">ID</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('alias')">ALIAS</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('id_parada')">ID PARADA</th>
+              <th class="px-4 py-2 text-center cursor-pointer">USER</th>
+              <th class="px-4 py-2 text-center cursor-pointer">TOOLS</th>
             </tr>
           </thead>
           <tbody>
             @for(parada_fav of oPage?.content; track parada_fav.id){
-            <tr>
-              <td class="has-text-centered is-vcentered">{{ parada_fav.id }}</td>
-              <td class="has-text-centered is-vcentered">{{ parada_fav.alias }}</td>
-              <td class="has-text-centered is-vcentered">{{ parada_fav.id_parada }}</td>
-              
-              <td class="has-text-centered is-vcentered">
+            <tr class="border-b">
+              <td class="px-4 py-2 text-center">{{ parada_fav.id }}</td>
+              <td class="px-4 py-2 text-center">{{ parada_fav.alias }}</td>
+              <td class="px-4 py-2 text-center">{{ parada_fav.id_parada }}</td>
+              <td class="px-4 py-2 text-center">
                 <a [routerLink]="['/admin','paradaFav','plist','byuser', parada_fav.user.id]">
                   {{parada_fav.user.id}} {{parada_fav.user.username}}
                 </a>
               </td>
-  
-              <td class="has-text-centered">
-                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','paradaFav','view', parada_fav.id]">
-                  <i class="fa-solid fa-circle-info"></i> </button>
-                <button class="button is-rounded is-1 m-3" (click)="doView(parada_fav)">
-                  <i class="fa-solid fa-arrow-up"></i></button>
-                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
-                  <i class="fa-regular fa-pen-to-square"></i> </button>
-                <button class="button is-rounded is-1 m-3" (click)="doRemove(parada_fav)">
-                  <i class="fa-regular fa-trash-can"></i></button>
+              <td class="px-4 py-2 text-center">
+                <button class="rounded-full border border-gray-300 px-3 py-1 m-1
+                 hover:bg-gray-200" [routerLink]="['/admin','paradaFav','view', parada_fav.id]">
+                  <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="rounded-full border border-gray-300 px-3 py-1 m-1
+                 hover:bg-gray-200"(click)="doView(parada_fav)">
+                  <i class="fas fa-arrow-up"></i>
+                </button>
+                <button class="rounded-full border border-gray-300 px-3 py-1 m-1
+                 hover:bg-gray-200"[routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="rounded-full border border-gray-300 px-3 py-1 m-1
+                 hover:bg-gray-200"(click)="doRemove(parada_fav)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </td>
-  
             </tr>
             }
           </tbody>
         </table>
       </div>
-  
-  
-        <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-          [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-  
-      </div>
-  
-  
+      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
     </div>
   </div>
-  }
-  
-  
+</div>
+}

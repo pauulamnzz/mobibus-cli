@@ -3,8 +3,9 @@
     <h1 class="text-4xl text-gray-700 font-bold ml-60">Users</h1>
     @if (bLoading) {
       <div class="p-card-body">
-        <h3 class="text-red-500">Processing... wait, please.</h3>
-        <div class="custom-spinner border-4 border-gray-300 rounded-full w-16 h-16 animate-spin"></div>
+        <h3 class="p-text-danger">Processing... wait, please.</h3>
+        <p-progressSpinner styleClass="custom-spinner" strokeWidth="5" fill="#EEEEEE"
+          animationDuration=".5s"></p-progressSpinner>
       </div>
     } @else {
       <div class="flex mr-60">
