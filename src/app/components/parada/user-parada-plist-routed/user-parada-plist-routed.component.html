@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="columns is-centered">
 
   <div class="column is-6 ">
@@ -63,6 +63,59 @@
 
     </div>
 
+
+  </div>
+}
+</div> -->
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+  <div class="bg-white p-5 rounded-lg mt-10">
+    <input class="input is-info w-full" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
+      (input)="searchAllParadas()">
+    <div class="flex justify-center">
+      <table class="mx-auto w-10/12 text-center divide-y mt-8">
+        <thead class="text-md text-gray-700 uppercase">
+          <tr>
+            <th class="px-4 py-2 text-center">Stops</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(parada of paradasAll; track paradasAll){
+          <tr>
+            <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700"
+              [routerLink]="['/user','parada','view',parada.id_parada]">{{ parada.denominacion }}
+            </td>
+          </tr>
+          }
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  @if(sessionActive){
+  <div class="bg-white p-5 rounded-lg mt-10">
+    <input class="input is-info w-full" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermFavs"
+      (input)="searchParadasFavs()">
+    <div class="flex justify-center">
+      <table class="mx-auto w-10/12 text-center divide-y mt-8">
+        <thead class="text-md text-gray-700 uppercase">
+          <tr>
+            <th class="px-4 py-2 text-center">Favourite Stops</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(paradaFav of paradasFavs; track paradasFavs){
+          <tr>
+            <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700"
+              [routerLink]="['/user','parada','view',paradaFav.id_parada]"> {{paradaFav.id_parada}} : {{ paradaFav.alias
+              }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
 
   </div>
 }

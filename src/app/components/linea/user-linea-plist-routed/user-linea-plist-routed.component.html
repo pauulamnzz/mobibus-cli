@@ -11,11 +11,14 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let linea of getCurrentPageItems(); let i = index">
+            @for( linea of getCurrentPageItems(); track getCurrentPageItems()){
               <tr>
-                <td class="text-centered border-b py-3 hover:bg-gray-100"> {{ linea }}</td>
+                <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700"> {{ linea }}</td>
               </tr>
-            </ng-container>
+            }
+            
+              
+      
           </tbody>
         </table>
       </div>

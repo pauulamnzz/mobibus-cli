@@ -8,6 +8,7 @@ import { IParadaFav, IResultApi, IUser, SessionEvent } from '../../../model/mode
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
+import { PaginatorModule } from 'primeng/paginator';
 
 @Component({
   selector: 'app-user-parada-plist-routed',
@@ -17,7 +18,8 @@ import { Router, RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    PaginatorModule
   ]
 
 })
@@ -30,8 +32,10 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   searchTermFavs: string = '';
   filterParadasFavs: IParadaFav[] = []; 
   paradasFavs: IParadaFav[] = [];
-  
-  
+
+  pageSize = 10; // Tamaño de la página por defecto
+  currentPageAll = 0;
+  currentPageFavs = 0;
   
   @Input() id_user: number = 0; //filter by user
   oUser: IUser | null = null; // data of user if id_user is set for filter
@@ -141,4 +145,8 @@ export class UserParadaPlistRoutedComponent implements OnInit {
     const enlace = `http://www.emtvalencia.es/QR.php?sec=est&p=${paradaId}`;
     window.location.href = enlace;
   } 
+
+
+
+
 }
