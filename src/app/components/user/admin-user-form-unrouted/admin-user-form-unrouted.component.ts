@@ -39,7 +39,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   initializeForm(oUser: IUser) {
     this.userForm = this.oFormBuilder.group({
       id: [oUser.id],
-      username: [oUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('^[a-zA-Z0-9]+$'), ]],
+      username: [oUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('^[a-zA-Z]+$'), ]],
       email: [oUser.email, [Validators.required, Validators.email]],
       role: [oUser.role, Validators.required]
     });
@@ -108,10 +108,6 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   };
 
-  checkRoleError() {
-    if (!this.userForm.get('role')?.value) {
-      this.showRoleError = true;
-    }
-  }
+
 
 }
