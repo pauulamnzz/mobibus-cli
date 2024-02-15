@@ -5,7 +5,8 @@
 @import "primeicons/primeicons.css";
 @import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 /* Importa la fuente Nunito */
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
 
 //tailwind
 @import 'tailwindcss/base';
@@ -44,7 +45,7 @@ $text: #333333;
 
 /* Aplica la fuente a la etiqueta body o a los elementos que desees */
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color:#a2aeb8; /* Puedes ajustar el color a tus preferencias */
   color:rgb(0, 0, 0);
 }
