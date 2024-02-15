@@ -1,34 +1,28 @@
-<div class="columns is-centered">
 
-  <div class="column is-6">
-    <div class="box m-5">
-      <input class="input is-info" type="text" placeholder="Buscar línea" [(ngModel)]="searchTerm" (input)="search()">
-
-      <div class="is-flex is-justify-content-center">
-
-        <table class="table is-hoverable is-fullwidth">
-          <thead>
+<div class="grid place-items-center m-10">
+  <div class="w-6/12">
+    <div class="bg-white p-5 rounded-lg mt-10">
+      <input class="border border-gray-500 rounded-lg p-2 w-full" type="text" placeholder="Buscar línea" [(ngModel)]="searchTerm" (input)="search()">
+      <div class="flex justify-center">
+        <table class="mx-auto w-10/12 text-center divide-y mt-8">
+          <thead class="text-md text-gray-700 uppercase">
             <tr>
-              <th class="has-text-centered">LINEAS</th>
-
+              <th class="px-4 py-2 text-center cursor-pointer">LINES</th>
             </tr>
           </thead>
           <tbody>
-
-            @for(linea of lineas; track lineas){
+            <ng-container *ngFor="let linea of getCurrentPageItems(); let i = index">
               <tr>
-              <td class="has-text-centered"> {{ linea }}</td>
-            </tr>
-            }
-
-
+                <td class="text-centered border-b py-3 hover:bg-gray-100"> {{ linea }}</td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>
-
-
+      <p-paginator [rows]="itemsPerPage" [totalRecords]="lineas.length" (onPageChange)="onPageChange($event)"></p-paginator>
     </div>
-
-
   </div>
 </div>
+
+
+
