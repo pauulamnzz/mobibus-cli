@@ -32,7 +32,6 @@
 							"src/styles.scss"
 						],
 						"scripts": [
-							"src/script.js"
 						]
 					},
 					"configurations": {
@@ -93,7 +92,6 @@
 							"src/styles.scss"
 						],
 						"scripts": [
-							"src/script.js"
 						]
 					}
 				}

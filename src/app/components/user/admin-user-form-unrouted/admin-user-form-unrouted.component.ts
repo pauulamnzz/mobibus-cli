@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MessageService } from 'primeng/api';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-user-form-unrouted',
@@ -13,7 +14,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./admin-user-form-unrouted.component.scss'],
   imports: [
     ReactiveFormsModule,
-   
+   CommonModule
   ],
 })
 export class AdminUserFormUnroutedComponent implements OnInit {

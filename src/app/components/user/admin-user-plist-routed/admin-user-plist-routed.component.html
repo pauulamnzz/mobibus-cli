@@ -1,29 +1,19 @@
-
-<div class="is-flex is-justify-content-center has-text-centered">
-  <h1 class="titulo is-size-1 has-text-weight-bold">USUARIOS</h1>
-</div>
-
-
-
-      @if(bLoading){
-
+<div class="p-4">
+  <div class="flex justify-between items-center m-7">
+    <h1 class="text-4xl text-gray-700 font-bold ml-60">Users</h1>
+    @if (bLoading) {
       <div class="p-card-body">
-        <h3 class="p-text-danger">Processing... wait, please.</h3>
-        <p-progressSpinner styleClass="custom-spinner" strokeWidth="5" fill="#EEEEEE"
-          animationDuration=".5s"></p-progressSpinner>
+        <h3 class="text-red-500">Processing... wait, please.</h3>
+        <div class="custom-spinner border-4 border-gray-300 rounded-full w-16 h-16 animate-spin"></div>
       </div>
-
-      }@else {
-        <div class="is-flex is-justify-content-center has-text-centered">          
-          <button class="button is-primary m-3" [routerLink]="['/admin','user','new']" >Añadir usuario</button>
-          <button class="button is-primary m-3" (click)="doEmpty($event)">Vaciar</button>
-        </div>
-        
-      }
-
-
-    @if(!bLoading){
-    <app-admin-user-plist-unrouted [forceReload]="forceReload"></app-admin-user-plist-unrouted>
-
+    } @else {
+      <div class="flex mr-60">
+        <button class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-2 px-4 rounded m-3" [routerLink]="['/admin','user','new']"><i class="fa-solid fa-user-plus"></i></button>
+        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-3" (click)="doEmpty($event)"><i class="fa-solid fa-user-slash"></i></button>
+      </div>
     }
-
+  </div>
+  @if(!bLoading){
+    <app-admin-user-plist-unrouted [forceReload]="forceReload"></app-admin-user-plist-unrouted>
+  }
+</div>

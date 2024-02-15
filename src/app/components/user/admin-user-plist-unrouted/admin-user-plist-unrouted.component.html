@@ -6,84 +6,95 @@
 
 
 }@else {
-<div class="columns is-centered">
-  <div class="column is-9">
-    <div class="box">
-      <div class="has-text-centered m-6">
-        <h3> No hay filtro</h3>
-        Se estan viendo {{oPage?.numberOfElements}} users.
+<div class="flex justify-center ">
+  <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12 ">
+    <div class="bg-white border rounded-lg shadow-md mb-20">
+      <div class="text-center mt-14">
+        <h3 class="text-lg">No hay filtro</h3>
+        <p>Se están viendo {{oPage?.numberOfElements}} usuarios.</p>
       </div>
-      <div class="is-flex is-justify-content-center">
-        <table class="table is-hoverable m-6 mb-0">
-          <thead>
-            <tr>
-              <th class="has-text-centered" (click)="doOrder('id')">ID</th>
-              <th class="has-text-centered" (click)="doOrder('username')">USERNAME</th>
-              <th class="has-text-centered" (click)="doOrder('email')">EMAIL</th>
-              <th class="has-text-centered" (click)="doOrder('role')">ROLE</th>
-              <th class="has-text-centered">PARADAS FAVS</th>
 
-              <th class="has-text-centered">HERRAMIENTAS</th>
+
+      <div class="overflow-x-auto">
+        <table class="mx-auto text-center divide-y mt-16">
+          <thead class="text-md text-gray-700 uppercase">
+            <tr>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('id')">ID</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('username')">USERNAME</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('email')">EMAIL</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('role')">ROLE</th>
+              <th class="px-4 py-2 text-center">PARADAS FAVS</th>
+              <th class="px-4 py-2 text-center">TOOLS</th>
             </tr>
           </thead>
           <tbody>
             @for(user of oPage?.content; track user.id){
-            <tr>
-              <td class="has-text-centered is-vcentered">{{ user.id }}</td>
-              <td class="has-text-centered is-vcentered">{{ user.username }}</td>
-              <td class="has-text-centered is-vcentered">{{ user.email }}</td>
-              <td class="has-text-centered is-vcentered">
+            <tr class="border-b">
+              <td class="px-4 py-2 text-center">
+                {{ user.id }}
+              </td>
+              <td class="px-4 py-2 text-center">
+                {{ user.username }}
+              </td>
+              <td class="px-4 py-2 text-center">
+                {{ user.email }}
+              </td>
+              <td class="px-4 py-2 text-center">
                 @if(user.role==true){
                 Admin
                 }@else {
                 User
                 }
               </td>
+              <td class="px-4 py-2 text-center">
 
-              <td class="has-text-centered is-vcentered">
                 @if(user.paradas_favs!==undefined && user.paradas_favs>0){
-                  
+
                 <a [routerLink]="['/admin','paradaFav','plist','byuser',user.id]">
                   {{ user.paradas_favs}} </a>
                 }@else {
                 0
                 }
               </td>
+              <td class="px-4 py-2 text-center">
 
-              <td class="has-text-centered">
-                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','user','view', user.id]">
-                  <i class="fa-solid fa-circle-info"></i>
-                </button>
-                <button class="button is-rounded is-1 m-3" (click)="doView(user)">
-                  <i class="fa-solid fa-arrow-up"></i>
-                </button>
-                <button class="button is-rounded is-1 m-3" [routerLink]="['/admin','user','edit', user.id]">
-                  <i class="fa-regular fa-pen-to-square"></i> </button>
+                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
+                hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
+                me-2 mb-2" [routerLink]="['/admin','user','view', user.id]"><i
+                    class="fa-solid fa-circle-info"></i></button>
+
+                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
+                hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
+                me-2 mb-2" (click)="doView(user)"><i class="fa-solid fa-arrow-up"></i></button>
+
+
+                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
+                hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
+                me-2 mb-2" [routerLink]="['/admin','user','edit', user.id]"> <i
+                    class="fa-regular fa-pen-to-square"></i></button>
+
 
                 @if(user.paradas_favs==0){
-                <button class="button is-rounded is-1 m-3" (click)="doRemove(user)">
-                  <i class="fa-regular fa-trash-can"></i>
+                <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none 
+                  hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 
+                  me-2 mb-2" (click)="doRemove(user)"><i class="fa-regular fa-trash-can"></i>
                 </button>
+
                 }
 
-
               </td>
-
             </tr>
+
             }
           </tbody>
         </table>
       </div>
 
-
-      <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-        [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-
-    </div>
-
-
+   
+    <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
+
+</div>
 </div>
 }
-
-
