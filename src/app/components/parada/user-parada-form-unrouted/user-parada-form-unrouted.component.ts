@@ -71,7 +71,7 @@ export class UserParadaFormUnroutedComponent implements OnInit {
             };
             console.log(paradaFav);
 
-            this.oParadaFavAjaxService.newOnebyUser(paradaFav).subscribe({
+            this.oParadaFavAjaxService.newOne(paradaFav).subscribe({
               next: (parada: IParadaFav) => {
                 this.oParadaFav = { "user": {} } as IParadaFav;
                 this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Parada agregada con éxito' });

@@ -5,11 +5,11 @@
  
 <p-confirmDialog #cd>
     <ng-template pTemplate="footer">
-      <button class="p-button p-button-primary m-1" icon="pi pi-times" (click)="cd.reject()">
-        <span class="p-button-label">No</span>
+      <button class="w-20 bg:text-gray-900 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-2 px-4 rounded m-3" (click)="cd.reject()">
+        <span>No</span>
       </button>
-      <button class="p-button p-button-danger m-1" icon="pi pi-check" (click)="cd.accept()">
-        <span class="p-button-label">Sí</span>
+      <button class="w-20 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-3"  (click)="cd.accept()">
+        <span>Sí</span>
       </button>
     </ng-template>
   </p-confirmDialog>

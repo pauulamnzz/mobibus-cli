@@ -36,9 +36,7 @@ removeOne(id: number | undefined): Observable<number> {
 newOne(oParadaFav: IParadaFav): Observable<IParadaFav> {
   return this.oHttpClient.post<IParadaFav>(this.sUrl, oParadaFav);
 }
-newOnebyUser(oParadaFav: IParadaFav): Observable<IParadaFav> {
-  return this.oHttpClient.post<IParadaFav>(this.sUrl +"/byUser", oParadaFav);
-}
+
 updateOne(oParadaFav: IParadaFav): Observable<IParadaFav> {
   return this.oHttpClient.put<IParadaFav>(this.sUrl, oParadaFav);
 }
