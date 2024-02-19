@@ -7,6 +7,7 @@ import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service';
 import { CommonModule } from '@angular/common';
 import { UserParadaFormUnroutedComponent } from '../user-parada-form-unrouted/user-parada-form-unrouted.component';
+import { ParadaComunicationService } from '../../../services/parada.comunication.service';
 
 @Component({
   selector: 'app-user-parada-detail-unrouted',
@@ -34,6 +35,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig,
     public oDialogService: DialogService,
+    private comunicationService: ParadaComunicationService
 
   ) {
     if (config) {
@@ -45,6 +47,9 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getOne();
+    this.comunicationService.updateParadasFavoritas$.subscribe(() => {
+      this.getOne();
+    });
   }
   getOne(): void {
     this.oApiEmtAjaxService.getInfoLlegadas(this.id).subscribe({
@@ -107,7 +112,9 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       data: data,
       
     });
-
+    this.ref.onClose.subscribe(() => {
+      this.comunicationService.triggerUpdateParadasFavoritas();
+    });
   }
 
   removeFav(): void {

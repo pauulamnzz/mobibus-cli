@@ -74,6 +74,7 @@ export class UserParadaFormUnroutedComponent implements OnInit {
             this.oParadaFavAjaxService.newOne(paradaFav).subscribe({
               next: (parada: IParadaFav) => {
                 this.oParadaFav = { "user": {} } as IParadaFav;
+                
                 this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Parada agregada con éxito' });
                 this.ref.close(); // Close the dialog if ref is available
               },
