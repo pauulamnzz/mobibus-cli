@@ -14,16 +14,15 @@
           <table class="mx-auto text-center divide-y m-1">
             <thead class="text-md text-gray-700 uppercase">
               <tr>
-                <th class="px-4 py-2 text-center cursor-pointer">ID PARADA</th>
-                <th class="px-4 py-2 text-center cursor-pointer">HERRAMIENTAS</th>
+                <th class="px-4 py-2 text-center cursor-pointer">BUS STOP</th>
+                <th class="px-4 py-2 text-center cursor-pointer">TOOLS</th>
               </tr>
             </thead>
             <tbody>
-              @for(parada of paradas; track paradas){
+              @for(parada of getCurrentPageItems(); track getCurrentPageItems()){
               <tr class="border-b">
                 <td class="text-gray-700 px-4 py-2 text-center">{{ parada.denominacion }}</td>
                 <td class="text-gray-700 px-4 py-2 text-center">
-
                   <button
                     class="rounded-full border border-gray-300 px-3 py-2  hover:bg-gray-200"
                     (click)="onSelectParada(parada.id_parada)">
@@ -37,7 +36,8 @@
             </tbody>
           </table>
         </div>
-
+     <p-paginator [rows]="pageSize" [totalRecords]="paradas.length" (onPageChange)="onPageChange($event)">
+          </p-paginator>
 
 
       </div>

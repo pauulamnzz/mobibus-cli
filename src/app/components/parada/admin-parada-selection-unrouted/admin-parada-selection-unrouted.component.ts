@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PaginatorState } from 'primeng/paginator';
+import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ApiEmtService } from '../../../services/api-emt.service';
 import { IResultApi } from '../../../model/model.interface';
@@ -8,12 +8,19 @@ import { IResultApi } from '../../../model/model.interface';
 @Component({
   selector: 'app-admin-parada-selection-unrouted',
   templateUrl: './admin-parada-selection-unrouted.component.html',
-  styleUrls: ['./admin-parada-selection-unrouted.component.scss']
+  styleUrls: ['./admin-parada-selection-unrouted.component.scss'],
+  standalone: true,
+  imports: [
+    PaginatorModule
+  ]
 })
 export class AdminParadaSelectionUnroutedComponent implements OnInit {
 
   status: HttpErrorResponse | null = null;
   paradas: IResultApi[] = [];
+
+  pageSize = 10; // Tamaño de la página por defecto
+  currentPage = 0;
 
   constructor(
 
@@ -35,4 +42,14 @@ export class AdminParadaSelectionUnroutedComponent implements OnInit {
   onSelectParada(id_parada: number) {
     this.oDynamicDialogRef.close(id_parada);
   }
+  // Métodos para cambiar de página
+onPageChange(event: any) {
+  this.currentPage = event.page;
+}
+getCurrentPageItems(): IResultApi[] {
+  const startIndex = this.currentPage * this.pageSize;
+  const endIndex = startIndex + this.pageSize;
+  return this.paradas.slice(startIndex, endIndex);
+}
+
 }

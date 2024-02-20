@@ -1,46 +1,64 @@
 
-@if(status != null){
-  <div class="notification is-danger mt-3">
-    {{ status!.error.message }} - {{ status!.message }}
-  </div>
-  }@else{
-  
-  
-  @if(status == null){
-  <table class="table is-fullwidth mt-6 mb-6"> @if(oUser){
-    <tbody>
-      <tr>
-        <th class="has-text-centered">PORPIEDAD</th>
-        <th class="has-text-centered">INFORMACIÓN</th>
-      </tr>
-      <tr>
-        <td class="has-text-centered">ID</td>
-        <td class="has-text-centered is-vcentered">{{ oUser.id }}</td>
-      </tr>
-      <tr>
-        <td class="has-text-centered">Username</td>
-        <td class="has-text-centered is-vcentered">{{ oUser.username }}</td>
-      </tr>
-      <tr>
-        <td class="has-text-centered">Email</td>
-        <td class="has-text-centered is-vcentered">{{ oUser.email }}</td>
-      </tr>
-      <tr>
-        <td class="has-text-centered">Rol</td>
-        <td class="has-text-centered is-vcentered">
-          @if(oUser.role==false){
-          Admin
-          }@else {
-          User
-          }
-        </td>
-  
-      </tr>
-  
-    </tbody>
-    }
-  
-  </table>
-  }
-  
-  }
+  @if(status != null){
+    <div class="bg-red-500 mt-3 text-white p-4">
+      {{ status!.error.message }} - {{ status!.message }}
+    </div>
+    }@else{
+    
+    
+    @if(status == null){
+    
+    
+    <div class="flex justify-center mb-10">
+      <div class="w-full sm:w-4/4 md:w-4/4 lg:w-9/12 xl:w-8/12 ">
+        <div class="bg-white border rounded-lg shadow-md pb-5">
+          <div class="text-center mt-14">
+            <div class="overflow-x-auto">
+              <table class="mx-auto text-center divide-y m-1">
+                @if(oUser){
+                <thead class="text-md text-gray-700 uppercase">
+                  <tr>
+                    <th class="px-4 py-2 text-center cursor-pointer">PROPERTY</th>
+                    <th class="px-4 py-2 text-center cursor-pointer">INFO</th>
+                  </tr>
+                </thead>
+                <tbody>
+    
+                  <tr class="border-b">
+                    <th class="px-4 py-2 text-center cursor-pointer">ID</th>
+                    <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.id }}</td>
+                  </tr>
+                  <tr class="border-b">
+                    <th class="px-4 py-2 text-center cursor-pointer">Username</th>
+                    <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.username }}</td>
+                  </tr>
+                  <tr class="border-b">
+                    <th class="px-4 py-2 text-center cursor-pointer">Email</th>
+                    <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.email }}</td>
+                  </tr>
+                  <tr class="border-b">
+                    <th class="px-4 py-2 text-center cursor-pointer">Role</th>
+                    <td  class="text-gray-700 px-4 py-2 text-center">
+                      @if(oUser.role==false){
+                      Admin
+                      }@else {
+                      User
+                      }
+                    </td>
+    
+                  </tr>
+
+    
+                </tbody>
+                }
+    
+              </table>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </div>
+      }
+    
+      }

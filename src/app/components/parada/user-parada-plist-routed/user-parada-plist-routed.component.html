@@ -4,7 +4,7 @@
     <div class="w-full ">
       <div class="bg-white border rounded-lg shadow-md pb-4">
         <div class="overflow-x-auto m-4">
-          <input class="input border-gray-500 w-full" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
+          <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
             (input)="searchAllParadas()">
           <div class="flex justify-center">
             <table class="mx-auto w-10/12 text-center divide-y mt-8">
@@ -39,7 +39,7 @@
     <div class="w-full">
       <div class="bg-white border rounded-lg shadow-md pb-4">
         <div class="overflow-x-auto m-4">
-          <input class="input border-gray-500 w-full" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermFavs"
+          <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermFavs"
             (input)="searchParadasFavs()">
           <div class="flex justify-center">
             <table class="mx-auto w-10/12 text-center divide-y mt-8">
@@ -72,7 +72,7 @@
 @if(paradasFavs.length == 0){
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
   <div class="bg-white p-5 rounded-lg mt-10 md:col-span-2 md:text-center md:mx-auto">
-    <input class="input border-gray-500 w-full" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
+    <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
       (input)="searchAllParadas()">
     <div class="flex justify-center">
       <table class="mx-auto w-10/12 text-center divide-y mt-8">

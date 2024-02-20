@@ -94,7 +94,7 @@ export class MenuUnroutedComponent implements OnInit {
         data: {
           id: this.oSessionUser.id
         },
-        header: 'Vista de usuario',
+        header: 'User details',
         width: '50%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,

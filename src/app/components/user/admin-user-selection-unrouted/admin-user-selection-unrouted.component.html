@@ -1,73 +1,72 @@
-
 @if (status != null) {
 
-  <div class="notification is-danger mt-3">
-    {{ status!.error.message }} - {{ status!.message }}
-  </div>
-  
-  
-  }@else {
-  <div class="columns is-centered">
-    <div class="column is-9">
-      <div class="box">
-        <div class="has-text-centered m-6">
-          Se están viendo {{oPage?.numberOfElements}} users.
-        </div>
-        <div class="is-flex is-justify-content-center">
-        <table class="table is-hoverable m-6 mb-0">
-          <thead>
-            <tr>
-              <th class="has-text-centered" (click)="doOrder('id')">ID</th>
-              <th class="has-text-centered" (click)="doOrder('username')">USERNAME</th>
-              <th class="has-text-centered" (click)="doOrder('email')">EMAIL</th>
-              <th class="has-text-centered" (click)="doOrder('role')">ROLE</th>
-              <th class="has-text-centered">PARADAS FAVS</th>
-              <th class="has-text-centered">HERRAMIENTAS</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for(user of oPage?.content; track user.id){
-            <tr>
-              <td class="has-text-centered is-vcentered">{{ user.id }}</td>
-              <td class="has-text-centered is-vcentered">{{ user.username }}</td>
-              <td class="has-text-centered is-vcentered">{{ user.email }}</td>
-              <td class="has-text-centered is-vcentered">
-                @if(user.role==true){
-                Admin
-                }@else {
-                User
-                }
-              </td>
+<div class="bg-red-500 mt-3 text-white p-4">
+  {{ status!.error.message }} - {{ status!.message }}
+</div>
 
-              <td class="has-text-centered is-vcentered">
-                @if(user.paradas_favs!==undefined && user.paradas_favs>0){
-                  {{ user.paradas_favs}} 
-                }@else {
-                0
-                }
-              </td>
-  
-              <td class="has-text-centered">
-          
-                <button class="button is-rounded is-1 m-3" (click)="onSelectUser(user)">
-                  <i class="pi pi-plus-circle"></i>
-                </button>
-               
-              </td>
-  
-            </tr>
-            }
-          </tbody>
-        </table>
+}@else {
+<div class="flex justify-center mb-10">
+  <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12 ">
+    <div class="bg-white border rounded-lg shadow-md pb-4">
+      <div class="text-center mt-14">
+        <div class="overflow-x-auto">
+          <table class="mx-auto text-center divide-y m-1">
+            <thead class="text-md text-gray-700 uppercase">
+              <tr>
+                <th class="px-4 py-2 text-center" (click)="doOrder('id')">ID</th>
+                <th class="px-4 py-2 text-center" (click)="doOrder('username')">USERNAME</th>
+                <th class="px-4 py-2 text-center" (click)="doOrder('email')">EMAIL</th>
+                <th class="px-4 py-2 text-center" (click)="doOrder('role')">ROLE</th>
+                <th class="px-4 py-2 text-center">FAVOURITE STOPS</th>
+                <th class="px-4 py-2 text-center">TOOLS</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(user of oPage?.content; track user.id){
+              <tr class="border-b">
+                <td class="text-gray-700 px-4 py-2 text-center">{{ user.id }}</td>
+                <td class="text-gray-700 px-4 py-2 text-center">{{ user.username }}</td>
+                <td class="text-gray-700 px-4 py-2 text-center">{{ user.email }}</td>
+                <td class="text-gray-700 px-4 py-2 text-center">
+                  @if(user.role==true){
+                  Admin
+                  }@else {
+                  User
+                  }
+                </td>
+
+                <td class="text-gray-700 px-4 py-2 text-center">
+                  @if(user.paradas_favs!==undefined && user.paradas_favs>0){
+                  {{ user.paradas_favs}}
+                  }@else {
+                  0
+                  }
+                </td>
+
+                <td class="text-gray-700 px-4 py-2 text-center">
+
+                  <button 
+                  class="rounded-full border border-gray-300 px-3 py-2  hover:bg-gray-200"
+                    (click)="onSelectUser(user)">
+                    <i class="pi pi-plus-circle"></i>
+                  </button>
+
+                </td>
+
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+
+        <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!"
+          [rows]="oPaginatorState.rows!" [totalRecords]="oPage?.totalElements || 0"
+          [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
       </div>
-  
-  
-        <p-paginator (onPageChange)="onPageChang($event)" [first]="oPaginatorState.first!" [rows]="oPaginatorState.rows!"
-          [totalRecords]="oPage?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-  
-      </div>
-  
-  
+
+     </div>
     </div>
   </div>
   }

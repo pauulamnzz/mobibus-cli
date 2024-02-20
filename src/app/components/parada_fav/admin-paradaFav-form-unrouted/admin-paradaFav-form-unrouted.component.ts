@@ -125,7 +125,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
      this.showErrorOnClose = true;
   
     this.oDynamicDialogRef = this.oDialogService.open(AdminUserSelectionUnroutedComponent, {
-      header: 'Select a User',
+      header: 'User Selection',
       width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -160,7 +160,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
     this.showErrorOnClose = true;
   
     this.oDynamicDialogRef = this.oDialogService.open(AdminParadaSelectionUnroutedComponent, {
-      header: 'Select a Parada',
+      header: 'Bus stop selection',
       width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,

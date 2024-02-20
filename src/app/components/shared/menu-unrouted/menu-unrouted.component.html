@@ -1,6 +1,6 @@
 
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
+<nav class="bg-white border-gray-200 dark:bg-gray-900 py-5">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
     <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="../../../../assets/img/loguito-inverso.png" class="h-8" alt="Mobibus Logo" />
@@ -32,28 +32,28 @@
         </svg>
       </button>
     </div>
-    <div class="items-center justify-between mb-3 hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+    <div class="items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar-cta">
       <ul
         class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
         
         <li>
           <a routerLink="/home"
-          class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-200" routerLinkActive="is-active">Home</a>
+          class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-200" [routerLinkActive]="['is-active']">Home</a>
         </li>
         <li>
           <a routerLink="user/linea/plist"
-            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100" routerLinkActive="is-active"> Lines</a>
+            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100" [routerLinkActive]="['is-active']"> Lines</a>
         </li>
         <li>
           <a routerLink="user/parada/plist"
-            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100"routerLinkActive="is-active">Stops</a>
+            class="block py-2 px-3 md:p-0  text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100"[routerLinkActive]="['is-active']">Stops</a>
         </li>
         @if(oSessionUser?.role == false) {
           <li>
-            <a routerLink="/admin/user/plist" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100 " routerLinkActive="is-active">User admin </a>
+            <a routerLink="/admin/user/plist" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100 " [routerLinkActive]="['is-active']">User admin </a>
           </li>
           <li>
-            <a routerLink="/admin/paradaFav/plist" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100" routerLinkActive="is-active">Favourite Stop admin </a>
+            <a routerLink="/admin/paradaFav/plist" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100" [routerLinkActive]="['is-active']">Favourite Stop admin </a>
           </li>
         }
     </ul>
