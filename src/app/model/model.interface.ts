@@ -44,8 +44,10 @@ export interface IParadaFavPage extends IPage<IParadaFav> {
 }
 export interface IProxLlegada extends IPage<IProxLlegada> {
 }
-
-
+export interface IResultApi extends IPage<IResultApi> {
+}
+export interface IRoot extends IPage<IRoot> {
+}
 //user 
 export interface IUser extends IEntity {
 
@@ -67,7 +69,7 @@ user: IUser,
 }
 
 //resultados api 
- export interface Root {
+ export interface IRoot {
   total_count: number
   results: IResultApi[]
 }

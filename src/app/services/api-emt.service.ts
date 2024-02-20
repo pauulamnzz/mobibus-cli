@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { API_EMT, API_KEY } from '../environment/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, forkJoin, map } from 'rxjs';
-import { IProxLlegada, IResultApi, Root } from '../model/model.interface';
+import { IProxLlegada, IResultApi, IRoot } from '../model/model.interface';
 import { SessionAjaxService } from './session.ajax.service';
 
 @Injectable({
@@ -32,7 +32,7 @@ private apiKey: string= API_KEY
   
     // Crea un array de observables, uno para cada página
     const observables = Array.from({ length: totalPages }, (_, i) =>
-      this.oHttpClient.get<Root>(`${apiUrl}&start=${i * requestsPerPage + 1}`)
+      this.oHttpClient.get<IRoot>(`${apiUrl}&start=${i * requestsPerPage + 1}`)
     );
   
     // Combina todos los observables en uno
@@ -82,7 +82,7 @@ getAllParadas(): Observable<IResultApi[]> {
 
   // Crea un array de observables, uno para cada página
   const observables = Array.from({ length: totalPages }, (_, i) =>
-    this.oHttpClient.get<Root>(`${apiUrl}&start=${i * requestsPerPage + 1}`)
+    this.oHttpClient.get<IRoot>(`${apiUrl}&start=${i * requestsPerPage + 1}`)
   );
 
   // Combina todos los observables en uno

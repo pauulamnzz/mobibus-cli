@@ -39,8 +39,6 @@ this.ApiEmtService.getAllLineas().subscribe(result => {
 
 }
 
-
-
 search() {
   if (this.searchTerm) {
     this.lineas = this.filterLineas.filter(linea =>

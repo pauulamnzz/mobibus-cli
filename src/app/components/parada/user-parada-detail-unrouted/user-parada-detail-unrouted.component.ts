@@ -123,6 +123,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       if (paradaFavId) {
         this.oParadaFavAjaxService.removeOne(paradaFavId).subscribe({
           next: () => {
+            // RECOGER EL ID DE LA PARADA FAVORITA BORRADA PARA COMPROBAR QUE SE HA BORRADO
             // Actualizar la lista de paradas favoritas después de eliminar la parada
             this.paradasFavs = this.paradasFavs.filter(paradaFav => paradaFav.id !== paradaFavId);
             this.isFavoriteParada = false;
