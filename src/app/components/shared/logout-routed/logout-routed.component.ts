@@ -23,7 +23,7 @@ export class LogoutRoutedComponent implements OnInit {
   logout() {
     this.oSessionService.logout();
     this.oSessionService.emit({ type: 'logout' });
-    this.oMessageService.add({ severity: 'success', summary: 'Login Successful', detail: 'Logout in successfully.' });
+    this.oMessageService.add({ severity: 'success', summary: 'Logout Successful', detail: 'Logout in successfully.' });
     this.oRouter.navigate(['/home']);
   }
 

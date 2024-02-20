@@ -14,6 +14,10 @@ export class SessionAjaxService {
   sUrl: string = API_URL + "/session";
   private apiKey: string = API_KEY;  // Agrega la API_KEY
   
+//evento logout
+  private sessionEventSubject = new Subject<string>();
+  sessionEvent$ = this.sessionEventSubject.asObservable();
+
   subjectSession = new Subject<SessionEvent>();
   constructor(
     private oHttpClient: HttpClient,
@@ -35,6 +39,7 @@ login(sUsername: string, sPassword: string): Observable<string> {
 }
 
 setToken(sToken: string): void {
+  //evento logout
   localStorage.setItem('token', sToken);        
 }
 
@@ -43,7 +48,8 @@ getToken(): string | null {
 }
 
 logout(): void {
-  localStorage.removeItem('token');        
+  localStorage.removeItem('token');    
+  this.sessionEventSubject.next('logout');    
 }
 isSessionActive(): Boolean {
   let strToken: string | null = localStorage.getItem('token');

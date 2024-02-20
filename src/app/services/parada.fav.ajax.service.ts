@@ -59,12 +59,6 @@ checkParadaFavExistsForUser(idParada: number, userId: number): Observable<boolea
   const url = `${this.sUrl}/exists?idParada=${idParada}&userId=${userId}`;
   return this.oHttpClient.get<boolean>(url);
 }
-validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {
-  return this.checkParadaFavExistsForUser(idParada, userId)
-    .pipe(
-      map(result => !!result), // Convertir el resultado en un booleano
-      catchError(() => of(false)) // En caso de error, devolver falso
-    );
-}
+
 
 }

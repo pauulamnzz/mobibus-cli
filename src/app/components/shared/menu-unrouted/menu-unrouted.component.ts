@@ -54,23 +54,28 @@ export class MenuUnroutedComponent implements OnInit {
 
 
 
-  ngOnInit() {
-  
+   ngOnInit() {
+    // Suscribirse al evento de inicio de sesión y cierre de sesión
     this.oSessionService.on().subscribe({
       next: (data: SessionEvent) => {
-        if (data.type == 'login') {
+        if (data.type === 'login') {
+          // Cuando el usuario inicia sesión, actualizar el nombre de usuario
           this.strUserName = this.oSessionService.getUsername();
+          
+          // Obtener los detalles del usuario y actualizar el estado de usuario
           this.oUserAjaxService.getByUsername(this.oSessionService.getUsername()).subscribe({
             next: (oUser: IUser) => {
               this.oSessionUser = oUser;
+              // Actualizar el rol de administrador si es necesario
             },
             error: (error: HttpErrorResponse) => {
               console.log(error);
             }
           });
-        }
-        if (data.type == 'logout') {
+        } else if (data.type === 'logout') {
+          // Cuando el usuario cierra sesión, limpiar las propiedades relacionadas con la sesión
           this.strUserName = "";
+          this.oSessionUser = null;
         }
       }
     });
@@ -99,16 +104,4 @@ export class MenuUnroutedComponent implements OnInit {
     return false;
   } 
 
-/*   toggleNavbar() {
-    const navbarBurger = this.el.nativeElement.querySelector('.navbar-burger');
-    const targetId = navbarBurger.getAttribute('data-target');
-    const target = this.el.nativeElement.querySelector(`#${targetId}`);
-    if (navbarBurger.classList.contains('is-active')) {
-    this.renderer.removeClass(navbarBurger, 'is-active');
-    this.renderer.removeClass(target, 'is-active');
-    } else {
-    this.renderer.addClass(navbarBurger, 'is-active');
-    this.renderer.addClass(target, 'is-active');
-    }
-    } */
 }

@@ -191,7 +191,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       console.log("idParada:", idParada, "userId:", userId);  // Agregar el console.log aquí
   
       if (idParada !== null && userId !== null) {
-        return this.oParadaFavAjaxService.validateParadaFavExists(idParada, userId)
+        return this.validateParadaFavExists(idParada, userId)
           .pipe(
             map((exists: boolean) => (exists ? { idParadaExists: true } : null)),
             catchError(() => of(null))
@@ -208,7 +208,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
     const userId = this.paradaFavForm.get('user.id')?.value;
   
     if (idParada !== null && userId !== null) {
-      return this.oParadaFavAjaxService.validateParadaFavExists(idParada, userId)
+      return this.validateParadaFavExists(idParada, userId)
         .pipe(
           map((exists: boolean) => exists),
           catchError(() => of(false))
@@ -219,5 +219,11 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
     
     return of(false);
   }
-  
+  validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {
+    return this.oParadaFavAjaxService.checkParadaFavExistsForUser(idParada, userId)
+      .pipe(
+        map(result => !!result), // Convertir el resultado en un booleano
+        catchError(() => of(false)) // En caso de error, devolver falso
+      );
+  }
 }
