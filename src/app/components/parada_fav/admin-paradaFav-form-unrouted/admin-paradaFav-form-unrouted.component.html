@@ -47,14 +47,14 @@
 
       <!--id_parada-->
       <div class="field mb-4">
-        <label class="label block text-gray-700 text-sm font-semibold mb-2">ID Parada *</label>
-        <div class="relative">
-          <input class="input pl-10 pr-12" formControlName="id_parada" placeholder="Add parada" readonly required
-            (blur)="lostFocus.id_parada = true">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          </div>
-          <button class="absolute inset-y-0 right-0 px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600 
-            focus:outline-none focus:bg-red-600" type="button" (click)="onShowParadasSelection()">
+        <label class="label block text-gray-700 text-sm font-semibold m-2">ID Parada *</label>
+        <div class="relative flex items-center">
+          <input id="id_parada" formControlName="id_parada" readonly required (blur)="lostFocus.id_parada = true"
+            class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
+            placeholder="ID Parada">
+          <button
+            class="px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600 focus:outline-none focus:bg-red-600"
+            type="button" (click)="onShowParadasSelection()">
             <i class="pi pi-search"></i>
           </button>
         </div>
@@ -76,14 +76,16 @@
       <div formGroupName="user">
         <div class="field mb-4">
           <label class="label block text-gray-700 text-sm font-semibold mb-2">User *</label>
-          <div class="relative">
-            <input class="input pl-10 pr-12 " formControlName="id" placeholder="Add user" readonly required
-              (blur)="lostFocus.user = true">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            </div>
-            <button class="absolute inset-y-0 right-0 px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600
-              focus:outline-none focus:bg-red-600" type="button" (click)="onShowUsersSelection()"><i
-                class="pi pi-search"></i>
+          <div class="relative flex items-center">
+            <input id="id" formControlName="id" readonly required (blur)="lostFocus.user = true"
+              class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
+              placeholder="User">
+
+            <button
+              class="px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600 focus:outline-none focus:bg-red-600"
+              type="button" (click)="onShowUsersSelection()">
+              <i class="pi pi-search"></i>
+
             </button>
           </div>
         </div>
