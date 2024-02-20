@@ -1,94 +1,94 @@
+<div class="bg-gray-100 flex items-center justify-center mb-10 mt-10">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+    <div class="flex justify-center mb-5">
+      <span class="inline-block bg-gray-200 rounded-full p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+        </svg>
 
-  <div class="bg-gray-100 flex items-center justify-center mb-10 mt-10">
-    <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
-      <div class="flex justify-center mb-5">
-        <span class="inline-block bg-gray-200 rounded-full p-3">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor"
-              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-          </svg>
+      </span>
+    </div>
+    @if(operation=='EDIT'){
+    <h2 class="text-2xl font-semibold text-center mb-4">Edit favourite stop</h2>
+    }@else{
+    <h2 class="text-2xl font-semibold text-center mb-4">Create a new favourite stop</h2>
 
-        </span>
-      </div>
+    }
+    <p class="text-gray-600 text-center mb-5">Enter details</p>
+    <form [formGroup]="paradaFavForm" (ngSubmit)="onSubmit()">
       @if(operation=='EDIT'){
-      <h2 class="text-2xl font-semibold text-center mb-4">Edit favourite stop</h2>
-      }@else{
-        <h2 class="text-2xl font-semibold text-center mb-4">Create a new favourite stop</h2>
-
+      <div class="mb-4">
+        <label for="id" class="block text-gray-700 text-sm font-semibold mb-2">ID </label>
+        <input type="text" id="fullName" required readonly
+          class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required
+          formControlName="id" placeholder="ID">
+      </div>
       }
-      <p class="text-gray-600 text-center mb-5">Enter details</p>
-      <form [formGroup]="paradaFavForm" (ngSubmit)="onSubmit()">
-        @if(operation=='EDIT'){
-        <div class="mb-4">
-          <label for="id" class="block text-gray-700 text-sm font-semibold mb-2">ID </label>
-          <input type="text" id="fullName" required readonly
-            class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required
-            formControlName="id" placeholder="ID">
-        </div>
+
+
+      <div class="mb-4">
+        <label for="alias" class="block text-gray-700 text-sm font-semibold mb-2">Alias *</label>
+        <input type="text" id="alias" formControlName="alias" required (blur)="lostFocus.alias = true"
+          class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" placeholder="Alias">
+      </div>
+
+      <div class="text-sm text-red-600 mt-1 mb-2">
+        @if(paradaFavForm.get('alias')?.hasError('required') && lostFocus.alias){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">Alias required</p>
         }
+        @if(paradaFavForm.get('alias')?.hasError('minlength') && lostFocus.alias){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have more than 3 characters</p>
+        }
+        @if(paradaFavForm.get('alias')?.hasError('maxlength') && lostFocus.alias){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have less than 15 characters</p>
+        }
+      </div>
 
-
-        <div class="mb-4">
-          <label for="alias" class="block text-gray-700 text-sm font-semibold mb-2">Alias *</label>
-          <input type="text" id="alias" formControlName="alias" required (blur)="lostFocus.alias = true"
-            class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" placeholder="Alias">
+      <!--id_parada-->
+      <div class="field mb-4">
+        <label class="label block text-gray-700 text-sm font-semibold mb-2">ID Parada *</label>
+        <div class="relative">
+          <input class="input pl-10 pr-12" formControlName="id_parada" placeholder="Add parada" readonly required
+            (blur)="lostFocus.id_parada = true">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          </div>
+          <button class="absolute inset-y-0 right-0 px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600 
+            focus:outline-none focus:bg-red-600" type="button" (click)="onShowParadasSelection()">
+            <i class="pi pi-search"></i>
+          </button>
         </div>
+      </div>
+      <div class="text-sm text-red-600 mt-1 mb-2">
 
-        <div class="text-sm text-red-600 mt-1 mb-2">
-          @if(paradaFavForm.get('alias')?.hasError('required') && lostFocus.alias){
-          <p class="mt-2 text-sm text-red-600 dark:text-red-500">Alias required</p>
-          }
-          @if(paradaFavForm.get('alias')?.hasError('minlength') && lostFocus.alias){
-          <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have more than 3 characters</p>
-          }
-          @if(paradaFavForm.get('alias')?.hasError('maxlength') && lostFocus.alias){
-          <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have less than 15 characters</p>
-          }
-        </div>
+        @if(lostFocus.id_parada){
+        @if(paradaFavForm.get('id_parada')?.hasError('required')){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">ID Parada required</p>
+        }
+        }
+        @if(paradaExistsOnUser){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">ID Parada already exists for this user</p>
+        }
+      </div>
 
-        <!--id_parada-->
+
+      <!-- user -->
+      <div formGroupName="user">
         <div class="field mb-4">
-          <label class="label block text-gray-700 text-sm font-semibold mb-2">ID Parada *</label>
+          <label class="label block text-gray-700 text-sm font-semibold mb-2">User *</label>
           <div class="relative">
-            <input class="input pl-10 pr-12" formControlName="id_parada" placeholder="Add parada" readonly required (blur)="lostFocus.id_parada = true">
+            <input class="input pl-10 pr-12 " formControlName="id" placeholder="Add user" readonly required
+              (blur)="lostFocus.user = true">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             </div>
-            <button class="absolute inset-y-0 right-0 px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600 
-            focus:outline-none focus:bg-red-600" type="button" (click)="onShowParadasSelection()">
-              <i class="pi pi-search"></i>
+            <button class="absolute inset-y-0 right-0 px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600
+              focus:outline-none focus:bg-red-600" type="button" (click)="onShowUsersSelection()"><i
+                class="pi pi-search"></i>
             </button>
           </div>
         </div>
-        <div class="text-sm text-red-600 mt-1 mb-2">
-
-          @if(lostFocus.id_parada){
-          @if(paradaFavForm.get('id_parada')?.hasError('required')){
-          <p class="mt-2 text-sm text-red-600 dark:text-red-500">ID Parada required</p>
-          }
-          }
-          @if(paradaExistsOnUser){
-          <p class="mt-2 text-sm text-red-600 dark:text-red-500">ID Parada already exists for this user</p>
-          }
-        </div>
-
-
-        <!-- user -->
-        <div formGroupName="user">
-          <div class="field mb-4">
-            <label class="label block text-gray-700 text-sm font-semibold mb-2">User *</label>
-            <div class="relative">
-              <input class="input pl-10 pr-12 " formControlName="id" placeholder="Add user" readonly required
-                (blur)="lostFocus.user = true">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              </div>
-              <button class="absolute inset-y-0 right-0 px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600
-              focus:outline-none focus:bg-red-600" type="button" (click)="onShowUsersSelection()"><i
-                  class="pi pi-search"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="text-sm text-red-600 mt-1 mb-4">
+      </div>
+      <div class="text-sm text-red-600 mt-1 mb-4">
         @if(lostFocus.user){
         @if(paradaFavForm.get('user.id')?.hasError('required')){
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">User ID required</p>
@@ -98,15 +98,17 @@
 
 
 
-        @if(paradaFavForm.valid){
-          <button type="submit" class="w-full bg-red-600 text-white px-4 py-2 rounded-lg 
+      @if(paradaFavForm.valid){
+      <button type="submit" class="w-full bg-red-600 text-white px-4 py-2 rounded-lg 
         hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
-        focus:ring-opacity-50" >Create</button>
-        }@else{
-          <button type="button" class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Create</button>
-         
-        }
+        focus:ring-opacity-50">Save</button>
+      }@else{
+      <button type="button"
+        class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        disabled>Save</button>
 
-      </form>
-    </div>
+      }
+
+    </form>
   </div>
+</div>

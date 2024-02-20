@@ -42,11 +42,11 @@ export interface IUserPage extends IPage<IUser> {
 
 export interface IParadaFavPage extends IPage<IParadaFav> {
 }
-export interface IProxLlegada extends IPage<IProxLlegada> {
+export interface IProxLlegadaPage extends IPage<IProxLlegada> {
 }
-export interface IResultApi extends IPage<IResultApi> {
+export interface IResultApiPage extends IPage<IResultApi> {
 }
-export interface IRoot extends IPage<IRoot> {
+export interface IRootPage extends IPage<IRoot> {
 }
 //user 
 export interface IUser extends IEntity {

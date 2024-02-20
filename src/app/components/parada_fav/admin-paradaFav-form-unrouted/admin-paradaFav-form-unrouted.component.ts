@@ -50,13 +50,18 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
 
 
    //todo
-  initializeForm(oParadaFav: IParadaFav) {
+   initializeForm(oParadaFav: IParadaFav) {
+    let idParadaValidator = null;
+    if (this.operation !== 'EDIT') {
+      idParadaValidator = this.idParadaValidator(); // Solo aplicar el validador en caso de que no sea una operación de edición
+    }
+  
     this.paradaFavForm = this.oFormBuilder.group({
       id: [oParadaFav.id],
-      alias: [oParadaFav.alias, [Validators.required, Validators.minLength(3), Validators.maxLength(15) ]],
-      id_parada: [oParadaFav.id_parada, [Validators.required], this.idParadaValidator()],
+      alias: [oParadaFav.alias, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      id_parada: [oParadaFav.id_parada, [Validators.required], idParadaValidator], // Aplicar el validador solo si no es una operación de edición
       user: this.oFormBuilder.group({
-        id: [oParadaFav.user.id, Validators.required]      
+        id: [oParadaFav.user.id, Validators.required]
       })
     });
   }
@@ -216,14 +221,14 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
     }
   
     // Si no se cumplen las condiciones, devolver falso
-    
     return of(false);
   }
+  //Valida si existe la parada en el usuario
   validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {
     return this.oParadaFavAjaxService.checkParadaFavExistsForUser(idParada, userId)
       .pipe(
         map(result => !!result), // Convertir el resultado en un booleano
-        catchError(() => of(false)) // En caso de error, devolver falso
+        catchError(() => of(false)) 
       );
   }
 }
