@@ -1,54 +1,54 @@
-<!--FLECHITA PARA VER INFO SIEMPRE SE VE-->
-
 @if(status != null){
-<div class="notification is-danger mt-3">
+<div class="bg-red-500 mt-3 text-white p-4">
   {{ status!.error.message }} - {{ status!.message }}
 </div>
 }@else{
 
-
 @if(status == null){
+<div class="flex justify-center mb-10">
+  <div class="w-full sm:w-2/4 md:w-2/4 lg:w-5/12 xl:w-4/12 ">
+    <div class="bg-white border rounded-lg shadow-md pb-5">
+      <div class="text-center mt-14">
+        <div class="overflow-x-auto">
+          <table class="mx-auto text-center divide-y m-1">
+            <thead class="text-md text-gray-700 uppercase">
+              <tr>
+                <th class="px-4 py-2 text-center cursor-pointer">PROPERTY</th>
+                <th class="px-4 py-2 text-center cursor-pointer">INFO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <th class="px-4 py-2 text-center cursor-pointer">ID</th>
+                <td  class="text-gray-700 px-4 py-2 text-center">{{ oParadaFav.id }}</td>
+              </tr>
+              <tr class="border-b">
+                <th class="px-4 py-2 text-center cursor-pointer">Alias</th>
+                <td  class="text-gray-700 px-4 py-2 text-center">{{ oParadaFav.alias }}</td>
+              </tr>
+              <tr class="border-b">
+                <th class="px-4 py-2 text-center cursor-pointer">ID Parada</th>
+                <td  class="text-gray-700 px-4 py-2 text-center">{{ oParadaFav.id_parada }}</td>
+              </tr>
 
-<div class="columns is-centered m-6">
-  <div class="column is-9">
-    <div class="box">
-      <div class="is-flex is-justify-content-center">
-        <table class="table is-fullwidth mt-6 mb-6">
-          <tbody>
-            <tr>
-              <th class="has-text-centered ">PORPIEDAD</th>
-              <th class="has-text-centered ">INFORMACIÓN</th>
-            </tr>
-            <tr>
-              <th class="has-text-centered ">ID</th>
-              <td class="has-text-centered is-vcentered">{{ oParadaFav.id }}</td>
-            </tr>
-            <tr>
-              <th class="has-text-centered ">Alias</th>
-              <td class="has-text-centered is-vcentered">{{ oParadaFav.alias }}</td>
-            </tr>
-            <tr>
-              <th class="has-text-centered ">ID Parada</th>
-              <td class="has-text-centered is-vcentered">{{ oParadaFav.id_parada }}</td>
-            </tr>
+              <tr class="border-b">
+                <th class="px-4 py-2 text-center cursor-pointer">User</th>
+                <td  class="text-gray-700 px-4 py-2 text-center">
+                  <a [routerLink]="['/admin','user','view',oParadaFav.user.id]">{{oParadaFav.user.id}}
+                    {{oParadaFav.user.username}}</a>
+                </td>
+              </tr>
 
-            <tr>
-              <th class="has-text-centered ">User</th>
-              <td class="has-text-centered is-vcentered">
-                <a [routerLink]="['/admin','user','view',oParadaFav.user.id]">{{oParadaFav.user.id}}
-                  {{oParadaFav.user.username}}</a>
-              </td>
-            </tr>
-
-          </tbody>
+            </tbody>
 
 
-        </table>
+          </table>
+        </div>
+
       </div>
-
     </div>
   </div>
-</div>
-}
+  </div>
+  }
 
-}
+  }
