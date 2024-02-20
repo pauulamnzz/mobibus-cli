@@ -1,49 +1,50 @@
-
 @if (status != null) {
 
-  <div class="notification is-danger mt-3">
-    {{ status!.error.message }} - {{ status!.message }}
-  </div>
-  
-  
-  }@else {
-  <div class="columns is-centered">
-    <div class="column is-9">
-      <div class="box">
+<div class="bg-red-500 mt-3 text-white p-4">
+  {{ status!.error.message }} - {{ status!.message }}
+</div>
 
-        <div class="is-flex is-justify-content-center">
-        <table class="table is-hoverable m-6 mb-0">
-          <thead>
-            <tr>
-              <th class="has-text-centered" >ID PARADA</th>
 
-              <th class="has-text-centered" >HERRAMIENTAS</th>
+}@else {
+<div class="flex justify-center mb-10">
+  <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12 ">
+    <div class="bg-white border rounded-lg shadow-md pb-4">
+      <div class="text-center mt-14">
+        <div class="overflow-x-auto">
+          <table class="mx-auto text-center divide-y m-1">
+            <thead class="text-md text-gray-700 uppercase">
+              <tr>
+                <th class="px-4 py-2 text-center cursor-pointer">ID PARADA</th>
+                <th class="px-4 py-2 text-center cursor-pointer">HERRAMIENTAS</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(parada of paradas; track paradas){
+              <tr class="border-b">
+                <td class="text-gray-700 px-4 py-2 text-center">{{ parada.denominacion }}</td>
+                <td class="text-gray-700 px-4 py-2 text-center">
 
-            </tr>
-          </thead>
-          <tbody>
-            @for(parada of paradas; track paradas){
-            <tr>
-              <td class="has-text-centered is-vcentered">{{ parada.denominacion }}</td>
-              <td class="has-text-centered">
-          
-                <button class="button is-rounded is-1 m-3" (click)="onSelectParada(parada.id_parada)">
-                  <i class="pi pi-plus-circle"></i>
-                </button>
-               
-              </td>
-  
-            </tr>
-            }
-          </tbody>
-        </table>
+                  <button
+                    class="rounded-full border border-gray-300 px-3 py-2  hover:bg-gray-200"
+                    (click)="onSelectParada(parada.id_parada)">
+                    <i class="pi pi-plus-circle"></i>
+                  </button>
+
+                </td>
+
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+
+
       </div>
-  
-  
-  
-      </div>
-  
-  
+
+
     </div>
   </div>
-  }
+</div>
+
+}

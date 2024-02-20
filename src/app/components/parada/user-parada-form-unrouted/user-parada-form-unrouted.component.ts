@@ -48,7 +48,7 @@ export class UserParadaFormUnroutedComponent implements OnInit {
   initializeForm(oParadaFav: IParadaFav) {
     this.paradaForm = this.oFormBuilder.group({
       id: [oParadaFav.id],
-      alias: [oParadaFav.alias, Validators.required],
+      alias: [oParadaFav.alias, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       
     });
   }

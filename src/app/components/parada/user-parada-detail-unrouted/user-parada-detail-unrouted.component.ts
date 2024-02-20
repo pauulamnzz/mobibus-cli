@@ -104,8 +104,8 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
    
     };
      this.ref=this.oDialogService.open(UserParadaFormUnroutedComponent, {
-      header: 'Agregar Parada Favorita',
-      width: '40%',
+   
+      width: '25%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,
