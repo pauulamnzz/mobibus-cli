@@ -146,7 +146,25 @@ export class UserParadaPlistRoutedComponent implements OnInit {
     window.location.href = enlace;
   } 
 
+// Métodos para cambiar de página
+onPageChangeAll(event: any) {
+  this.currentPageAll = event.page;
+}
 
+onPageChangeFavs(event: any) {
+  this.currentPageFavs = event.page;
+}
 
+// Método para obtener las paradas de la página actual
+getCurrentPageItemsAll(): IResultApi[] {
+  const startIndex = this.currentPageAll * this.pageSize;
+  const endIndex = startIndex + this.pageSize;
+  return this.paradasAll.slice(startIndex, endIndex);
+}
 
+getCurrentPageItemsFavs(): IParadaFav[] {
+  const startIndex = this.currentPageFavs * this.pageSize;
+  const endIndex = startIndex + this.pageSize;
+  return this.paradasFavs.slice(startIndex, endIndex);
+}
 }

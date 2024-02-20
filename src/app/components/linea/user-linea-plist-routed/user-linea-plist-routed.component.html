@@ -1,8 +1,7 @@
 
-<div class="grid place-items-center m-10">
-  <div class="w-6/12">
-    <div class="bg-white p-5 rounded-lg mt-10">
-      <input class="border border-gray-500 rounded-lg p-2 w-full" type="text" placeholder="Buscar línea" [(ngModel)]="searchTerm" (input)="search()">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+  <div class="bg-white p-5 rounded-lg mt-10 md:col-span-2 md:text-center md:mx-auto">
+      <input class="input border-gray-500 w-full" type="text" placeholder="Buscar línea" [(ngModel)]="searchTerm" (input)="search()">
       <div class="flex justify-center">
         <table class="mx-auto w-10/12 text-center divide-y mt-8">
           <thead class="text-md text-gray-700 uppercase">
@@ -25,7 +24,4 @@
       <p-paginator [rows]="itemsPerPage" [totalRecords]="lineas.length" (onPageChange)="onPageChange($event)"></p-paginator>
     </div>
   </div>
-</div>
-
-
 
