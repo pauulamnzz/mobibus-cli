@@ -32,7 +32,9 @@ export class HomeRoutedComponent implements OnInit {
     config.apiKey = 'vpZgX7WduInzFAWcrZ3w';
   }
   ngAfterViewInit() {
-    const initialState = { lng: -0.3774, lat: 39.4696, zoom: 10 };
+    //     const initialState = { lng: -0.3774, lat: 39.4696, zoom: 10 };
+   const initialState = { lng: -0.36838386187782796,lat:39.448005399032276  , zoom: 16 };
+
     this.map = new Map({
       container: this.mapContainer.nativeElement,
       style: MapStyle.STREETS,

@@ -37,23 +37,21 @@
         class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
         
         <li>
-          <a routerLink="/home"
-          class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-200" [routerLinkActive]="['is-active']">Home</a>
+          <button routerLink="/home" [routerLinkActive]="['is-active']" class="   focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Home</button>
         </li>
         <li>
-          <a routerLink="user/linea/plist"
-            class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100" [routerLinkActive]="['is-active']"> Lines</a>
+          <button routerLink="user/linea/plist" [routerLinkActive]="['is-active']"class="   focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Lines</button>
         </li>
         <li>
-          <a routerLink="user/parada/plist"
-            class="block py-2 px-3 md:p-0  text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100"[routerLinkActive]="['is-active']">Stops</a>
+          <button routerLink="user/parada/plist"[routerLinkActive]="['is-active']" class="   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Stops</button>
         </li>
+        
         @if(oSessionUser?.role == false) {
           <li>
-            <a routerLink="/admin/user/plist" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100 " [routerLinkActive]="['is-active']">User admin </a>
+            <button routerLink="/admin/user/plist" [routerLinkActive]="['is-active']"class="   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" >User admin</button>
           </li>
           <li>
-            <a routerLink="/admin/paradaFav/plist" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-100" [routerLinkActive]="['is-active']">Favourite Stop admin </a>
+            <button routerLink="/admin/paradaFav/plist" [routerLinkActive]="['is-active']" class=" focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" >Favourite Stop admin</button>
           </li>
         }
     </ul>
