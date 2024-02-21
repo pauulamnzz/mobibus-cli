@@ -97,7 +97,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
       data: {
         id: u.id
       },
-      header: 'User details',
+      header: 'Detalls de l\'usuari',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -109,26 +109,26 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.oUserToRemove = u;
     console.log(this.oUserToRemove);
     this.oCconfirmationService.confirm({
-      message: 'Estás seguro de que quieres eliminar a '+this.oUserToRemove.username+ '?',
+      message: '¿Estàs segur que vols eliminar a '+this.oUserToRemove.username+ '?',
       icon: 'pi pi-exclamation-triangle',
-      header: 'Confirmación de eliminación',
+      header: 'Confirmació d\'eliminació',
       acceptIcon:"none",
       rejectIcon:"none",
       rejectButtonStyleClass:"p-button-text",
       accept: () => {
-        this.oMessageService.add({ severity: 'success', summary: 'Success', detail: 'The jugador has been removed.', life: 2000 });       
+        this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'L\'usuari s\'ha eliminat', life: 2000 });       
          this.oUserAjaxService.removeOne(this.oUserToRemove?.id).subscribe({
           next: () => {
             this.getPage();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMessageService.add({ severity: 'error', summary: 'Danger', detail: "The jugador hasn't been removed.", life: 2000 });      
+            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: "L\'usuari no s|'ha pogut eliminar", life: 2000 });      
               }
         });
       },
       reject: (type: ConfirmEventType) => {
-        this.oMessageService.add({ severity: 'error', summary: "The jugador hasn't been removed.", detail: "The jugador hasn't been removed.", life: 2000 });       
+        this.oMessageService.add({ severity: 'info', summary: "Operació cancel·lada", detail: "L'usuari no s'ha eliminat", life: 2000 });       
          }
       }
     );

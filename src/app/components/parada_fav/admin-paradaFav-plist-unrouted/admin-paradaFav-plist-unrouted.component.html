@@ -15,7 +15,7 @@
         }@else{
         <h3 class="text-lg">Sense filtre actiu</h3>
         }
-        Se estan veient {{oPage?.numberOfElements}} parades favorites.
+        Se estan veient {{oPage?.numberOfElements}} parades favorites
       </div>
 
       <div class="overflow-x-auto m-4">
@@ -45,10 +45,10 @@
                  hover:bg-gray-200" [routerLink]="['/admin','paradaFav','view', parada_fav.id]">
                   <i class="fas fa-info-circle"></i>
                 </button>
-                <button class="rounded-full border border-gray-300 px-3 py-1 m-1
+                <!-- <button class="rounded-full border border-gray-300 px-3 py-1 m-1
                  hover:bg-gray-200" (click)="doView(parada_fav)">
                   <i class="fas fa-arrow-up"></i>
-                </button>
+                </button> -->
                 <button class="rounded-full border border-gray-300 px-3 py-1 m-1
                  hover:bg-gray-200" [routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
                   <i class="fas fa-edit"></i>

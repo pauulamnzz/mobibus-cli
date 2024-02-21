@@ -58,7 +58,7 @@ export class AdminParadaFavPlistRoutedComponent implements OnInit {
       accept: () => {
         this.oParadaFavAjaxService.empty().subscribe({
           next: (oResponse: number) => {
-            this.oMessageService.add({ severity: 'success', summary: 'Buidat amb èxit', detail: 'Usuaris buidats amb èxit' }); this.bLoading = false;
+            this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'Usuaris buidats amb èxit' }); this.bLoading = false;
             this.forceReload.next(true);
           },
           error: (oError: HttpErrorResponse) => {

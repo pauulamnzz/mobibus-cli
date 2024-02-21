@@ -14,11 +14,11 @@
             <thead class="text-md text-gray-700 uppercase">
               <tr>
                 <th class="px-4 py-2 text-center" (click)="doOrder('id')">ID</th>
-                <th class="px-4 py-2 text-center" (click)="doOrder('username')">USERNAME</th>
+                <th class="px-4 py-2 text-center" (click)="doOrder('username')">NOM D'USUARI</th>
                 <th class="px-4 py-2 text-center" (click)="doOrder('email')">EMAIL</th>
-                <th class="px-4 py-2 text-center" (click)="doOrder('role')">ROLE</th>
-                <th class="px-4 py-2 text-center">FAVOURITE STOPS</th>
-                <th class="px-4 py-2 text-center">TOOLS</th>
+                <th class="px-4 py-2 text-center" (click)="doOrder('role')">ROL</th>
+                <th class="px-4 py-2 text-center">PARADES FAVORITES</th>
+                <th class="px-4 py-2 text-center"><i class="fa-solid fa-gear"></i></th>
               </tr>
             </thead>
             <tbody>
@@ -31,7 +31,7 @@
                   @if(user.role==true){
                   Admin
                   }@else {
-                  User
+                  Usuari
                   }
                 </td>
 

@@ -73,13 +73,13 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oUser = data;
             this.initializeForm(this.oUser);
             // avisar al usuario que se ha creado correctamente
-            this.oMessageService.add({ severity: 'info', summary: 'Usuario creado', life: 2000 });
+            this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'S\'ha creat el nou usuari',life: 2000 });
             this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
             this.userForm.reset();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMessageService.add({ severity: 'error', summary: 'No se pudo crear el usuario', life: 2000 });
+            this.oMessageService.add({ severity: 'error', summary: ' Error', detail:'No s\'ha pogut crear l\'usuari', life: 2000 });
           }
         })
 
@@ -89,12 +89,12 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             this.oUser = data;
             this.initializeForm(this.oUser);
             // avisar al usuario que se ha actualizado correctamente
-            this.oMessageService.add({ severity: 'info', summary: 'Se ha actualizado el usuario', life: 2000 });
+            this.oMessageService.add({ severity: 'success', summary:"Èxit",detail: 'L\'usuari s\'ha actualitzat', life: 2000 });
             this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMessageService.add({ severity: 'error', summary: 'No se ha podido actualizar el usuario', life: 2000 });
+            this.oMessageService.add({ severity: 'error', summary:"Error", detail: 'No s\'ha pogut actualizar l\'usuari', life: 2000 });
           }
         })
       }

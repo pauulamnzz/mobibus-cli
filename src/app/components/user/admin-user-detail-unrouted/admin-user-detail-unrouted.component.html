@@ -17,7 +17,7 @@
             @if(oUser){
             <thead class="text-md text-gray-700 uppercase">
               <tr>
-                <th class="px-4 py-2 text-center cursor-pointer">PROPERTY</th>
+                <th class="px-4 py-2 text-center cursor-pointer">PROPIETAT</th>
                 <th class="px-4 py-2 text-center cursor-pointer">INFO</th>
               </tr>
             </thead>
@@ -28,7 +28,7 @@
                 <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.id }}</td>
               </tr>
               <tr class="border-b">
-                <th class="px-4 py-2 text-center cursor-pointer">Username</th>
+                <th class="px-4 py-2 text-center cursor-pointer">Nom d'usuari</th>
                 <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.username }}</td>
               </tr>
               <tr class="border-b">
@@ -36,7 +36,7 @@
                 <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.email }}</td>
               </tr>
               <tr class="border-b">
-                <th class="px-4 py-2 text-center cursor-pointer">Role</th>
+                <th class="px-4 py-2 text-center cursor-pointer">Rol</th>
                 <td  class="text-gray-700 px-4 py-2 text-center">
                   @if(oUser.role==false){
                   Admin
@@ -47,7 +47,7 @@
 
               </tr>
               <tr class="border-b">
-                <th class="px-4 py-2 text-center cursor-pointer">Favourite Stops</th>
+                <th class="px-4 py-2 text-center cursor-pointer">Parades favorites</th>
                 <td  class="text-gray-700 px-4 py-2 text-center">
                   @if(oUser.paradas_favs!==undefined && oUser.paradas_favs>0){
                   <a [routerLink]="['/admin','paradaFav','plist','byuser',oUser.id]">

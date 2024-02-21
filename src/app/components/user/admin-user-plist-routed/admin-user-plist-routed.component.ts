@@ -41,44 +41,30 @@ export class AdminUserPlistRoutedComponent implements OnInit {
   ngOnInit() {
   }
 
-  doGenerateRandom(amount: number) {
-    this.bLoading = true;
-    this.oUserAjaxService.generateRandom(amount).subscribe({
-      next: (oResponse: number) => {
-        this.oMessageService.add({ severity: 'info', summary: 'Success', detail: 'Now there are ' + oResponse + ' users', life: 2000 });
-        this.bLoading = false;
-      },
-      error: (oError: HttpErrorResponse) => {
-        this.oMessageService.add({ severity: 'error', summary: 'Error generating user', detail: oError.message, life: 2000 });        this.bLoading = false;
-        this.bLoading = false;
-      },
-    })
-  }
-
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
       target: $event.target as EventTarget, 
-      message: 'Estás seguro de que quieres eliminar todos los usuarios?',
+      message: '¿Estàs segur que vols eliminar tots els usuaris?',
       icon: 'pi pi-exclamation-triangle',
-      header: 'Confirmación de eliminación',
+      header: 'Confirmació d\'eliminació',
       acceptIcon:"none",
       rejectIcon:"none",
       rejectButtonStyleClass:"p-button-text",
       accept: () => {
         this.oUserAjaxService.empty().subscribe({
           next: (oResponse: number) => {
-            this.oMessageService.add({ severity: 'success', summary: 'Empty Successful', detail: 'Users emptied successfully.' });
+            this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'Parades favorites buidades amb èxitUsers emptied successfully.' });
             this.bLoading = false;
             this.forceReload.next(true);
           },
           error: (oError: HttpErrorResponse) => {
-            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error in empty operation.'});
+            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error en l\'operació de buidatge'});
             this.bLoading = false;
           },
         });
       },
       reject: () => {
-        this.oMessageService.add({ severity: 'info', summary: 'Empty Cancelled', detail: 'Empty operation cancelled.' });
+        this.oMessageService.add({ severity: 'info', summary: 'Buidatge Cancel·lat', detail: 'Operació de buidatge cancel·lada' });
       }
     });
   }

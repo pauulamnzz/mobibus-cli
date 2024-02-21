@@ -10,19 +10,19 @@
   <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12 ">
     <div class="bg-white border rounded-lg shadow-md pb-4">
       <div class="text-center mt-14">
-        <h3 class="text-lg">No active filter</h3>
-        <p>There are {{oPage?.numberOfElements}} users displayed.</p>
+        <h3 class="text-lg">Sense filtre actiu</h3>
+        <p>Se estan veient {{oPage?.numberOfElements}} usuaris</p>
       </div>
       <div class="overflow-x-auto m-4">
         <table class="mx-auto text-center divide-y mt-16">
           <thead class="text-md text-gray-700 uppercase">
             <tr>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('id')">ID</th>
-              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('username')">USERNAME</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('username')">NOM D'USUARI</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('email')">EMAIL</th>
-              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('role')">ROLE</th>
-              <th class="px-4 py-2 text-center cursor-pointer">PARADAS FAVS</th>
-              <th class="px-4 py-2 text-center cursor-pointer">TOOLS</th>
+              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('role')">ROL</th>
+              <th class="px-4 py-2 text-center cursor-pointer">PARADES FAVORITES</th>
+              <th class="px-4 py-2 text-center cursor-pointer"><i class="fa-solid fa-gear"></i></th>
             </tr>
           </thead>
           <tbody>
@@ -41,7 +41,7 @@
                 @if(user.role==false){
                 Admin
                 }@else {
-                User
+                Usuari
                 }
               </td>
               <td class="px-4 py-2 text-center">
@@ -60,9 +60,9 @@
                 hover:bg-gray-200" [routerLink]="['/admin','user','view', user.id]"><i
                     class="fa-solid fa-circle-info"></i></button>
 
-                <button type="button" class="rounded-full border border-gray-300 px-3 py-1 m-1
+                <!-- <button type="button" class="rounded-full border border-gray-300 px-3 py-1 m-1
                 hover:bg-gray-200" (click)="doView(user)">
-                <i class="fa-solid fa-arrow-up"></i></button>
+                <i class="fa-solid fa-arrow-up"></i></button> -->
 
 
                 <button type="button" class="rounded-full border border-gray-300 px-3 py-1 m-1

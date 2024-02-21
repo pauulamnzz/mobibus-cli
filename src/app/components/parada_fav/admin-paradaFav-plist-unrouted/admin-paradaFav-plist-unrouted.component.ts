@@ -104,7 +104,7 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
   doRemove(u: IParadaFav) {
     this.oParadaFavToRemove = u;
     this.oConfirmationService.confirm({
-      message: 'Esteu segur que voleu eliminar la parada favorita amb identificador: '+this.oParadaFavToRemove.id+ '?',
+      message: '¿Esteu segur que voleu eliminar la parada favorita amb identificador: '+this.oParadaFavToRemove.id+ '?',
       icon: 'pi pi-exclamation-triangle',
       header: 'Confirmació d\'eliminació',
       acceptIcon:"none",
