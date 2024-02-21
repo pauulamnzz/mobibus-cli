@@ -18,26 +18,26 @@
                 @if(oUser){
                 <thead class="text-md text-gray-700 uppercase">
                   <tr>
-                    <th class="px-4 py-2 text-center cursor-pointer">PROPIETAT</th>
-                    <th class="px-4 py-2 text-center cursor-pointer">INFO</th>
+                    <th class="px-4 py-2 text-center ">PROPIETAT</th>
+                    <th class="px-4 py-2 text-center ">INFO</th>
                   </tr>
                 </thead>
                 <tbody>
     
                   <tr class="border-b">
-                    <th class="px-4 py-2 text-center cursor-pointer">ID</th>
+                    <th class="px-4 py-2 text-center ">ID</th>
                     <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.id }}</td>
                   </tr>
                   <tr class="border-b">
-                    <th class="px-4 py-2 text-center cursor-pointer">Nom d'usuari</th>
+                    <th class="px-4 py-2 text-center ">Nom d'usuari</th>
                     <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.username }}</td>
                   </tr>
                   <tr class="border-b">
-                    <th class="px-4 py-2 text-center cursor-pointer">Email</th>
+                    <th class="px-4 py-2 text-center ">Email</th>
                     <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.email }}</td>
                   </tr>
                   <tr class="border-b">
-                    <th class="px-4 py-2 text-center cursor-pointer">Rol</th>
+                    <th class="px-4 py-2 text-center ">Rol</th>
                     <td  class="text-gray-700 px-4 py-2 text-center">
                       @if(oUser.role==false){
                       Admin

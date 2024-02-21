@@ -43,15 +43,15 @@
           <button routerLink="user/linea/plist" [routerLinkActive]="['is-active']"class="   focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Línies</button>
         </li>
         <li>
-          <button routerLink="user/parada/plist"[routerLinkActive]="['is-active']" class="   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Parades d'autobús</button>
+          <button routerLink="user/parada/plist"[routerLinkActive]="['is-active']" class="   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Parades</button>
         </li>
         
         @if(oSessionUser?.role == false) {
           <li>
-            <button routerLink="/admin/user/plist" [routerLinkActive]="['is-active']"class="   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" >Admin Usuari</button>
+            <button routerLink="/admin/user/plist" [routerLinkActive]="['is-active']"class="   focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" >Admin usuari</button>
           </li>
           <li>
-            <button routerLink="/admin/paradaFav/plist" [routerLinkActive]="['is-active']" class=" focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" >Admin Parades favorites</button>
+            <button routerLink="/admin/paradaFav/plist" [routerLinkActive]="['is-active']" class=" focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" >Admin parades favorites</button>
           </li>
         }
     </ul>

@@ -14,26 +14,26 @@
           <table class="mx-auto text-center divide-y m-1">
             <thead class="text-md text-gray-700 uppercase">
               <tr>
-                <th class="px-4 py-2 text-center cursor-pointer">PROPIETAT</th>
-                <th class="px-4 py-2 text-center cursor-pointer">INFO</th>
+                <th class="px-4 py-2 text-center ">PROPIETAT</th>
+                <th class="px-4 py-2 text-center ">INFO</th>
               </tr>
             </thead>
             <tbody>
               <tr class="border-b">
-                <th class="px-4 py-2 text-center cursor-pointer">ID</th>
+                <th class="px-4 py-2 text-center ">ID</th>
                 <td  class="text-gray-700 px-4 py-2 text-center">{{ oParadaFav.id }}</td>
               </tr>
               <tr class="border-b">
-                <th class="px-4 py-2 text-center cursor-pointer">Alias</th>
+                <th class="px-4 py-2 text-center ">Alias</th>
                 <td  class="text-gray-700 px-4 py-2 text-center">{{ oParadaFav.alias }}</td>
               </tr>
               <tr class="border-b">
-                <th class="px-4 py-2 text-center cursor-pointer">ID Parada</th>
+                <th class="px-4 py-2 text-center">ID Parada</th>
                 <td  class="text-gray-700 px-4 py-2 text-center">{{ oParadaFav.id_parada }}</td>
               </tr>
 
               <tr class="border-b">
-                <th class="px-4 py-2 text-center cursor-pointer">Usuari</th>
+                <th class="px-4 py-2 text-center">Usuari</th>
                 <td  class="text-gray-700 px-4 py-2 text-center">
                   <a [routerLink]="['/admin','user','view',oParadaFav.user.id]">{{oParadaFav.user.id}}
                     {{oParadaFav.user.username}}</a>
