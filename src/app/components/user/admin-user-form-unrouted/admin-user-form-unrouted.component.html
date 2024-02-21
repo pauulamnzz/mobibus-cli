@@ -11,9 +11,9 @@
       </span>
     </div>
     @if(operation=='EDIT'){
-        <h2 class="text-2xl font-semibold text-center mb-4">Editar compte</h2>
+        <h2 class="text-2xl font-semibold text-center mb-4">Editar usuari</h2>
     }@else{
-      <h2 class="text-2xl font-semibold text-center mb-4">Crear un compte nou</h2>
+      <h2 class="text-2xl font-semibold text-center mb-4">Crear un usuari nou</h2>
     }
     <p class="text-gray-600 text-center mb-5">Introdueix els detalls</p>
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
