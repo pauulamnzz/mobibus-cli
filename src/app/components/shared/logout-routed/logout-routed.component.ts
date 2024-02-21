@@ -23,12 +23,12 @@ export class LogoutRoutedComponent implements OnInit {
   logout() {
     this.oSessionService.logout();
     this.oSessionService.emit({ type: 'logout' });
-    this.oMessageService.add({ severity: 'success', summary: 'Logout Successful', detail: 'Logout in successfully.' });
+    this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'Sessió tancada' });
     this.oRouter.navigate(['/home']);
   }
 
   cancel() {
     this.oRouter.navigate(['/home']);
-    this.oMessageService.add({ severity: 'info', summary: 'Logout', detail: 'Logout canceled' });
+    this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No s\'ha pogut eixir de la sessió' });
   }
 }

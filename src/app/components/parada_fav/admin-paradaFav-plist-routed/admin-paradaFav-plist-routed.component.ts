@@ -49,7 +49,7 @@ export class AdminParadaFavPlistRoutedComponent implements OnInit {
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
       target: $event.target as EventTarget,
-      message: 'Estàs segur que vols eliminar totes les parades favorites?',
+      message: '¿Estàs segur que vols eliminar totes les parades favorites?',
       icon: 'pi pi-exclamation-triangle',
       header: 'Confirmació d\'eliminació',
       acceptIcon: "none",

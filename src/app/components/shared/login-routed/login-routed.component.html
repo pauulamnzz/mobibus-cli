@@ -5,24 +5,24 @@
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <img src="../../../../assets/img/emt.jpg" />
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Sign in
+          Inicia sessió
         </h1>
         <form [formGroup]="loginForm" class="space-y-4 md:space-y-6" action="#" (ngSubmit)="onSubmit()">
           <!-- Username -->
           <div>
-            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom d'usuari</label>
             <input type="text" name="username" id="username" formControlName="username"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
           </div>
           <div class="text-sm text-red-600 mt-1">
             @if(loginForm.get('username')?.hasError('required') && lostFocus.username){
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Username required</p>
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari requerit</p>
             }
           </div>
           <!-- Password -->
           <div>
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contrasenya</label>
             <input type="password" name="password" id="password" placeholder="••••••••" formControlName="password"
               (blur)="lostFocus.password = true"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -30,37 +30,27 @@
           </div>
           <div class="text-sm text-red-600 mt-1">
             @if(loginForm.get('password')?.hasError('required') && lostFocus.password){
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Password required</p>
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Contrasenya requerida</p>
             }
             @if(loginForm.get('password')?.hasError('minlength') && lostFocus.password){
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500">The password must have at least 6 characters</p>
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">La contrasenya ha de tenir com a mínim 6 caràcters</p>
           }
           </div>
 
           <div class="flex items-center justify-between">
-            <!-- <div class="flex items-start">
-                          <div class="flex items-center h-5">
-                            <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="">
-                          </div>
-                          <div class="ml-3 text-sm">
-                            <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
-                          </div>
-                      </div> -->
-            <a href="#" class=" text-gray-800 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"><strong>Forgot
-              password?</strong></a>
+            <a href="#" class=" text-gray-800 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"><strong>¿Has oblidat la contrasenya?</strong></a>
           </div>
           @if(loginForm.valid){
             <button type="submit"
-            class="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign
-            in</button>
+            class="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Inicia la sessió</button>
           }@else{
-            <button type="button" class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Sign in</button>
+            <button type="button" class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Inicia la sessió</button>
 
           }
 
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Don’t have an account yet? <a href="#"
-              class="text-gray-800 font-medium text-primary-600 hover:underline dark:text-primary-500"><strong>Sign up</strong></a>
+            Encara no tens un compte? <a href="#"
+              class="text-gray-800 font-medium text-primary-600 hover:underline dark:text-primary-500"><strong>Registra't</strong></a>
           </p>
         </form>
         <!-- Additional buttons -->
@@ -68,15 +58,14 @@
           <button class="border rounded text-gray-700 border-gray-300 px-3 py-2 m-1
           hover:bg-gray-200" (click)="loginAdmin()">
             <i class="fa-solid fa-screwdriver-wrench m-1"></i>
-            Iniciar sesión como admin
+            Inicia sessió com a admin
           </button>
           <button class="border rounded border-gray-300 text-gray-700 px-3 py-2 m-1
           hover:bg-gray-200" (click)="loginUser()">
             <i class="fa-regular fa-user m-1"></i>
-            Iniciar sesión como user
+            Inicia sessió com a usuari
           </button>
         </div>
-        <!-- Additional buttons -->
       </div>
     </div>
   </div>

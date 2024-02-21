@@ -57,12 +57,12 @@ export class LoginRoutedComponent implements OnInit {
         next: (data: string) => {
           this.oSessionService.setToken(data);
           this.oSessionService.emit({ type: 'login' });
-          this.oMessageService.add({ severity: 'success', summary: 'Login Successful', detail: 'Logged in successfully.' });
+          this.oMessageService.add({ severity: 'success', summary: 'Éxit', detail: 'Sessió iniciada' });
           this.oRouter.navigate(['/home']);
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error in login operation.' }); 
+          this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No s\'ha pogut iniciar sessió' }); 
        console.log(error);
         }
       });
