@@ -10,12 +10,11 @@
       </span>
     </div>
     @if(operation=='EDIT'){
-    <h2 class="text-2xl font-semibold text-center mb-4">Edit favourite stop</h2>
+    <h2 class="text-2xl font-semibold text-center mb-4">Edita la parada favorita</h2>
     }@else{
-    <h2 class="text-2xl font-semibold text-center mb-4">Create a new favourite stop</h2>
-
+    <h2 class="text-2xl font-semibold text-center mb-4">Crea una nova parada favorita</h2>
     }
-    <p class="text-gray-600 text-center mb-5">Enter details</p>
+    <p class="text-gray-600 text-center mb-5">Introdueix els detalls</p>
     <form [formGroup]="paradaFavForm" (ngSubmit)="onSubmit()">
       @if(operation=='EDIT'){
       <div class="mb-4">
@@ -35,13 +34,13 @@
 
       <div class="text-sm text-red-600 mt-1 mb-2">
         @if(paradaFavForm.get('alias')?.hasError('required') && lostFocus.alias){
-        <p class="mt-2 text-sm text-red-600 dark:text-red-500">Alias required</p>
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">Alias requerit</p>
         }
         @if(paradaFavForm.get('alias')?.hasError('minlength') && lostFocus.alias){
-        <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have more than 3 characters</p>
+          <p class="mt-2 text-sm text-red-600 dark:text-red-500">El alias ha de tenir més de 3 caràcters</p>
         }
         @if(paradaFavForm.get('alias')?.hasError('maxlength') && lostFocus.alias){
-        <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have less than 15 characters</p>
+          <p class="mt-2 text-sm text-red-600 dark:text-red-500">El alias ha de tenir menys de 15 caràcters</p>
         }
       </div>
 
@@ -63,11 +62,11 @@
 
         @if(lostFocus.id_parada){
         @if(paradaFavForm.get('id_parada')?.hasError('required')){
-        <p class="mt-2 text-sm text-red-600 dark:text-red-500">ID Parada required</p>
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">ID Parada requerit</p>
         }
         }
         @if(paradaExistsOnUser){
-        <p class="mt-2 text-sm text-red-600 dark:text-red-500">ID Parada already exists for this user</p>
+          <p class="mt-2 text-sm text-red-600 dark:text-red-500">L'ID de la parada ja existeix per a aquest usuari</p>
         }
       </div>
 
@@ -75,7 +74,7 @@
       <!-- user -->
       <div formGroupName="user">
         <div class="field mb-4">
-          <label class="label block text-gray-700 text-sm font-semibold mb-2">User *</label>
+          <label class="label block text-gray-700 text-sm font-semibold mb-2">Usuari *</label>
           <div class="relative flex items-center">
             <input id="id" formControlName="id" readonly required (blur)="lostFocus.user = true"
               class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
@@ -93,7 +92,7 @@
       <div class="text-sm text-red-600 mt-1 mb-4">
         @if(lostFocus.user){
         @if(paradaFavForm.get('user.id')?.hasError('required')){
-        <p class="mt-2 text-sm text-red-600 dark:text-red-500">User ID required</p>
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">Usuari requerit</p>
         }
         }
       </div>
@@ -103,11 +102,11 @@
       @if(paradaFavForm.valid){
       <button type="submit" class="w-full bg-red-600 text-white px-4 py-2 rounded-lg 
         hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
-        focus:ring-opacity-50">Save</button>
+        focus:ring-opacity-50">Guardar</button>
       }@else{
       <button type="button"
         class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-        disabled>Save</button>
+        disabled>Guardar</button>
 
       }
 

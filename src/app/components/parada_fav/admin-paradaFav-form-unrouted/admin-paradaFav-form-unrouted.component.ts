@@ -93,13 +93,13 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
           next: (data: IParadaFav) => {
             this.oParadaFav = { "user": {} } as IParadaFav;
             this.initializeForm(this.oParadaFav);
-            this.oMessageService.add({ severity: 'info', summary: 'Agente creado', life: 2000 });
+            this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'Parada favorita afegida amb èxit' });
             this.oRouter.navigate(['/admin', 'paradaFav', 'view', data]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
           
-            this.oMessageService.add({ severity: 'error', summary: 'No se pudo crear el agente', life: 2000 });
+            this.oMessageService.add({ severity: 'error', summary:'Error', detail: 'No s\'ha pogut crear la parada favorita', life: 2000 });
           }
         });
       } else {
@@ -107,12 +107,12 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
           next: (data: IParadaFav) => {
             this.oParadaFav = data;
             this.initializeForm(this.oParadaFav);
-            this.oMessageService.add({ severity: 'info', summary: 'Se ha actualizado el agente', life: 2000 });
+            this.oMessageService.add({ severity: 'success',summary: 'Èxit', detail: 'S\'ha actualitzat la parada favorita', life: 2000 });
             this.oRouter.navigate(['/admin', 'paradaFav', 'view', this.oParadaFav.id]);
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMessageService.add({ severity: 'error', summary: 'No se ha podido actualizar el agente', life: 2000 });
+            this.oMessageService.add({ severity: 'error', summary:'Error',detail: 'No s\'ha pogut actualitzar la parada favorita', life: 2000 });
           }
         });
       }
@@ -160,7 +160,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
     this.showErrorOnClose = true;
   
     this.oDynamicDialogRef = this.oDialogService.open(AdminParadaSelectionUnroutedComponent, {
-      header: 'Bus stop selection',
+      header: 'Selecció d\'una parada d\'autobús',
       width: '80%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
@@ -193,7 +193,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       const idParada = control.value;
       const userId = this.paradaFavForm.get('user.id')?.value;
   
-      console.log("idParada:", idParada, "userId:", userId);  // Agregar el console.log aquí
+      console.log("idParada:", idParada, "userId:", userId);  
   
       if (idParada !== null && userId !== null) {
         return this.validateParadaFavExists(idParada, userId)
@@ -202,7 +202,6 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
             catchError(() => of(null))
           );
       }
-      // Asegurarse de devolver algo, incluso si no se cumple la condición
       return of(null);
     };
   }

@@ -13,4 +13,4 @@ export const API_EMT: string = 'https://valencia.opendatasoft.com/api/explore/v2
     withCredentials: true 
 
 
-    export const API_KEY: string ='8a75e0e27638410a741fc5ee610956994f4d6ea69138ff6d3383a2bf'
+export const API_KEY: string ='8a75e0e27638410a741fc5ee610956994f4d6ea69138ff6d3383a2bf'

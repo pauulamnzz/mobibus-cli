@@ -1,28 +1,31 @@
 <section class="py-10">
-<div class="p-4">
-  <div class="flex justify-between items-center m-7">
-    <h1 class="text-4xl text-gray-700 font-bold ml-60">Favourite Stops</h1>
+  <div class="p-4">
+    <div class="flex justify-between items-center m-7">
+      <h1 class="text-4xl text-gray-700 font-bold ml-60">Parades favorites</h1>
       @if(bLoading){
 
       <div class="p-card-body">
-        <h3 class="p-text-danger">Processing... wait, please.</h3>
-        <p-progressSpinner styleClass="custom-spinner" strokeWidth="5" fill="#EEEEEE"
-          animationDuration=".5s"></p-progressSpinner>
+        <h3 class="p-text-danger">Processant... espera, si us plau.</h3> <p-progressSpinner styleClass="custom-spinner"
+          strokeWidth="5" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
       </div>
 
       }@else {
-        
-        <div class="flex mr-60">
-          <button class="bg:text-gray-900 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-2 px-4 rounded m-3" [routerLink]="['/admin','paradaFav','new']">
-            <i class="fa-solid fa-plus"></i></button>
-          <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-3" (click)="doEmpty($event)">
-            <i class="fa-solid fa-trash-arrow-up"></i></button>
-        </div>
+
+      <div class="flex mr-60">
+        <button
+          class="bg:text-gray-900 bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 font-bold py-2 px-4 rounded m-3"
+          [routerLink]="['/admin','paradaFav','new']">
+          <i class="fa-solid fa-plus"></i></button>
+        <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-3"
+          (click)="doEmpty($event)">
+          <i class="fa-solid fa-trash-arrow-up"></i></button>
+      </div>
       }
     </div>
 
     @if(!bLoading){
-    <app-admin-paradaFav-plist-unrouted [forceReload]="forceReload" [id_user]="id_user"></app-admin-paradaFav-plist-unrouted>
+    <app-admin-paradaFav-plist-unrouted [forceReload]="forceReload"
+      [id_user]="id_user"></app-admin-paradaFav-plist-unrouted>
 
     }
   </div>

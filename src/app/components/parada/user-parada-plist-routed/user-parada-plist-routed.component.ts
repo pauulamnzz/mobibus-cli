@@ -30,13 +30,13 @@ export class UserParadaPlistRoutedComponent implements OnInit {
 
 
   searchTermFavs: string = '';
-  filterParadasFavs: IParadaFav[] = []; 
+  filterParadasFavs: IParadaFav[] = [];
   paradasFavs: IParadaFav[] = [];
 
   pageSize = 10; // Tamaño de la página por defecto
   currentPageAll = 0;
   currentPageFavs = 0;
-  
+
   @Input() id_user: number = 0; //filter by user
   oUser: IUser | null = null; // data of user if id_user is set for filter
   status: HttpErrorResponse | null = null;
@@ -51,46 +51,46 @@ export class UserParadaPlistRoutedComponent implements OnInit {
   ngOnInit() {
 
     this.ApiEmtService.
-    getAllParadas().subscribe({
-      next: (result: IResultApi[]) => {
-        this.paradasAll = result;
-        this.filterParadasAll = result;
-        console.log(result);
-      },
-      error: (error: any) => {
-        console.error(error);
-       
-      }
-    });
-  
+      getAllParadas().subscribe({
+        next: (result: IResultApi[]) => {
+          this.paradasAll = result;
+          this.filterParadasAll = result;
+          console.log(result);
+        },
+        error: (error: any) => {
+          console.error(error);
+
+        }
+      });
+
     // Obtener paradas favoritas del usuario en sesión
     if (this.oSessionAjaxService.isSessionActive()) {
       this.sessionActive = true;
       this.oSessionAjaxService.getSessionUser()?.subscribe({
-        
+
         next: (user: IUser) => {
           this.oUser = user;
-       
-  
+
+
           // Actualizar la llamada al servicio con la ruta correcta
           this.oParadaFavAjaxService.getParadasFavByUser(this.oUser.id).subscribe({
             next: (paradasFavs: IParadaFav[]) => {
               this.paradasFavs = paradasFavs;
-              this.filterParadasFavs=paradasFavs;
+              this.filterParadasFavs = paradasFavs;
               console.log(paradasFavs);
-              
+
             },
             error: (error: any) => {
-              console.error("Error obteniendo las paradas favoritas del usuario:", error);
+              console.error("Error en obtenir les parades favorites de l'usuari:", error);
             }
           });
         },
         error: (error: any) => {
-          console.error("Error obteniendo el usuario de la sesión:", error);
+          console.error("Error en obtenir l'usuari de la sessió:", error);
         }
       });
     } else {
-      console.log("No hay sesión activa");
+      console.log("No hi ha cap sessió activa");
     }
   }
 
@@ -116,7 +116,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
       });
     }
   }
-  
+
   //Filtro
   searchParadasFavs() {
     if (this.searchTermFavs) {
@@ -136,35 +136,35 @@ export class UserParadaPlistRoutedComponent implements OnInit {
       });
     }
   }
-  
+
   redirigirAParadaFav(paradaId: number) {
     const enlace = `http://www.emtvalencia.es/QR.php?sec=est&p=${paradaId}`;
     window.location.href = enlace;
-  } 
+  }
   redirigirAParada(paradaId: string) {
     const enlace = `http://www.emtvalencia.es/QR.php?sec=est&p=${paradaId}`;
     window.location.href = enlace;
-  } 
+  }
 
-// Métodos para cambiar de página
-onPageChangeAll(event: any) {
-  this.currentPageAll = event.page;
-}
+  // Métodos para cambiar de página
+  onPageChangeAll(event: any) {
+    this.currentPageAll = event.page;
+  }
 
-onPageChangeFavs(event: any) {
-  this.currentPageFavs = event.page;
-}
+  onPageChangeFavs(event: any) {
+    this.currentPageFavs = event.page;
+  }
 
-// Método para obtener las paradas de la página actual
-getCurrentPageItemsAll(): IResultApi[] {
-  const startIndex = this.currentPageAll * this.pageSize;
-  const endIndex = startIndex + this.pageSize;
-  return this.paradasAll.slice(startIndex, endIndex);
-}
+  // Método para obtener las paradas de la página actual
+  getCurrentPageItemsAll(): IResultApi[] {
+    const startIndex = this.currentPageAll * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.paradasAll.slice(startIndex, endIndex);
+  }
 
-getCurrentPageItemsFavs(): IParadaFav[] {
-  const startIndex = this.currentPageFavs * this.pageSize;
-  const endIndex = startIndex + this.pageSize;
-  return this.paradasFavs.slice(startIndex, endIndex);
-}
+  getCurrentPageItemsFavs(): IParadaFav[] {
+    const startIndex = this.currentPageFavs * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.paradasFavs.slice(startIndex, endIndex);
+  }
 }

@@ -8,12 +8,14 @@
     <div class="bg-white border rounded-lg shadow-md pb-4">
       <div class="text-center mt-14">
         @if(id_user > 0){
-        <h3 class="text-lg" >Filtered by user ({{id_user}} - {{oUser?.username}})</h3>
-        <a  [routerLink]="['/admin','paradaFav','plist']" type="button" class="inline-block rounded-full border border-gray-300 px-3 py-1 m-1 hover:bg-gray-200 text-gray-800">Reset filter</a>
+        <h3 class="text-lg">Filtrat per usuari ({{id_user}} - {{oUser?.username}})</h3>
+        <a [routerLink]="['/admin','paradaFav','plist']" type="button"
+          class="inline-block rounded-full border border-gray-300 px-3 py-1 m-1 hover:bg-gray-200 text-gray-800">
+          Restableix el filtre</a>
         }@else{
-        <h3 class="text-lg">No active filter</h3>
+        <h3 class="text-lg">Sense filtre actiu</h3>
         }
-        <p>There are {{oPage?.numberOfElements}} favourite stops displayed.</p>
+        Se estan veient {{oPage?.numberOfElements}} parades favorites.
       </div>
 
       <div class="overflow-x-auto m-4">
@@ -23,8 +25,8 @@
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('id')">ID</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('alias')">ALIAS</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('id_parada')">ID PARADA</th>
-              <th class="px-4 py-2 text-center cursor-pointer">USER</th>
-              <th class="px-4 py-2 text-center cursor-pointer">TOOLS</th>
+              <th class="px-4 py-2 text-center cursor-pointer">USUARI</th>
+              <th class="px-4 py-2 text-center cursor-pointer"><i class="fa-solid fa-gear"></i></th>
             </tr>
           </thead>
           <tbody>
@@ -44,15 +46,15 @@
                   <i class="fas fa-info-circle"></i>
                 </button>
                 <button class="rounded-full border border-gray-300 px-3 py-1 m-1
-                 hover:bg-gray-200"(click)="doView(parada_fav)">
+                 hover:bg-gray-200" (click)="doView(parada_fav)">
                   <i class="fas fa-arrow-up"></i>
                 </button>
                 <button class="rounded-full border border-gray-300 px-3 py-1 m-1
-                 hover:bg-gray-200"[routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
+                 hover:bg-gray-200" [routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
                   <i class="fas fa-edit"></i>
                 </button>
                 <button class="rounded-full border border-gray-300 px-3 py-1 m-1
-                 hover:bg-gray-200"(click)="doRemove(parada_fav)">
+                 hover:bg-gray-200" (click)="doRemove(parada_fav)">
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </td>

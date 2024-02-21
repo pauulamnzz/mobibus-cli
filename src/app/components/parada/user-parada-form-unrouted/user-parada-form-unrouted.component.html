@@ -13,8 +13,8 @@
                 </svg>
             </span>
         </div>
-        <h2 class="text-2xl font-semibold text-center mb-4">Create a new favourite stop </h2>
-        <p class="text-gray-600 text-center mb-5">Enter an alias</p>
+        <h2 class="text-2xl font-semibold text-center mb-4">Crear una nova parada favorita </h2>
+        <p class="text-gray-600 text-center mb-5">Introdueix un alias</p>
 
 
         <form [formGroup]="paradaForm" (ngSubmit)="onSubmit()">
@@ -25,22 +25,22 @@
               </div>
               <div class="text-sm text-red-600 mt-1 mb-2">
                 @if(paradaForm.get('alias')?.hasError('required') && lostFocus.alias){
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500">Alias required</p>
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500">Alias requerit</p>
                 }
                 @if(paradaForm.get('alias')?.hasError('minlength') && lostFocus.alias){
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have more than 3 characters</p>
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500">El alias ha de tenir més de 3 caràcters</p>
                 }
                 @if(paradaForm.get('alias')?.hasError('maxlength') && lostFocus.alias){
-                <p class="mt-2 text-sm text-red-600 dark:text-red-500">The alias must have less than 15 characters</p>
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500">El alias ha de tenir menys de 15 caràcters</p>
                 }
               </div>
 
               @if(paradaForm.valid){
                 <button type="submit" class="w-full bg-red-600 text-white px-4 py-2 rounded-lg 
               hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
-              focus:ring-opacity-50" >Create</button>
+              focus:ring-opacity-50" >Crear</button>
               }@else{
-                <button type="button" class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Create</button>
+                <button type="button" class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Crear</button>
                
               }
         </form>

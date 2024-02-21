@@ -25,11 +25,11 @@ import { ActivatedRoute } from '@angular/router';
     ConfirmDialogModule,
     AdminParadaFavDetailUnroutedComponent,
     AdminParadaFavPlistUnroutedComponent,
-    
+
   ]
 })
 export class AdminParadaFavPlistRoutedComponent implements OnInit {
-  
+
   forceReload: Subject<boolean> = new Subject<boolean>();
   bLoading: boolean = false;
   id_user: number;
@@ -38,50 +38,36 @@ export class AdminParadaFavPlistRoutedComponent implements OnInit {
     private oParadaFavAjaxService: ParadaFavAjaxService,
     private oConfirmationService: ConfirmationService,
     private oMessageService: MessageService,
-  ) { 
+  ) {
     this.id_user = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") ?? "0");
   }
 
   ngOnInit() {
     console.log("filterr by user: " + this.id_user);
   }
-  doGenerateRandom(amount: number) {
-    this.bLoading = true;
-    this.oParadaFavAjaxService.generateRandom(amount).subscribe({
-      next: (oResponse: number) => {
-        this.oMessageService.add({ severity: 'info', summary: 'Success', detail: 'Now there are ' + oResponse + ' users', life: 2000 });
-        this.bLoading = false;
-      },
-      error: (oError: HttpErrorResponse) => {
-        this.oMessageService.add({ severity: 'error', summary: 'Error generating user', detail: oError.message, life: 2000 });        this.bLoading = false;
-        this.bLoading = false;
-      },
-    })
-  }
+
   doEmpty($event: Event) {
     this.oConfirmationService.confirm({
-      target: $event.target as EventTarget, 
-      message: 'Estás seguro de que quieres eliminar todas las paradas favoritas?',
+      target: $event.target as EventTarget,
+      message: 'Estàs segur que vols eliminar totes les parades favorites?',
       icon: 'pi pi-exclamation-triangle',
-      header: 'Confirmación de eliminación',
-      acceptIcon:"none",
-      rejectIcon:"none",
-      rejectButtonStyleClass:"p-button-text",
+      header: 'Confirmació d\'eliminació',
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
       accept: () => {
         this.oParadaFavAjaxService.empty().subscribe({
           next: (oResponse: number) => {
-            this.oMessageService.add({ severity: 'success', summary: 'Empty Successful', detail: 'Users emptied successfully.' });
-            this.bLoading = false;
+            this.oMessageService.add({ severity: 'success', summary: 'Buidat amb èxit', detail: 'Usuaris buidats amb èxit' }); this.bLoading = false;
             this.forceReload.next(true);
           },
           error: (oError: HttpErrorResponse) => {
-            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error in empty operation.'});
-            this.bLoading = false;
+            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error en l\'operació de buidatge' }); this.bLoading = false;
           },
         });
       },
       reject: () => {
-        this.oMessageService.add({ severity: 'info', summary: 'Empty Cancelled', detail: 'Empty operation cancelled.' });
+        this.oMessageService.add({ severity: 'info', summary: 'Buidatge Cancel·lat', detail: 'Operació de buidatge cancel·lada' });
       }
     });
   }

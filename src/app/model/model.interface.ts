@@ -62,52 +62,52 @@ export interface IUser extends IEntity {
 
 //parada fav bbdd
 export interface IParadaFav extends IEntity {
-alias: string,
-id_parada: number,
-user: IUser,
+    alias: string,
+    id_parada: number,
+    user: IUser,
 
 }
 
 //resultados api 
- export interface IRoot {
-  total_count: number
-  results: IResultApi[]
+export interface IRoot {
+    total_count: number
+    results: IResultApi[]
 }
 
 //resultados api 
 export interface IResultApi {
-  id_parada: number
-  codvia?: number
-  numportal: string
-  suprimida: number
-  denominacion: string
-  lineas: string
- geo_shape: GeoShape
-  geo_point_2d: GeoPoint2d
+    id_parada: number
+    codvia?: number
+    numportal: string
+    suprimida: number
+    denominacion: string
+    lineas: string
+    geo_shape: GeoShape
+    geo_point_2d: GeoPoint2d
 }
 
 export interface GeoShape {
-  type: string
-  geometry: Geometry
-  properties: Properties
+    type: string
+    geometry: Geometry
+    properties: Properties
 }
 
 export interface Geometry {
-  coordinates: number[]
-  type: string
+    coordinates: number[]
+    type: string
 }
 export interface GeoPoint2d {
-  lon: number
-  lat: number
+    lon: number
+    lat: number
 }
 
 //parada respuesta prox llegadas
-export interface IProxLlegada{
-  numParada: string,
-  nomParada: string,
-  nomLinea: string,
-  tiempo: string,
-  numLinea: string
+export interface IProxLlegada {
+    numParada: string,
+    nomParada: string,
+    nomLinea: string,
+    tiempo: string,
+    numLinea: string
 }
 
 
@@ -127,7 +127,7 @@ export interface IToken {
 
 
 
-  export interface Properties {}
-  
+export interface Properties { }
 
-  
+
+

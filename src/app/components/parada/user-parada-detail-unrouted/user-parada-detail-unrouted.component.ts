@@ -62,7 +62,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
           this.oSessionAjaxService.getSessionUser()?.subscribe({
             next: (user: IUser) => {
               this.oUser = user;
-             //this.oUser = { id: this.oSessionAjaxService.getSessionUserId() } as unknown as IUser;
+              //this.oUser = { id: this.oSessionAjaxService.getSessionUserId() } as unknown as IUser;
               this.oParadaFavAjaxService.getParadasFavByUser(this.oUser.id).subscribe({
                 next: (paradasFavs: IParadaFav[]) => {
                   this.paradasFavs = paradasFavs;
@@ -70,23 +70,24 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
                   if (this.paradasFavs.some(paradaFav => paradaFav.id_parada === this.id)) {
                     this.isFavoriteParada = true;
                     console.log("La parada es favorita");
-                  }else{
+                  } else {
                     console.log("La parada no es favorita");
                     this.isFavoriteParada = false;
 
                   }
                 },
                 error: (error: any) => {
-                  console.error("Error obteniendo las paradas favoritas del usuario:", error);
+                  console.error("Error en obtenir les parades favorites de l'usuari:", error);
                 }
               });
             },
             error: (error: any) => {
-              console.error("Error obteniendo el usuario de la sesión:", error);
+              console.error("Error en obtenir l'usuari de la sessió:", error);
             }
           });
         } else {
-          console.log("No hay sesión activa");
+          console.log("No hi ha cap sessió activa");
+    
         }
       },
 
@@ -101,16 +102,16 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     const data = {
       usuario: this.oUser,
       id_parada: this.id
-   
+
     };
-     this.ref=this.oDialogService.open(UserParadaFormUnroutedComponent, {
-   
+    this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
+
       width: '25%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,
       data: data,
-      
+
     });
     this.ref.onClose.subscribe(() => {
       this.comunicationService.triggerUpdateParadasFavoritas();
@@ -123,21 +124,19 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       if (paradaFavId) {
         this.oParadaFavAjaxService.removeOne(paradaFavId).subscribe({
           next: () => {
-            // RECOGER EL ID DE LA PARADA FAVORITA BORRADA PARA COMPROBAR QUE SE HA BORRADO
-            // Actualizar la lista de paradas favoritas después de eliminar la parada
             this.paradasFavs = this.paradasFavs.filter(paradaFav => paradaFav.id !== paradaFavId);
             this.isFavoriteParada = false;
-            console.log("Parada eliminada de favoritos");
+            console.log("Parada eliminada de favorites");
           },
           error: (error: any) => {
-            console.error("Error al eliminar la parada de favoritos:", error);
+            console.error("Error en eliminar la parada de favorites:", error);
           }
         });
       } else {
-        console.error("No se encontró el ID de la parada favorita para eliminar.");
+        console.error("No s'ha trobat l'ID de la parada favorita per eliminar.");
       }
     } else {
-      console.error("No se puede eliminar la parada de favoritos. Usuario o ID de parada no válido.");
+      console.error("No es pot eliminar la parada de favorites. Usuari o ID de parada no vàlid.");
     }
   }
 }

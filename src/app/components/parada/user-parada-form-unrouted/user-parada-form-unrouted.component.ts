@@ -24,7 +24,7 @@ export class UserParadaFormUnroutedComponent implements OnInit {
   oParadaFav: IParadaFav = {} as IParadaFav;
   data: any;
 
-  
+
   constructor(
     private oFormBuilder: FormBuilder,
     private oRouter: Router,
@@ -39,9 +39,9 @@ export class UserParadaFormUnroutedComponent implements OnInit {
 
     this.initializeForm(this.oParadaFav);
 
-   }
+  }
 
-   ngOnInit() {
+  ngOnInit() {
     this.data = this.config.data;
   }
 
@@ -49,7 +49,7 @@ export class UserParadaFormUnroutedComponent implements OnInit {
     this.paradaForm = this.oFormBuilder.group({
       id: [oParadaFav.id],
       alias: [oParadaFav.alias, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      
+
     });
   }
   public hasError = (controlName: string, errorName: string) => {
@@ -61,37 +61,36 @@ export class UserParadaFormUnroutedComponent implements OnInit {
   onSubmit() {
     if (this.paradaForm.valid) {
       if (this.ref) {
-            const paradaFav: IParadaFav = {
-              id: this.paradaForm.get('id')?.value,
-              alias: this.paradaForm.get('alias')?.value,
-              id_parada: this.data.id_parada,
-              user:{
-                id: this.data.usuario.id
-              } as IUser
-            };
-            console.log(paradaFav);
+        const paradaFav: IParadaFav = {
+          id: this.paradaForm.get('id')?.value,
+          alias: this.paradaForm.get('alias')?.value,
+          id_parada: this.data.id_parada,
+          user: {
+            id: this.data.usuario.id
+          } as IUser
+        };
+        console.log(paradaFav);
 
-            this.oParadaFavAjaxService.newOne(paradaFav).subscribe({
-              next: (parada: IParadaFav) => {
-                this.oParadaFav = { "user": {} } as IParadaFav;
-                
-                this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Parada agregada con éxito' });
-                this.ref.close(); // Close the dialog if ref is available
-              },
-              error: (error: any) => {
-                this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error al agregar la parada' });
-              }
-            });
-          
+        this.oParadaFavAjaxService.newOne(paradaFav).subscribe({
+          next: (parada: IParadaFav) => {
+            this.oParadaFav = { "user": {} } as IParadaFav;
+
+            this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'Parada favorita afegida amb èxit' });
+            this.ref.close(); // Close the dialog if ref is available
+          },
           error: (error: any) => {
-            console.error("Error obteniendo el usuario de la sesión:", error);
+            this.oMessageService.add({ severity: 'detail',summary: 'Error', detail: 'No s\'ha pogut crear la parada favorita', life: 2000 });
           }
-        }
-      } else {
-        console.error("DynamicDialogRef is null.");
-        // Handle the case where ref is null, such as logging an error or displaying a message to the user
-      }
-    }
-  
+        });
 
+        error: (error: any) => {
+          console.error("Error en obtenir l'usuari de la sessió:", error);
+        }
+      }
+    } else {
+      console.error("DynamicDialogRef és nul.");
+    }
   }
+
+
+}
