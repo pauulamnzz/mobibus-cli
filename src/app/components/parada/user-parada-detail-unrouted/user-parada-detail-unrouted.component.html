@@ -12,7 +12,8 @@
       <div class="bg-white border rounded-lg shadow-md pb-5">
         <div class="text-center mt-14">
           <p><strong>{{ oProxLlegada[0].numParada }} - {{ oProxLlegada[0].nomParada }}</strong></p>
-          @if(isFavoriteParada){
+         @if(oUser){
+          @if( isFavoriteParada){
             <div class="container favorita mt-2">
               <label class="container m-5 favorite">
                 <input (click)="removeFav()" type="checkbox" checked>
@@ -46,6 +47,7 @@
                 </svg>
               </label>
             </div>
+          }
             }
         </div>
         <div class="overflow-x-auto">

@@ -82,24 +82,24 @@ export interface IResultApi {
   suprimida: number
   denominacion: string
   lineas: string
- // geo_shape: GeoShape
-  //geo_point_2d: GeoPoint2d
+ geo_shape: GeoShape
+  geo_point_2d: GeoPoint2d
 }
 
-// export interface GeoShape {
-//   type: string
-//   geometry: Geometry
-//   properties: Properties
-// }
+export interface GeoShape {
+  type: string
+  geometry: Geometry
+  properties: Properties
+}
 
-// export interface Geometry {
-//   coordinates: number[]
-//   type: string
-// }
-// export interface GeoPoint2d {
-//   lon: number
-//   lat: number
-// }
+export interface Geometry {
+  coordinates: number[]
+  type: string
+}
+export interface GeoPoint2d {
+  lon: number
+  lat: number
+}
 
 //parada respuesta prox llegadas
 export interface IProxLlegada{

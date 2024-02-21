@@ -1,6 +1,8 @@
+
+<section class="py-14">
 @if(sessionActive && paradasFavs.length > 0){
 <div class="grid grid-cols-2 md:grid-cols-2 gap-10 p-6">
-  <div class="flex justify-center mb-10">
+  <div class="flex justify-center -mt-5">
     <div class="w-full ">
       <div class="bg-white border rounded-lg shadow-md pb-4">
         <div class="overflow-x-auto m-4">
@@ -35,7 +37,7 @@
 
 
 
-  <div class="flex justify-center mb-10">
+  <div class="flex justify-center -mt-5">
     <div class="w-full">
       <div class="bg-white border rounded-lg shadow-md pb-4">
         <div class="overflow-x-auto m-4">
@@ -71,7 +73,7 @@
 }
 @if(paradasFavs.length == 0){
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-  <div class="bg-white p-5 rounded-lg mt-10 md:col-span-2 md:text-center md:mx-auto">
+  <div class="bg-white p-5 rounded-lg -mt-5 md:col-span-2 md:text-center md:mx-auto">
     <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
       (input)="searchAllParadas()">
     <div class="flex justify-center">
@@ -100,3 +102,4 @@
 </div>
 
 }
+</section>

@@ -1,6 +1,7 @@
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-  <div class="bg-white p-5 rounded-lg mt-10 md:col-span-2 md:text-center md:mx-auto">
+<section class="py-14">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+  <div class="bg-white p-5 rounded-lg -mt-5 md:col-span-2 md:text-center md:mx-auto">
       <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar línea" [(ngModel)]="searchTerm" (input)="search()">
       <div class="flex justify-center">
         <table class="mx-auto w-10/12 text-center divide-y mt-8">
@@ -24,5 +25,4 @@
       <p-paginator [rows]="itemsPerPage" [totalRecords]="lineas.length" (onPageChange)="onPageChange($event)"></p-paginator>
     </div>
   </div>
-
-
+</section>
