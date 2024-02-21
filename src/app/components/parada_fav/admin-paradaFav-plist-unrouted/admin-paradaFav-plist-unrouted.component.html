@@ -9,9 +9,11 @@
       <div class="text-center mt-14">
         @if(id_user > 0){
         <h3 class="text-lg">Filtrat per usuari ({{id_user}} - {{oUser?.username}})</h3>
+        <div>
         <a [routerLink]="['/admin','paradaFav','plist']" type="button"
           class="inline-block rounded-full border border-gray-300 px-3 py-1 m-1 hover:bg-gray-200 text-gray-800">
           Restableix el filtre</a>
+        </div>
         }@else{
         <h3 class="text-lg">Sense filtre actiu</h3>
         }
@@ -37,18 +39,18 @@
               <td class="px-4 py-2 text-center">{{ parada_fav.id_parada }}</td>
               <td class="px-4 py-2 text-center">
                 <a [routerLink]="['/admin','paradaFav','plist','byuser', parada_fav.user.id]">
-                  {{parada_fav.user.id}} {{parada_fav.user.username}}
+                   {{parada_fav.user.username}} ({{parada_fav.user.id}})  
                 </a>
               </td>
               <td class="px-4 py-2 text-center">
-                <button class="rounded-full border border-gray-300 px-3 py-1 m-1
+                <!-- <button class="rounded-full border border-gray-300 px-3 py-1 m-1
                  hover:bg-gray-200" [routerLink]="['/admin','paradaFav','view', parada_fav.id]">
                   <i class="fas fa-info-circle"></i>
-                </button>
-                <!-- <button class="rounded-full border border-gray-300 px-3 py-1 m-1
+                </button>-->
+                <button class="rounded-full border border-gray-300 px-3 py-1 m-1
                  hover:bg-gray-200" (click)="doView(parada_fav)">
-                  <i class="fas fa-arrow-up"></i>
-                </button> -->
+                 <i class="fas fa-info-circle"></i>
+                </button> 
                 <button class="rounded-full border border-gray-300 px-3 py-1 m-1
                  hover:bg-gray-200" [routerLink]="['/admin','paradaFav','edit', parada_fav.id]">
                   <i class="fas fa-edit"></i>

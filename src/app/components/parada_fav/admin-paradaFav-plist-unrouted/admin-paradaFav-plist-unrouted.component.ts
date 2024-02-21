@@ -93,7 +93,7 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
         id: u.id
       },
       header: 'Detalls de la parada favorita',
-      width: '50%',
+      width: '40%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,

@@ -98,7 +98,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
         id: u.id
       },
       header: 'Detalls de l\'usuari',
-      width: '50%',
+      width: '40%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,
