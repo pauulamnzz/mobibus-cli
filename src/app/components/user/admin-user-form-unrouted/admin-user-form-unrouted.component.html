@@ -54,7 +54,7 @@
         <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Email *</label>
         <input type="email" id="email"
           class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500"
-          formControlName="email" required (blur)="lostFocus.email = true" placeholder="hello@alignui.com">
+          formControlName="email" required (blur)="lostFocus.email = true" placeholder="ejemplo123@gmail.com">
       </div>
       <div class="text-sm text-red-600 mt-1 mb-2">
         @if(userForm.get('email')?.hasError('required') && lostFocus.email){
