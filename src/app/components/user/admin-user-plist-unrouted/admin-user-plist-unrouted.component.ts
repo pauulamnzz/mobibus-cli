@@ -93,12 +93,13 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
 
 
   doView(u: IUser) {
+    const width = window.innerWidth < 768 ? '80%' : '40%';
     this.ref = this.oDialogService.open(AdminUserDetailUnroutedComponent, {
       data: {
         id: u.id
       },
       header: 'Detalls de l\'usuari',
-      width: '40%',
+      width: width, 
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,

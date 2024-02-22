@@ -17,7 +17,7 @@
         <table class="mx-auto text-center divide-y mt-16">
           <thead class="text-md text-gray-700 uppercase">
             <tr>
-              <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('id')">ID</th>
+              <th class="px-4 py-2 text-center cursor-pointer hidden md:table-cell" (click)="doOrder('id')">ID</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('username')">NOM D'USUARI</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('email')">EMAIL</th>
               <th class="px-4 py-2 text-center cursor-pointer" (click)="doOrder('role')">ROL</th>
@@ -28,7 +28,7 @@
           <tbody>
             @for(user of oPage?.content; track user.id){
             <tr class="border-b">
-              <td class="px-4 py-2 text-center">
+              <td class="px-4 py-2 text-center hidden md:table-cell">
                 {{ user.id }}
               </td>
               <td class="px-4 py-2 text-center">

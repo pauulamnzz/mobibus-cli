@@ -88,12 +88,13 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
      doView(u: IParadaFav) {
+    const width = window.innerWidth < 768 ? '80%' : '40%';
     this.ref = this.oDialogService.open(AdminParadaFavDetailUnroutedComponent, {
       data: {
         id: u.id
       },
       header: 'Detalls de la parada favorita',
-      width: '40%',
+      width: width,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,
