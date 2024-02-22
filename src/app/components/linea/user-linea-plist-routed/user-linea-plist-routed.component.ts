@@ -75,7 +75,7 @@ onPageChange(event: any) {
       // Si la imagen existe, abrir el diálogo con la imagen
       this.oDialogService.open(UserLineaImgUnroutedComponent, {
         data: { imageUrl },
-        header: 'Imagen de la línea ' + linea,
+        header: 'Ruta de línia ' + linea,
         width: width,
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
