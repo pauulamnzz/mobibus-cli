@@ -39,8 +39,8 @@ export class AdminParadaSelectionUnroutedComponent implements OnInit {
   }
 
 
-  onSelectParada(id_parada: number) {
-    this.oDynamicDialogRef.close(id_parada);
+  onSelectParada(oResultApi: IResultApi) {
+    this.oDynamicDialogRef.close(oResultApi);
   }
   // Métodos para cambiar de página
 onPageChange(event: any) {

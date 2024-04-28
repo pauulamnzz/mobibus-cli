@@ -25,12 +25,13 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; //new or edit
   paradaFavForm!: FormGroup;
-  oResultApi: IResultApi = { id_parada: {} } as IResultApi;
-  oParadaFav: IParadaFav = { user: {} } as IParadaFav;
+  oResultApi: IResultApi = { id_parada: {}} as IResultApi;
+  oParadaFav: IParadaFav = { user: { username:""} } as IParadaFav;
   status: HttpErrorResponse | null = null;
   oDynamicDialogRef: DynamicDialogRef | undefined;
   showErrorOnClose: boolean = false;
   paradaExistsOnUser: boolean = false;
+  denominacion: string = "";
 
   lostFocus = {
     alias: false,
@@ -61,7 +62,8 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       alias: [oParadaFav.alias, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       id_parada: [oParadaFav.id_parada, [Validators.required], idParadaValidator], // Aplicar el validador solo si no es una operación de edición
       user: this.oFormBuilder.group({
-        id: [oParadaFav.user.id, Validators.required]
+        id: [oParadaFav.user.id],
+
       })
     });
   }
@@ -169,10 +171,14 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
 
     this.oDynamicDialogRef.onClose.subscribe((oResultApi: IResultApi) => {
       this.showErrorOnClose = false;
-      if (oResultApi) {
-        this.oResultApi.id_parada = oResultApi.id_parada;
-        this.paradaFavForm.controls['id_parada'].patchValue(oResultApi);
       
+      if (oResultApi) {
+
+        this.oResultApi = oResultApi;
+        this.paradaFavForm.controls['id_parada'].patchValue(oResultApi.id_parada);
+        this.denominacion = oResultApi.denominacion;
+      
+
         this.lostFocus.id_parada = false; 
         this.paradaExists().subscribe(exists => {
           this.paradaExistsOnUser = exists;
@@ -190,7 +196,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   //validator
   idParadaValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      const idParada = control.value;
+      const idParada = this.oResultApi.id_parada;
       const userId = this.paradaFavForm.get('user.id')?.value;
   
       console.log("idParada:", idParada, "userId:", userId);  
@@ -208,9 +214,8 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
 
 //para mostrar error devuelve booleano
   paradaExists(): Observable<boolean> {
-    const idParada = this.paradaFavForm.get('id_parada')?.value;
+    const idParada = this.oResultApi.id_parada;
     const userId = this.paradaFavForm.get('user.id')?.value;
-  
     if (idParada !== null && userId !== null) {
       return this.validateParadaFavExists(idParada, userId)
         .pipe(
@@ -224,6 +229,8 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   }
   //Valida si existe la parada en el usuario
   validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {
+    console.log("idParada1234:", idParada);
+
     return this.oParadaFavAjaxService.checkParadaFavExistsForUser(idParada, userId)
       .pipe(
         map(result => !!result), // Convertir el resultado en un booleano

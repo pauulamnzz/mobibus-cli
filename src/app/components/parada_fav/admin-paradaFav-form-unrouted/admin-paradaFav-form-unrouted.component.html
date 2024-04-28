@@ -48,9 +48,11 @@
       <div class="field mb-4">
         <label class="label block text-gray-700 text-sm font-semibold m-2">ID Parada *</label>
         <div class="relative flex items-center">
-          <input id="id_parada" formControlName="id_parada" readonly required (blur)="lostFocus.id_parada = true"
-            class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
-            placeholder="ID Parada">
+         <input id="id_parada"  readonly required 
+       class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
+       placeholder="ID Parada" [value]="denominacion">
+
+            
           <button
             class="px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600 focus:outline-none focus:bg-red-600"
             type="button" (click)="onShowParadasSelection()">
@@ -78,8 +80,8 @@
           <div class="relative flex items-center">
             <input id="id" formControlName="id" readonly required (blur)="lostFocus.user = true"
               class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
-              placeholder="User">
-
+                placeholder="User" [value]="oParadaFav.user.username +' '+'('+oParadaFav.user.id+')'">
+             
             <button
               class="px-4 py-2 bg-red-500 text-white rounded-r-md hover:bg-red-600 focus:outline-none focus:bg-red-600"
               type="button" (click)="onShowUsersSelection()">
