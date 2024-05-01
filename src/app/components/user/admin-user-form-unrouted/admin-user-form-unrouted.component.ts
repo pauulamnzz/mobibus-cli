@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IUser, formOperation } from '../../../model/model.interface';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { catchError, map, Observable, of } from 'rxjs';
+import { UserAjaxService } from '../../../services/user.ajax.service';
 
 @Component({
   selector: 'app-admin-user-form-unrouted',
@@ -41,9 +41,9 @@ export class AdminUserFormUnroutedComponent implements OnInit {
     this.userForm = this.oFormBuilder.group({
       id: [oUser.id],
       username: [oUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(15),],
-      [this.validateUsername.bind(this)] 
-    ],
-      email: [oUser.email, [Validators.required, Validators.email]],
+        this.usernameExists(this.oUserAjaxService)],
+      email: [oUser.email, [Validators.required, Validators.email],
+        this.emailExists(this.oUserAjaxService)],
       role: [oUser.role, Validators.required]
     });
   }
@@ -111,22 +111,23 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   };
 
-validateUsername(control: AbstractControl): Observable<{ [key: string]: any } | null> {
-   const username = control.value;
-  if (!username) {
-    return of(null);
+   usernameExists(userService: UserAjaxService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return userService.existsByUsername(control.value).pipe(
+        map(exists => exists ? { usernameExists: true } : null),
+        catchError(() => of(null))
+      );
+    };
   }
-  
-  // Llama al servicio para verificar si el nombre de usuario existe en la base de datos.
-  return this.oUserAjaxService.getByUsername(username).pipe(
-    map(user => {
-      // Si getByUsername devuelve null, el usuario no existe y se puede crear.
-      // Si getByUsername devuelve un objeto, el usuario existe y no se puede crear.
-      return user === null ? null : { 'usernameExists': true };
-    })
-  );
-}
 
+   emailExists(userService: UserAjaxService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return userService.existsByEmail(control.value).pipe(
+        map(exists => exists ? { emailExists: true } : null),
+        catchError(() => of(null))
+      );
+    };
+  }
 
 
 }

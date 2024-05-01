@@ -63,7 +63,9 @@
         @if(userForm.get('email')?.hasError('email') && lostFocus.email){
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">El correu electrònic ha de tenir &#64; i un domini</p>
         }
-
+        @if(userForm.get('email')?.hasError('emailExists') && lostFocus.email){
+          <p class="mt-2 text-sm text-red-600 dark:text-red-500">El correu electrònic ja existeix</p>
+          }
       </div>
 
 
