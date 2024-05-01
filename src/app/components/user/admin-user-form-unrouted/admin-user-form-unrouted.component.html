@@ -38,14 +38,14 @@
         @if(userForm.get('username')?.hasError('required') && lostFocus.username){
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari requerit</p>
         }
-        @if(userForm.get('username')?.hasError('pattern') && lostFocus.username){
-        <p class="mt-2 text-sm text-red-600 dark:text-red-500">El nom d'usuari ha de ser alfanumèric</p>
-        }
         @if(userForm.get('username')?.hasError('minlength') && lostFocus.username){
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">El nom d'usuari ha de tenir més de 3 caràcters</p>
         }
         @if(userForm.get('username')?.hasError('maxlength') && lostFocus.username){
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">El nom d'usuari ha de tenir menys de 15 caràcters</p>
+        }
+        @if(userForm.get('username')?.hasError('usernameExists') && lostFocus.username){
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">Aquest nom d'usuari ja existeix</p>
         }
       </div>
 
