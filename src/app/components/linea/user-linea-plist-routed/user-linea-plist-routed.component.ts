@@ -6,6 +6,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { DialogService } from 'primeng/dynamicdialog';
 import { UserLineaImgUnroutedComponent } from '../user-linea-img-unrouted/user-linea-img-unrouted.component';
 import { UserLineaImgErrorUnroutedComponent } from '../user-linea-img-error-unrouted/user-linea-img-error-unrouted.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-linea-plist-routed',
   templateUrl: './user-linea-plist-routed.component.html',
@@ -27,7 +28,9 @@ export class UserLineaPlistRoutedComponent implements OnInit {
   itemsPerPage: number = 10;
 
   constructor(private ApiEmtService: ApiEmtService,
-              private oDialogService: DialogService) { }
+              private oDialogService: DialogService,
+              private oRouter: Router  
+            ) { }
 
 
 
@@ -65,11 +68,15 @@ getCurrentPageItems(): string[] {
 
 onPageChange(event: any) {
   this.currentPage = event.page + 1;
-}doView(linea: string) {
+}
+doView(linea: string) {
   const imageUrl = `https://www.lovevalencia.com/wp-content/uploads/2012/06/Esquema-Paradas-L%C3%ADnea-${linea}-EMT-Valencia.gif`;
-  const width = window.innerWidth < 768 ? '80%' : '40%';
+ const width = window.innerWidth < 768 ? '80%' : '40%';
+  const isMobile = window.innerWidth < 768;
+  if(!isMobile){
 
-  // Verificar si la imagen existe
+    // Verificar si la imagen existe
+
   this.imageExists(imageUrl).then(exists => {
     if (exists) {
       // Si la imagen existe, abrir el diálogo con la imagen
@@ -92,6 +99,9 @@ onPageChange(event: any) {
       });
     }
   });
+}else{
+  this.oRouter.navigate(['user/linea/img/'+linea]);
+}
 }
 
 

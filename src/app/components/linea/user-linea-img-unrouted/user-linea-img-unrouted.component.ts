@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserLineaImgRoutedComponent } from '../user-linea-img-routed/user-linea-img-routed.component';
 
 @Component({
   selector: 'app-user-linea-img-unrouted',
@@ -7,12 +8,21 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['./user-linea-img-unrouted.component.css'],
   standalone: true,
   imports: [
+    UserLineaImgRoutedComponent
   ]
 })
 export class UserLineaImgUnroutedComponent implements OnInit {
   imageUrl: string | undefined;
-  constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig) { }
+  @Input() linea: number = 95;
+
+  constructor(
+     private config: DynamicDialogConfig
+  ) { }
   ngOnInit() {
-    this.imageUrl = this.config.data?.imageUrl;  }
+  this.imageUrl = this.config.data?.imageUrl;
+  }
+
+
+
 
 }

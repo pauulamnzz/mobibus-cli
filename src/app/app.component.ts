@@ -8,6 +8,10 @@ import { MessagesModule } from 'primeng/messages';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { initFlowbite } from 'flowbite';
+
+declare let jsPDF: any;
+
+
 @Component({
   selector: 'app-root',
   standalone: true,

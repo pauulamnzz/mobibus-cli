@@ -13,6 +13,7 @@ import { AdminParadaFavNewRoutedComponent } from './components/parada_fav/admin-
 import { AdminParadaFavEditRoutedComponent } from './components/parada_fav/admin-paradaFav-edit-routed/admin-paradaFav-edit-routed.component';
 import { UserParadaPlistRoutedComponent } from './components/parada/user-parada-plist-routed/user-parada-plist-routed.component';
 import { UserParadaViewRoutedComponent } from './components/parada/user-parada-view-routed/user-parada-view-routed.component';
+import { UserLineaImgRoutedComponent } from './components/linea/user-linea-img-routed/user-linea-img-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -26,7 +27,7 @@ export const routes: Routes = [
     { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   
 
-
+    { path: 'user/linea/img/:id', component: UserLineaImgRoutedComponent },    
     { path: 'user/linea/plist', component: UserLineaPlistRoutedComponent },    
     { path: 'user/parada/plist', component: UserParadaPlistRoutedComponent },    
 

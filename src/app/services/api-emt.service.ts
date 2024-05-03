@@ -89,5 +89,8 @@ getInfoLlegadas(id: number): Observable<IProxLlegada[]> {
   const apiUrl = `http://localhost:8083/api/data?id=${id}`; 
   return this.oHttpClient.get<IProxLlegada[]>(apiUrl);
 }
-
+getImageUrl(linea: number): string {
+  // Supongamos que este método devuelve la URL de la imagen basada en el ID de la línea
+  return `https://www.lovevalencia.com/wp-content/uploads/2012/06/Esquema-Paradas-L%C3%ADnea-${linea}-EMT-Valencia.gif`;
+}
 }
