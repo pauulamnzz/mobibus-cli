@@ -2,17 +2,22 @@
   <div class="flex justify-between items-center m-7">
     <div class="flex items-center">
       <h1 class="text-4xl text-gray-700 font-bold md:ml-10 lg:ml-60">Ruta línea</h1>
-     <!--<button (click)="onPrintUser(oClient.id)">PRINT</button>--> 
+     <!--<button (click)="onPrintUser(oClient.id)">PRINT</button>
+    
+    --> 
     </div>
   </div>
-  <div class="flex justify-center mb-10">
-    <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12 ">
+  <div class="container flex justify-center mb-10">
+    <div class=" w-full md:w-4/4 lg:w-10/12 xl:w-8/12">
       <div class="bg-white border rounded-lg shadow-md pb-4">
-        <div class="overflow-x-auto m-4">
+        <div class=" overflow-auto m-4">
           @if(linea){
-            <img
+            <input type="checkbox" id="zoomCheck">
+            <label for="zoomCheck">
+            <img 
             [src]="'https://www.lovevalencia.com/wp-content/uploads/2012/06/Esquema-Paradas-L%C3%ADnea-' + linea + '-EMT-Valencia.gif'"
             alt="Ruta de la línea {{ linea }}" />
+          </label>
           }@else{
 <app-user-linea-img-error-unrouted></app-user-linea-img-error-unrouted>
           }
