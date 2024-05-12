@@ -40,6 +40,10 @@ export class UserAjaxService {
         return this.oHttpClient.post<IUser>(this.sUrl, oUser);
     }
 
+    newForUsers(oUser: IUser): Observable<IUser> {
+        return this.oHttpClient.post<IUser>(this.sUrl + "/new", oUser);
+    }
+
     updateOne(oUser: IUser): Observable<IUser> {
         return this.oHttpClient.put<IUser>(this.sUrl, oUser);
     }

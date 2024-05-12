@@ -39,6 +39,24 @@ export class UserLineaImgRoutedComponent implements OnInit {
     doc.save('ruta_linea_' + this.linea + '.pdf');
   }
 
+
+  // onPrint() {
+  //   const doc = new jsPDF();
+  //   // Corrige la concatenación de la URL y asegúrate de que 'this.linea' esté definido
+  //   const imgData = `https://www.lovevalencia.com/wp-content/uploads/2012/06/Esquema-Paradas-L%C3%ADnea-${this.linea}-EMT-Valencia.gif`;
+  //   console.log(imgData);
+    
+  //   // Asegúrate de que 'this.linea' esté definido antes de usarlo
+  //   if (typeof this.linea === 'undefined') {
+  //     console.error('La variable "linea" no está definida.');
+  //     return;
+  //   }
+    
+  //   // Agrega la imagen al documento PDF
+  //   doc.addImage(imgData, 'JPEG', 10, 10, 180, 120);
+  //   doc.save('ruta_linea_' + this.linea + '.pdf');
+  // }
+  
   // async onPrint() {
   //   const doc = new jsPDF();
   //   const linea = 'tu_linea'; // Asegúrate de definir esta variable antes de usarla

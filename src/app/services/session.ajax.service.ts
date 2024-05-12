@@ -38,6 +38,10 @@ login(sUsername: string, sPassword: string): Observable<string> {
   return this.oHttpClient.post<string>(this.sUrl, { username: sUsername, password: sPassword });        
 }
 
+signIn(sUsername: string, sPassword: string, sEmail: string): Observable<string> {
+  return this.oHttpClient.post<string>(this.sUrl + "/new", { username: sUsername, password: sPassword, email: sEmail });
+}
+
 setToken(sToken: string): void {
   //evento logout
   localStorage.setItem('token', sToken);        
