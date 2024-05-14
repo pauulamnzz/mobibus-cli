@@ -83,6 +83,7 @@ doView(linea: string) {
       this.oDialogService.open(UserLineaImgUnroutedComponent, {
         data: { imageUrl },
         header: 'Ruta de línia ' + linea,
+        
         width: width,
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,

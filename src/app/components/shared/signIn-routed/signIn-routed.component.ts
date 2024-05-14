@@ -1,12 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { SessionAjaxService } from '../../../../services/session.ajax.service';
+import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { MessageService } from 'primeng/api';
-import { CryptoService } from '../../../../services/crypto.service';
+import { CryptoService } from '../../../services/crypto.service';
 import { Router } from '@angular/router';
-import { IUser } from '../../../../model/model.interface';
-import { UserAjaxService } from '../../../../services/user.ajax.service';
+import { IUser } from '../../../model/model.interface';
+import { UserAjaxService } from '../../../services/user.ajax.service';
 import { catchError, map, Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
@@ -82,7 +82,7 @@ export class SignInRoutedComponent implements OnInit {
           // Almacena los datos del usuario registrado
           this.oUser = data;
           // Muestra un mensaje de éxito al usuario
-          this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Te has registrado correctamente', life: 2000 });
+          //this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Te has registrado correctamente', life: 2000 });
           // Redirige al usuario a la página de inicio
           this.oRouter.navigate(['/home']);
   
@@ -94,14 +94,14 @@ export class SignInRoutedComponent implements OnInit {
               // Emite un evento de inicio de sesión
               this.oSessionService.emit({ type: 'login' });
               // Muestra un mensaje de éxito por la sesión iniciada
-              this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Sesión iniciada' });
+              this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'T\'has registrat correctament' });
               // Redirige al usuario a la página de inicio
               this.oRouter.navigate(['/home']);
             },
             error: (loginError: HttpErrorResponse) => {
               // Maneja el error si no se puede iniciar sesión automáticamente después del registro
               this.status = loginError;
-              this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido iniciar sesión automáticamente después del registro' });
+              this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No s\'ha pogut crear el compte' });
             }
           });
   
@@ -111,7 +111,7 @@ export class SignInRoutedComponent implements OnInit {
         error: (error: HttpErrorResponse) => {
           // Maneja el error si no se puede crear el usuario
           this.status = error;
-          this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido crear el usuario', life: 2000 });
+          this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No s\'ha pogut crear el compte', life: 2000 });
         }
       });
     }

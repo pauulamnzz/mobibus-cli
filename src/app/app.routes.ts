@@ -14,7 +14,7 @@ import { AdminParadaFavEditRoutedComponent } from './components/parada_fav/admin
 import { UserParadaPlistRoutedComponent } from './components/parada/user-parada-plist-routed/user-parada-plist-routed.component';
 import { UserParadaViewRoutedComponent } from './components/parada/user-parada-view-routed/user-parada-view-routed.component';
 import { UserLineaImgRoutedComponent } from './components/linea/user-linea-img-routed/user-linea-img-routed.component';
-import { SignInRoutedComponent } from './components/shared/signIn-routed/signIn-routed/signIn-routed.component';
+import { SignInRoutedComponent } from './components/shared/signIn-routed/signIn-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
