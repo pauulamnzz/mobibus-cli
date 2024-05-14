@@ -1,0 +1,22 @@
+<div class="container mx-auto mt-20">
+  <div class="flex justify-center">
+    <div class="w-full max-w-md">
+        <div class="card-body">
+          <h2 class="text-center text-2xl font-bold mb-4">Recuperar Contraseña</h2>
+          <p class="text-center mb-8">Ingrese su correo electrónico para recuperar su contraseña</p>
+          <form [formGroup]="sendEmailForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center">
+            <div class="w-full px-3 mb-6">
+              <span class="p-float-label w-full">
+                <input id="mailTo" type="text" pInputText formControlName="mailTo" class="w-full"/>
+                <label for="mailTo">{{ "user.email" }}</label>
+              </span>
+              <small class="p-error" *ngIf="sendEmailForm.get('mailTo')?.hasError('required')">
+                {{ "login.mailTo-required" }}
+              </small>
+            </div>
+            <button pButton type="submit" label="Enviar correo" class="p-button-raised p-button-primary"></button>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>

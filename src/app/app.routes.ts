@@ -15,6 +15,8 @@ import { UserParadaPlistRoutedComponent } from './components/parada/user-parada-
 import { UserParadaViewRoutedComponent } from './components/parada/user-parada-view-routed/user-parada-view-routed.component';
 import { UserLineaImgRoutedComponent } from './components/linea/user-linea-img-routed/user-linea-img-routed.component';
 import { SignInRoutedComponent } from './components/shared/signIn-routed/signIn-routed.component';
+import { SendEmailComponent } from './components/send-email/send-email.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -22,7 +24,8 @@ export const routes: Routes = [
     { path: 'login', component: LoginRoutedComponent },
     { path: 'logout', component: LogoutRoutedComponent },
     { path: 'signIn', component: SignInRoutedComponent },
-
+    { path: 'sendEmail', component: SendEmailComponent },
+   { path: 'changePassword/:tokenPassword', component: ChangePasswordComponent },
 
     
   
