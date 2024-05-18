@@ -10,19 +10,22 @@
         <form [formGroup]="loginForm" class="space-y-4 md:space-y-6" action="#" (ngSubmit)="onSubmit()">
           <!-- Username -->
           <div>
-            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom d'usuari</label>
-            <input type="text" name="username" id="username" formControlName="username"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-    >
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom
+              d'usuari</label>
+              <input type="text" name="username" id="username" formControlName="username"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              (blur)="lostFocus.username = true">
+          
           </div>
           <div class="text-sm text-red-600 mt-1">
             @if(loginForm.get('username')?.hasError('required') && lostFocus.username){
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari requerit</p>
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari requerit</p>
             }
           </div>
           <!-- Password -->
           <div>
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contrasenya</label>
+            <label for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contrasenya</label>
             <input type="password" name="password" id="password" placeholder="••••••••" formControlName="password"
               (blur)="lostFocus.password = true"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -30,21 +33,27 @@
           </div>
           <div class="text-sm text-red-600 mt-1">
             @if(loginForm.get('password')?.hasError('required') && lostFocus.password){
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Contrasenya requerida</p>
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">Contrasenya requerida</p>
             }
-            @if(loginForm.get('password')?.hasError('minlength') && lostFocus.password){
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500">La contrasenya ha de tenir com a mínim 6 caràcters</p>
-          }
+            <!-- @if(loginForm.get('password')?.hasError('minlength') && lostFocus.password){
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">La contrasenya ha de tenir com a mínim 6 caràcters
+            </p>
+            } -->
           </div>
 
           <div class="flex items-center justify-between">
-            <a href="sendEmail" class=" text-gray-800 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"><strong>¿Has oblidat la contrasenya?</strong></a>
+            <a href="sendEmail"
+              class=" text-gray-800 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"><strong>¿Has
+                oblidat la contrasenya?</strong></a>
           </div>
           @if(loginForm.valid){
-            <button type="submit"
-            class="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Inicia la sessió</button>
+          <button type="submit"
+            class="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Inicia
+            la sessió</button>
           }@else{
-            <button type="button" class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center" disabled>Inicia la sessió</button>
+          <button type="button"
+            class=" w-full text-white bg-red-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            disabled>Inicia la sessió</button>
 
           }
 

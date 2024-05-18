@@ -13,12 +13,22 @@
             <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nom
               d'usuari</label>
             <input type="text" name="username" id="username" formControlName="username"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+              (blur)="lostFocus.username = true">
           </div>
           <div class="text-sm text-red-600 mt-1">
             @if(signInForm.get('username')?.hasError('required') && lostFocus.username){
             <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari requerit</p>
             }
+            @if(signInForm.get('username')?.hasError('minlength') && lostFocus.username){
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500">El nom d'usuari ha de tenir més de 3 caràcters</p>
+              }
+              @if(signInForm.get('username')?.hasError('maxlength') && lostFocus.username){
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500">El nom d'usuari ha de tenir menys de 15 caràcters</p>
+              }
+              @if(signInForm.get('username')?.hasError('usernameExists') && lostFocus.username){
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Aquest nom d'usuari ja existeix</p>
+              }
           </div>
 
           <!-- Password -->
@@ -27,7 +37,8 @@
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contrasenya</label>
             <input type="password" name="password" id="password" placeholder="••••••••" formControlName="password"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required="">
+              required=""
+              (blur)="lostFocus.password = true">
           </div>
           <div class="text-sm text-red-600 mt-1">
             @if(signInForm.get('password')?.hasError('required') && lostFocus.password){
@@ -43,8 +54,10 @@
           <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
             <input type="text" name="email" id="email" formControlName="email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          </div>
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              (blur)="lostFocus.email = true">
+          
+            </div>
           <div class="text-sm text-red-600 mt-1">
             @if(signInForm.get('email')?.hasError('required') && lostFocus.email){
             <p class="mt-2 text-sm text-red-600 dark:text-red-500">Email requerit</p>
@@ -52,6 +65,9 @@
             @if(signInForm.get('email')?.hasError('email') && lostFocus.email){
             <p class="mt-2 text-sm text-red-600 dark:text-red-500">Email no vàlid</p>
             }
+            @if(signInForm.get('email')?.hasError('emailExists') && lostFocus.email){
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500">El correu electrònic ja existeix</p>
+              }
           </div>
 
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
