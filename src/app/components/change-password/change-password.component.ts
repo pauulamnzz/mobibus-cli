@@ -38,7 +38,7 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit() {
     if (this.updatePasswordForm.get('password')?.value != this.updatePasswordForm.get('confirmPassword')?.value) {
      // this.oMatSnackBar.open('Passwords do not match', 'OK', { duration: 3000 });
-     this.oMessageService.add({severity:'error', summary:'Passwords do not match', detail:'Passwords do not match'}); 
+     this.oMessageService.add({severity:'error', summary:'Error', detail:'Les contrasenyes no coincideixen'}); 
      return;
     }
 
@@ -51,12 +51,12 @@ export class ChangePasswordComponent implements OnInit {
     this.oEmailPasswordService.changePassword(oChangePasswordDto).subscribe({
       next: (data: string) => {
        // this.oMatSnackBar.open('Password Updated', 'OK', { duration: 2000 });
-        this.oMessageService.add({severity:'success', summary:'Password Updated', detail:'Password Updated'}); 
+        this.oMessageService.add({severity:'success', summary:'Èxit', detail:'Contrasenya restablerta correctament'}); 
        this.oRouter.navigate(['/login']);
       },
       error: (error: HttpErrorResponse) => {
        // this.oMatSnackBar.open('Error updating password', 'OK', { duration: 2000 });
-      this.oMessageService.add({severity:'error', summary:'Error updating password', detail:'Error updating password'});
+      this.oMessageService.add({severity:'error', summary:'Error', detail:'Error en restablir la contrasenya'});
       }
     });
   }

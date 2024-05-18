@@ -38,12 +38,11 @@ export class SendEmailComponent implements OnInit {
     this.oEmailPasswordService.sendEmail(new EmailValuesDto(mailTo)).subscribe({
         next: (data: string) => {
          //   this.oMatSnackBar.open('Email sent', 'OK', { duration: 2000 });
-            this.oMessageService.add({severity:'success', summary:'Email sent', detail:'Email sent successfully'});
-         this.oRouter.navigate(['/home']);
+         this.oMessageService.add({severity:'success', summary:'Èxit', detail:'Correu enviat correctament'});         this.oRouter.navigate(['/home']);
         },
         error: (error: HttpErrorResponse) => {
            // this.oMatSnackBar.open('Error sending email', 'OK', { duration: 2000 });
-           this.oMessageService.add({severity:'error', summary:'Error sending email', detail:'Error sending email'});
+           this.oMessageService.add({severity:'error', summary:'Error', detail:'Error en enviar el correu'});
         }
     });
 }
