@@ -18,18 +18,18 @@
     <form [formGroup]="paradaFavForm" (ngSubmit)="onSubmit()">
       @if(operation=='EDIT'){
       <div class="mb-4">
-        <label for="id" class="block text-gray-700 text-sm font-semibold mb-2">ID </label>
+        <label for="id" class="block text-gray-800 text-sm font-semibold mb-2">ID </label>
         <input type="text" id="fullName" required readonly
-          class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required
+          class="form-input w-full px-4 py-2 border rounded-lg text-gray-800 focus:ring-blue-500" required
           formControlName="id" placeholder="ID">
       </div>
       }
 
 
       <div class="mb-4">
-        <label for="alias" class="block text-gray-700 text-sm font-semibold mb-2">Alias *</label>
+        <label for="alias" class="block text-gray-800 text-sm font-semibold mb-2">Alias *</label>
         <input type="text" id="alias" formControlName="alias" required (blur)="lostFocus.alias = true"
-          class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" placeholder="Alias">
+          class="form-input w-full px-4 py-2 border rounded-lg text-gray-800 focus:ring-blue-500" placeholder="Alias">
       </div>
 
       <div class="text-sm text-red-600 mt-1 mb-2">
@@ -46,10 +46,10 @@
 
       <!--id_parada-->
       <div class="field mb-4">
-        <label class="label block text-gray-700 text-sm font-semibold m-2">ID Parada *</label>
+        <label class="label block text-gray-800 text-sm font-semibold m-2">ID Parada *</label>
         <div class="relative flex items-center">
          <input id="id_parada"  readonly required 
-       class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
+       class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-800 focus:ring-blue-500"
        placeholder="ID Parada" [value]="denominacion">
 
             
@@ -76,10 +76,10 @@
       <!-- user -->
       <div formGroupName="user">
         <div class="field mb-4">
-          <label class="label block text-gray-700 text-sm font-semibold mb-2">Usuari *</label>
+          <label class="label block text-gray-800 text-sm font-semibold mb-2">Usuari *</label>
           <div class="relative flex items-center">
             <input id="id" formControlName="id" readonly required (blur)="lostFocus.user = true"
-              class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-700 focus:ring-blue-500"
+              class="form-input w-full px-4 py-2 border rounded-lg rounded-r-none text-gray-800 focus:ring-blue-500"
                 placeholder="User" [value]="oParadaFav.user.username +' '+'('+oParadaFav.user.id+')'">
              
             <button

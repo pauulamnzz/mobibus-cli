@@ -19,18 +19,18 @@
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       @if(operation=='EDIT'){
       <div class="mb-4">
-        <label for="id" class="block text-gray-700 text-sm font-semibold mb-2">ID </label>
+        <label for="id" class="block text-gray-800 text-sm font-semibold mb-2">ID </label>
         <input type="text" id="fullName" required readonly
-          class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required
+          class="form-input w-full px-4 py-2 border rounded-lg text-gray-800 focus:ring-blue-500" required
           formControlName="id" placeholder="ID">
       </div>
       }
 
 
       <div class="mb-4">
-        <label for="username" class="block text-gray-700 text-sm font-semibold mb-2">Nom d'usuari *</label>
+        <label for="username" class="block text-gray-800 text-sm font-semibold mb-2">Nom d'usuari *</label>
         <input type="text" id="username" formControlName="username" required (blur)="lostFocus.username = true"
-          class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500"
+          class="form-input w-full px-4 py-2 border rounded-lg text-gray-800 focus:ring-blue-500"
           placeholder="Paco234">
       </div>
 
@@ -51,9 +51,9 @@
 
 
       <div class="mb-4">
-        <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Email *</label>
+        <label for="email" class="block text-gray-800 text-sm font-semibold mb-2">Email *</label>
         <input type="email" id="email"
-          class="form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500"
+          class="form-input w-full px-4 py-2 border rounded-lg text-gray-800 focus:ring-blue-500"
           formControlName="email" required (blur)="lostFocus.email = true" placeholder="ejemplo123@gmail.com">
       </div>
       <div class="text-sm text-red-600 mt-1 mb-2">
@@ -70,16 +70,16 @@
 
 
       <div class="mb-4 justify-center">
-        <label class="block text-gray-700 text-sm font-semibold mb-2">Role *</label>
+        <label class="block text-gray-800 text-sm font-semibold mb-2">Role *</label>
   
 
-        <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        <ul class="items-center w-full text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg sm:flex">
           <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div class="flex items-center ps-3">
                 <input id="radio" formControlName="role" [(ngModel)]="selectedRole" [value]="false" type="radio" value="1" 
                 name="role"
                 class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600">
-                <label for="horizontal-list-radio-license" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Admin </label>
+                <label for="horizontal-list-radio-license" class="w-full py-3 ms-2 text-sm font-medium text-gray-800 dark:text-gray-300"> Admin </label>
               </div>
           </li>
           <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
@@ -87,7 +87,7 @@
                 <input id="radio" formControlName="role" [(ngModel)]="selectedRole" [value]="true" type="radio" value="0" checked
                 name="role"
                 class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600">                  
-                <label for="horizontal-list-radio-id" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Usuari</label>
+                <label for="horizontal-list-radio-id" class="w-full py-3 ms-2 text-sm font-medium text-gray-800 dark:text-gray-300">Usuari</label>
               </div>
           </li>
  

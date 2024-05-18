@@ -28,12 +28,18 @@ export class ChangePasswordComponent implements OnInit {
     private oMessageService: MessageService
   ) { 
     this.updatePasswordForm = this.fb.group({ 
-      password: ['', [Validators.required]], 
+      password: ['', [Validators.required, Validators.minLength(5)]], 
       confirmPassword: ['', [Validators.required]], 
     });
   }
-
+  lostFocus = {
+  
+    password: false,
+    confirmPassword: false
+  
+  };
   ngOnInit() {
+    
   }
   onSubmit() {
     if (this.updatePasswordForm.get('password')?.value != this.updatePasswordForm.get('confirmPassword')?.value) {
