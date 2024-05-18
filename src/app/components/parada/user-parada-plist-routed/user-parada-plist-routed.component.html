@@ -1,105 +1,89 @@
+<section class="py-14 md:h-[50rem]  sm:h-auto ">
+  @if(sessionActive && paradasFavs.length > 0){
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 p-6">
+      <div class="flex justify-center -mt-5 w-full">
+        <div class="w-full">
+          <div class="bg-white border rounded-lg shadow-md pb-4">
+            <div class="overflow-x-auto m-4">
+              <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll" (input)="searchAllParadas()">
+              <div class="flex justify-center">
+                <table class="mx-auto w-10/12 text-center divide-y mt-8">
+                  <thead class="text-md text-gray-700 uppercase">
+                    <tr>
+                      <th class="px-4 py-2 text-center">Parades</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for(parada of getCurrentPageItemsAll(); track getCurrentPageItemsAll()){
+                      <tr>
+                        <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700" [routerLink]="['/user','parada','view',parada.id_parada]">
+                          {{ parada.denominacion }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <p-paginator [rows]="pageSize" [totalRecords]="paradasAll.length" (onPageChange)="onPageChangeAll($event)"></p-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<section class="py-14">
-@if(sessionActive && paradasFavs.length > 0){
-<div class="grid grid-cols-2 md:grid-cols-2 gap-10 p-6">
-  <div class="flex justify-center -mt-5">
-    <div class="w-full ">
-      <div class="bg-white border rounded-lg shadow-md pb-4">
-        <div class="overflow-x-auto m-4">
-          <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
-            (input)="searchAllParadas()">
-          <div class="flex justify-center">
-            <table class="mx-auto w-10/12 text-center divide-y mt-8">
-              <thead class="text-md text-gray-700 uppercase">
+      <div class="flex justify-center -mt-5 w-full">
+        <div class="w-full">
+          <div class="bg-white border rounded-lg shadow-md pb-4">
+            <div class="overflow-x-auto m-4">
+              <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermFavs" (input)="searchParadasFavs()">
+              <div class="flex justify-center">
+                <table class="mx-auto w-10/12 text-center divide-y mt-8">
+                  <thead class="text-md text-gray-700 uppercase">
+                    <tr>
+                      <th class="px-4 py-2 text-center">Parades favorites</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for(paradaFav of getCurrentPageItemsFavs(); track getCurrentPageItemsFavs()){
+                      <tr>
+                        <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700" [routerLink]="['/user','parada','view',paradaFav.id_parada]">
+                          {{ paradaFav.id_parada }} : {{ paradaFav.alias }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <p-paginator [rows]="pageSize" [totalRecords]="paradasFavs.length" (onPageChange)="onPageChangeFavs($event)"></p-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @if(paradasFavs.length == 0){
+    <div class="grid grid-cols-1 gap-4 p-4">
+      <div class="bg-white p-5 rounded-lg -mt-5 md:col-span-2 md:text-center md:mx-auto">
+        <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll" (input)="searchAllParadas()">
+        <div class="flex justify-center">
+          <table class="mx-auto w-10/12 text-center divide-y mt-8">
+            <thead class="text-md text-gray-700 uppercase">
+              <tr>
+                <th class="px-4 py-2 text-center">Parades</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(parada of getCurrentPageItemsAll(); track getCurrentPageItemsAll()){
                 <tr>
-                  <th class="px-4 py-2 text-center">Parades</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for(parada of getCurrentPageItemsAll(); track getCurrentPageItemsAll()){
-                <tr>
-                  <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700"
-                    [routerLink]="['/user','parada','view',parada.id_parada]">{{ parada.denominacion }}
+                  <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700" [routerLink]="['/user','parada','view',parada.id_parada]">
+                    {{ parada.denominacion }}
                   </td>
                 </tr>
-                }
-
-
-              </tbody>
-            </table>
-          </div>
-          <p-paginator [rows]="pageSize" [totalRecords]="paradasAll.length" (onPageChange)="onPageChangeAll($event)">
-          </p-paginator>
+              }
+            </tbody>
+          </table>
         </div>
+        <p-paginator [rows]="pageSize" [totalRecords]="paradasAll.length" (onPageChange)="onPageChangeAll($event)"></p-paginator>
       </div>
     </div>
-  </div>
-
-
-
-  <div class="flex justify-center -mt-5">
-    <div class="w-full">
-      <div class="bg-white border rounded-lg shadow-md pb-4">
-        <div class="overflow-x-auto m-4">
-          <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermFavs"
-            (input)="searchParadasFavs()">
-          <div class="flex justify-center">
-            <table class="mx-auto w-10/12 text-center divide-y mt-8">
-              <thead class="text-md text-gray-700 uppercase">
-                <tr>
-                  <th class="px-4 py-2 text-center">Parades favorites</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for(paradaFav of getCurrentPageItemsFavs(); track getCurrentPageItemsFavs()){
-                <tr>
-                  <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700"
-                    [routerLink]="['/user','parada','view',paradaFav.id_parada]"> {{paradaFav.id_parada}} : {{
-                    paradaFav.alias
-                    }}</td>
-                </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-          <p-paginator [rows]="pageSize" [totalRecords]="paradasFavs.length" (onPageChange)="onPageChangeFavs($event)">
-          </p-paginator>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-}
-@if(paradasFavs.length == 0){
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-  <div class="bg-white p-5 rounded-lg -mt-5 md:col-span-2 md:text-center md:mx-auto">
-    <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar parada" [(ngModel)]="searchTermAll"
-      (input)="searchAllParadas()">
-    <div class="flex justify-center">
-      <table class="mx-auto w-10/12 text-center divide-y mt-8">
-        <thead class="text-md text-gray-700 uppercase">
-          <tr>
-            <th class="px-4 py-2 text-center">Parades</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for(parada of getCurrentPageItemsAll(); track getCurrentPageItemsAll()){
-          <tr>
-            <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700"
-              [routerLink]="['/user','parada','view',parada.id_parada]">{{ parada.denominacion }}
-            </td>
-          </tr>
-          }
-
-
-        </tbody>
-      </table>
-    </div>
-    <p-paginator [rows]="pageSize" [totalRecords]="paradasAll.length" (onPageChange)="onPageChangeAll($event)">
-    </p-paginator>
-  </div>
-</div>
-
-}
+  }
 </section>

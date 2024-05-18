@@ -1,8 +1,8 @@
-
-<section class="py-14">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-  <div class="bg-white p-5 rounded-lg -mt-5 md:col-span-2 md:text-center md:mx-auto">
-      <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar línia" [(ngModel)]="searchTerm" (input)="search()">
+<section class="py-14 md:h-[50rem] h-[50rem]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+    <div class="bg-white p-5 rounded-lg -mt-5 md:col-span-2 md:text-center md:mx-auto">
+      <input class="input border-gray-500 w-full rounded" type="text" placeholder="Buscar línia"
+        [(ngModel)]="searchTerm" (input)="search()">
       <div class="flex justify-center">
         <table class="mx-auto w-10/12 text-center divide-y mt-8">
           <thead class="text-md text-gray-700 uppercase">
@@ -12,17 +12,16 @@
           </thead>
           <tbody>
             @for( linea of getCurrentPageItems(); track getCurrentPageItems()){
-              <tr>
-                <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700 "  (click)="doView(linea)"> {{ linea }}</td>
-              </tr>
+            <tr>
+              <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700 " (click)="doView(linea)"> {{ linea
+                }}</td>
+            </tr>
             }
-            
-              
-      
           </tbody>
         </table>
       </div>
-      <p-paginator [rows]="itemsPerPage" [totalRecords]="lineas.length" (onPageChange)="onPageChange($event)"></p-paginator>
+      <p-paginator [rows]="itemsPerPage" [totalRecords]="lineas.length"
+        (onPageChange)="onPageChange($event)"></p-paginator>
     </div>
   </div>
 </section>

@@ -8,6 +8,7 @@ import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { MenubarModule } from 'primeng/menubar';
 import { Renderer2, ElementRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-menu-unrouted',
@@ -16,6 +17,7 @@ import { Renderer2, ElementRef } from '@angular/core';
   styleUrls: ['./menu-unrouted.component.scss'],
   imports:[
     MenubarModule,
+    CommonModule
   ],
   
 })
@@ -23,6 +25,7 @@ export class MenuUnroutedComponent implements OnInit {
   strUserName: string = "";
   oSessionUser: IUser | null = null;
   strUrl: string = "";
+  dropdownEnabled: boolean = false;
   
   /*
   Suscripción al Evento de Cambio de Ruta
@@ -79,6 +82,10 @@ export class MenuUnroutedComponent implements OnInit {
         }
       }
     });
+  }
+
+  toggleDropdown() {
+    this.dropdownEnabled = !this.dropdownEnabled;
   }
   redirectToLogin() {
     this.oRouter.navigateByUrl('/login');
