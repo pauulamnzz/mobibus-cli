@@ -68,6 +68,9 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   public hasError = (controlName: string, errorName: string) => {
     return this.userForm.controls[controlName].hasError(errorName);
   }
+  goBack() {
+    this.oRouter.navigate(["/admin/user/plist"]);
+  }
   onSubmit() {
     if (this.userForm.valid) {
       if (this.operation == 'NEW') {

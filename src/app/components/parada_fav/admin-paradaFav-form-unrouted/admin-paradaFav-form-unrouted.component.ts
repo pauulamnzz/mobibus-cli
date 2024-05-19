@@ -87,6 +87,11 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   public hasError = (controlName: string, errorName: string) => {
     return this.paradaFavForm.controls[controlName].hasError(errorName);
   }
+
+  goBack() {
+    this.oRouter.navigate(["/admin/paradaFav/plist"]);
+  }
+
   onSubmit() {
     console.log(this.paradaFavForm.value);
     if (this.paradaFavForm.valid) {
