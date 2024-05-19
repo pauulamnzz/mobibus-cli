@@ -17,6 +17,7 @@ import { UserLineaImgRoutedComponent } from './components/linea/user-linea-img-r
 import { SignInRoutedComponent } from './components/shared/signIn-routed/signIn-routed.component';
 import { SendEmailComponent } from './components/send-email/send-email.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { UserLineaImgErrorRoutedComponent } from './components/linea/user-linea-img-error-routed/user-linea-img-error-routed.component';
 
 export const routes: Routes = [
     { path: '', component: HomeRoutedComponent },
@@ -35,7 +36,9 @@ export const routes: Routes = [
     { path: 'admin/user/edit/:id', component: AdminUserEditRoutedComponent },
   
 
-    { path: 'user/linea/img/:id', component: UserLineaImgRoutedComponent },    
+    { path: 'user/linea/img/:id', component: UserLineaImgRoutedComponent },  
+    { path: 'user/linea/imgError/:id', component: UserLineaImgErrorRoutedComponent },    
+  
     { path: 'user/linea/plist', component: UserLineaPlistRoutedComponent },    
     { path: 'user/parada/plist', component: UserParadaPlistRoutedComponent },    
 

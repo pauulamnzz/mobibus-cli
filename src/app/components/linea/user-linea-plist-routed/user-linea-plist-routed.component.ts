@@ -70,13 +70,11 @@ onPageChange(event: any) {
   this.currentPage = event.page + 1;
 }
 doView(linea: string) {
-  const imageUrl = `https://www.lovevalencia.com/wp-content/uploads/2012/06/Esquema-Paradas-L%C3%ADnea-${linea}-EMT-Valencia.gif`;
+  const imageUrl = "../../../../assets/rutas/Esquema-Paradas-Línea-" + linea + "-EMT-Valencia.gif";
  const width = window.innerWidth < 768 ? '80%' : '40%';
   const isMobile = window.innerWidth < 768;
   if(!isMobile){
-
-    // Verificar si la imagen existe
-
+    // Para PC: Verificar si la imagen existe 
   this.imageExists(imageUrl).then(exists => {
     if (exists) {
       // Si la imagen existe, abrir el diálogo con la imagen
@@ -101,9 +99,17 @@ doView(linea: string) {
     }
   });
 }else{
-  this.oRouter.navigate(['user/linea/img/'+linea]);
+   // Para movil: Verificar si la imagen existe 
+  this.imageExists(imageUrl).then(exists => {
+    if (exists) {
+      this.oRouter.navigate(['user/linea/img/'+linea]);
+    }else{
+      this.oRouter.navigate(['user/linea/imgError/'+linea]);
+    }
+  });
+ }
 }
-}
+
 
 
 imageExists(url: string): Promise<boolean> {

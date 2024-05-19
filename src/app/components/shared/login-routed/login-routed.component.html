@@ -21,6 +21,12 @@
             @if(loginForm.get('username')?.hasError('required') && lostFocus.username){
             <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari requerit</p>
             }
+            <!-- @if(loginForm.get('username')?.hasError('minlength') && lostFocus.username){
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari ha de tenir com a mínim 3 caràcters</p>
+              }
+              @if(loginForm.get('username')?.hasError('maxlength') && lostFocus.username){
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500">Nom d'usuari ha de tenir com a màxim 15 caràcters</p>
+                } -->
           </div>
           <!-- Password -->
           <div>

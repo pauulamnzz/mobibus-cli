@@ -1,28 +1,30 @@
 <div class="p-4">
-  <div class="flex justify-between items-center m-7">
+  <div class="flex flex-col md:flex-row items-center m-5 lg:gap-4">
     <div class="flex items-center">
-      <h1 class="text-4xl text-gray-700 font-bold md:ml-10 lg:ml-60">Ruta línea</h1>
-   
-      <button type="button" (click)="onPrint()" class=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 m-3">PDF</button>
+      <h1 class="text-4xl text-gray-700 font-bold md:ml-10 lg:ml-60">Ruta línea {{linea}}</h1>
+    </div>
+    <div class="flex justify-center md:justify-start mt-3 md:mt-0">
+      <button type="button" (click)="onPrint()"
+        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 m-2">PDF</button>
     </div>
   </div>
   <div class="container flex justify-center mb-10">
-    <div class=" w-full md:w-4/4 lg:w-10/12 xl:w-8/12">
-      <div class="bg-white border rounded-lg shadow-md pb-4">
-        <div class=" overflow-auto m-4">
+    <div class="w-full md:w-4/4 lg:w-10/12 xl:w-8/12">
+      <div class="bg-white border rounded-lg shadow-md ">
+        <div class="overflow-auto m-4">
           @if(linea){
-            <input type="checkbox" id="zoomCheck">
-            <label for="zoomCheck">
-            <img 
-            [src]="'https://www.lovevalencia.com/wp-content/uploads/2012/06/Esquema-Paradas-L%C3%ADnea-' + linea + '-EMT-Valencia.gif'"
-            alt="Ruta de la línea {{ linea }}" />
-          </label>
-          }@else{
-<app-user-linea-img-error-unrouted></app-user-linea-img-error-unrouted>
+          <input type="checkbox" id="zoomCheck">
+          <label for="zoomCheck">
+              <img class="mt-5"
+                [src]="'../../../../assets/rutas/Esquema-Paradas-Línea-' + linea + '-EMT-Valencia.gif'"
+                alt="Ruta de la línea {{ linea }}" >
+            </label>
           }
-
+     
         </div>
       </div>
     </div>
   </div>
 </div>
+
+

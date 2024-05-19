@@ -40,7 +40,7 @@ export class LoginRoutedComponent implements OnInit {
     private oCryptoService: CryptoService
   ) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required, /*Validators.minLength(3), Validators.maxLength(15)*/]],
       password: ['', [Validators.required, /*Validators.minLength(6)*/]]
     });
    }
