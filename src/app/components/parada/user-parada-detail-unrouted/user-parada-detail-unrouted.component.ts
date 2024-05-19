@@ -8,6 +8,7 @@ import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service'
 import { CommonModule } from '@angular/common';
 import { UserParadaFormUnroutedComponent } from '../user-parada-form-unrouted/user-parada-form-unrouted.component';
 import { ParadaComunicationService } from '../../../services/parada.comunication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-parada-detail-unrouted',
@@ -35,7 +36,9 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig,
     public oDialogService: DialogService,
-    private comunicationService: ParadaComunicationService
+    private comunicationService: ParadaComunicationService,
+    private oRouter: Router
+
 
   ) {
     if (config) {
@@ -51,6 +54,11 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       this.getOne();
     });
   }
+
+  goBack() {
+    this.oRouter.navigate(["user/parada/plist"]);
+  }
+
   getOne(): void {
     this.oApiEmtAjaxService.getInfoLlegadas(this.id).subscribe({
       next: (data: IProxLlegada[]) => {
