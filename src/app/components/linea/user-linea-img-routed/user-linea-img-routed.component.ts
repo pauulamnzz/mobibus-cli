@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {UserLineaImgUnroutedComponent}  from '../user-linea-img-unrouted/user-linea-img-unrouted.component';
-import { ApiEmtService } from '../../../services/api-emt.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserLineaImgErrorUnroutedComponent } from '../user-linea-img-error-unrouted/user-linea-img-error-unrouted.component';
 import jsPDF from 'jspdf';
 import { Location } from '@angular/common';
-import { PdfService } from '../../../services/pdf.service';
+
 @Component({
   selector: 'app-user-linea-img-routed',
   templateUrl: './user-linea-img-routed.component.html',

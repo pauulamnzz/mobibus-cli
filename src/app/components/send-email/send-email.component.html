@@ -17,10 +17,10 @@
           </h3>
           <div class="justify-center m-5">
             <form [formGroup]="sendEmailForm" (ngSubmit)="onSubmit()" class="m-5 flex flex-col items-center max-w-sm mx-auto">
-              <div class="w-full flex">
+              <div class="w-full sm:flex">
                 <div class="relative w-full mr-2">
                   <input id="mailTo" formControlName="mailTo" type="text"
-                    class="p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-grey-500 focus:border-grey-500 block w-full "
+                    class="p-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full "
                     placeholder="Introdueix email" required />
                 </div>
                 <!-- Botón para pantallas grandes -->
@@ -33,7 +33,7 @@
                 </div>
               </div>
               <!-- Botón para pantallas pequeñas -->
-              <div class="flex justify-center sm:hidden mt-2">
+              <div class=" sm:hidden mt-2">
                 <button type="submit" 
                 class="p-2 text-sm font-medium text-white bg-red-600 rounded-lg border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 w-full">
                   Canviar contrasenya
