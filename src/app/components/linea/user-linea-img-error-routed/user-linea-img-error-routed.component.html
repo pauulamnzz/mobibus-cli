@@ -1,14 +1,23 @@
-<section class="md:h-[34rem]  py-24">
-<div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md m-10 p-10 max-w-xs md:max-w-full md:w-3/4 lg:w-1/2 xl:w-2/5 mx-auto" role="alert">
-  <div class="flex items-center">
-    <div class="mr-4">
-      
+<!--movil-->
+<section class="md:h-[34rem] py-24">
+    <div class="relative">
+      <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md m-10 p-10 max-w-xs md:max-w-full md:w-3/4 lg:w-1/2 xl:w-2/5 mx-auto" role="alert">
+        <div class="flex items-center justify-between"> <!-- Agregado justify-between para alinear el contenido a la derecha -->
+          <div>
+            <p class="font-bold text-lg">Oops, sembla que no hi ha una imatge per a aquesta línia d'autobús!</p>
+            <p class="text-sm">Intenta-ho en un altre moment.</p>
+          </div>
+          <button (click)="goBack()" class="p-3 bg-transparent outline-none focus:outline-none">
+            <i class="fas fa-times-circle text-red-900 text-2xl"></i>
+          </button>
+        </div>
+      </div>
     </div>
-    <div>
-      <p class="font-bold text-lg">Oops, sembla que no hi ha una imatge per a aquesta línia d'autobús!</p>
-      <p class="text-sm">Intenta-ho en un altre moment.</p>
-    </div>
-  </div>
-</div>
+  </section>
+  
 
-</section>
+
+<!--movil
+<section class="md:h-[34rem]  py-24">
+    <app-user-linea-img-error-unrouted></app-user-linea-img-error-unrouted>
+    </section>-->
