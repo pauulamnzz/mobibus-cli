@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { CryptoService } from '../../../services/crypto.service';
@@ -24,7 +24,8 @@ import { CommonModule } from '@angular/common';
   MessagesModule,
   DynamicDialogModule,
   ToastModule,
-  CommonModule
+  CommonModule,
+  RouterModule
 ]
 })
 export class LoginRoutedComponent implements OnInit {

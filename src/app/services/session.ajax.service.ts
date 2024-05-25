@@ -35,7 +35,9 @@ private parseJwt(token: string): IToken {
 }
 login(sUsername: string, sPassword: string): Observable<string> {
   //const sUser: string = JSON.stringify({ username: sUsername, password: sPassword });
-  return this.oHttpClient.post<string>(this.sUrl, { username: sUsername, password: sPassword });        
+  return this.oHttpClient.post<string>(this.sUrl+"/login", { username: sUsername, password: sPassword });        
+//  return this.oHttpClient.post<string>(this.sUrl, { username: sUsername, password: sPassword });        
+
 }
 
 signIn(sUsername: string, sPassword: string, sEmail: string): Observable<string> {

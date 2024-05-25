@@ -38,9 +38,10 @@ export const routes: Routes = [
 
     { path: 'user/linea/img/:id', component: UserLineaImgRoutedComponent },  
     { path: 'user/linea/imgError/:id', component: UserLineaImgErrorRoutedComponent },    
-  
     { path: 'user/linea/plist', component: UserLineaPlistRoutedComponent },    
+    
     { path: 'user/parada/plist', component: UserParadaPlistRoutedComponent },    
+    { path: 'user/parada/view/:id', component: UserParadaViewRoutedComponent },    
 
 
     { path: 'admin/paradaFav/plist', component: AdminParadaFavPlistRoutedComponent },    
@@ -50,7 +51,6 @@ export const routes: Routes = [
     { path: 'admin/paradaFav/plist/byuser/:id', component: AdminParadaFavPlistRoutedComponent },
 
 
-    { path: 'user/parada/view/:id', component: UserParadaViewRoutedComponent },    
 
     
 ];

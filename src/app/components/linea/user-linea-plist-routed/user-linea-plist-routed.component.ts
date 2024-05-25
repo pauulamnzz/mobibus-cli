@@ -70,7 +70,7 @@ onPageChange(event: any) {
   this.currentPage = event.page + 1;
 }
 doView(linea: string) {
-  const imageUrl = "../../../../assets/rutas/Esquema-Paradas-Línea-" + linea + "-EMT-Valencia.gif";
+const imageUrl = "../../../../assets/rutas/Esquema-Paradas-Línea-" + linea + "-EMT-Valencia.gif";
  const width = window.innerWidth < 768 ? '80%' : '40%';
   const isMobile = window.innerWidth < 768;
   if(!isMobile){
@@ -79,7 +79,7 @@ doView(linea: string) {
     if (exists) {
       // Si la imagen existe, abrir el diálogo con la imagen
       this.oDialogService.open(UserLineaImgUnroutedComponent, {
-        data: { imageUrl },
+        data: { imageUrl, linea},
         header: 'Ruta de línia ' + linea,
         
         width: width,

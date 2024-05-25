@@ -6,6 +6,7 @@ import { Map, MapStyle, config, Marker } from '@maptiler/sdk';
 import { HttpClient } from '@angular/common/http';
 import { ApiEmtService } from '../../../services/api-emt.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home-routed',
   templateUrl: './home-routed.component.html',
@@ -40,6 +41,7 @@ export class HomeRoutedComponent implements OnInit {
       style: MapStyle.STREETS,
       center: [initialState.lng, initialState.lat],
       zoom: initialState.zoom,
+      
 
     });
 

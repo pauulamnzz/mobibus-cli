@@ -4,7 +4,7 @@ import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ReactiveForm
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { MessageService } from 'primeng/api';
 import { CryptoService } from '../../../services/crypto.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { IUser } from '../../../model/model.interface';
 import { UserAjaxService } from '../../../services/user.ajax.service';
 import { catchError, map, Observable, of } from 'rxjs';
@@ -16,7 +16,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./signIn-routed.component.css'],
   imports: [
     ReactiveFormsModule,
-   CommonModule
+   CommonModule,
+   RouterModule
   ],
   standalone: true,
 
