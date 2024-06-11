@@ -147,4 +147,13 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       console.error("No es pot eliminar la parada de favorites. Usuari o ID de parada no vàlid.");
     }
   }
+
+  getNombreParada(): string {
+    if (this.isFavoriteParada) {
+      const paradaFav = this.paradasFavs.find(paradaFav => paradaFav.id_parada === this.id);
+      return paradaFav?.alias || this.oProxLlegada[0]?.nomParada;
+    }
+    return this.oProxLlegada[0]?.nomParada;
+  }
+
 }

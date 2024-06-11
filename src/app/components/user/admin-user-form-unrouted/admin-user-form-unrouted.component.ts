@@ -72,6 +72,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
     this.oRouter.navigate(["/admin/user/plist"]);
   }
   onSubmit() {
+    console.log(this.userForm.value);
     if (this.userForm.valid) {
       if (this.operation == 'NEW') {
         this.oUserAjaxService.newOne(this.userForm.value).subscribe({
@@ -81,7 +82,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
             // avisar al usuario que se ha creado correctamente
             this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'S\'ha creat el nou usuari',life: 2000 });
             this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
-            this.userForm.reset();
+          //  this.userForm.reset();
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;

@@ -95,14 +95,29 @@ export class MenuUnroutedComponent implements OnInit {
   }
 
      doSessionUserView($event: Event) {
-    if (this.oSessionUser) {
+
+      const width = window.innerWidth < 768 ? '80%' : '40%';
+      const isMobile = window.innerWidth < 768;
       let ref: DynamicDialogRef | undefined;
+
+    if (this.oSessionUser && !isMobile) {
       ref = this.oDialogService.open(UserUserDetailUnroutedComponent, {
         data: {
           id: this.oSessionUser.id
         },
         header: 'Detalls de l\'usuari',
         width: '50%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: false
+      });
+    }else if((this.oSessionUser && isMobile)){
+      ref = this.oDialogService.open(UserUserDetailUnroutedComponent, {
+        data: {
+          id: this.oSessionUser.id
+        },
+        header: 'Detalls de l\'usuari',
+        width: '80%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
         maximizable: false

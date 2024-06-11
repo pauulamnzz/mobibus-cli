@@ -16,11 +16,11 @@
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
-        <div class="text-center mt-14">
-          <p><strong>{{ oProxLlegada[0]?.numParada }} - {{ oProxLlegada[0]?.nomParada }}</strong></p>
+        <div class="text-center mt-14 ml-5 mr-5">
           @if(oUser){
           @if( isFavoriteParada){
-          <div class="container favorita mt-2">
+            <p><strong>{{ oProxLlegada[0]?.numParada }} - {{ getNombreParada() }}</strong></p>
+            <div class="container favorita mt-2">
             <label class="container m-5 favorite">
               <input (click)="removeFav()" type="checkbox" checked>
               <svg class="save-regular" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
@@ -37,6 +37,7 @@
           </div>
 
           }@else{
+            <p><strong>{{ oProxLlegada[0]?.numParada }} - {{ oProxLlegada[0]?.nomParada }}</strong></p>
           <div class="container no-favorita mt-2">
             <label class="container m-5 favorite">
               <input type="checkbox">

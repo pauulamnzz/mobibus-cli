@@ -8,7 +8,7 @@
     
     @if(status == null){
     
-    
+    <div class="hidden md:block">
     <div class="flex justify-center mb-10">
       <div class="w-full sm:w-4/4 md:w-4/4 lg:w-9/12 xl:w-8/12 ">
         <div class="bg-white border rounded-lg shadow-md pb-5">
@@ -23,11 +23,12 @@
                   </tr>
                 </thead>
                 <tbody>
-    
+               @if(oUser.role==false){
                   <tr class="border-b">
                     <th class="px-4 py-2 text-center ">ID</th>
                     <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.id }}</td>
                   </tr>
+                }
                   <tr class="border-b">
                     <th class="px-4 py-2 text-center ">Nom d'usuari</th>
                     <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.username }}</td>
@@ -36,6 +37,7 @@
                     <th class="px-4 py-2 text-center ">Email</th>
                     <td class="text-gray-700 px-4 py-2 text-center">{{ oUser.email }}</td>
                   </tr>
+                  @if(oUser.role==false){
                   <tr class="border-b">
                     <th class="px-4 py-2 text-center ">Rol</th>
                     <td  class="text-gray-700 px-4 py-2 text-center">
@@ -45,9 +47,8 @@
                       Usuari
                       }
                     </td>
-    
                   </tr>
-
+                  }
     
                 </tbody>
                 }
@@ -59,6 +60,26 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="sm:hidden">
+    <div class="flex justify-center mb-10">
+      <div class="w-full sm:w-4/4 md:w-4/4 lg:w-9/12 xl:w-8/12 ">
+        <div class="bg-white border rounded-lg shadow-md pb-5">
+          <div class="text-center ">
+            <div class="overflow-x-auto">
+            @if(oUser) {
+              <p class="text-gray-700 mb-2 mt-4"><strong>Nombre</strong></p>
+              <p  class="text-gray-700 mb-4">  {{ oUser.username }}</p>
+              <p></p>
+              <p class="text-gray-700 mb-2"><strong>Correo</strong> </p>
+               <p  class="text-gray-700 mb-2"> {{ oUser.email }}</p>             
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       }
     
       }

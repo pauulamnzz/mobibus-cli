@@ -63,7 +63,7 @@ export class LoginRoutedComponent implements OnInit {
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
-          this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No s\'ha pogut iniciar sessió' }); 
+          this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Usuari i contrasenya no coincideixen' }); 
        console.log(error);
         }
       });
@@ -74,17 +74,5 @@ export class LoginRoutedComponent implements OnInit {
     this.loginForm.reset();
   }
 
-  loginAdmin() {
-    this.loginForm.patchValue({
-      username: 'Paula',
-      password: 'foxforum'
-    });
-  }
 
-  loginUser() {
-    this.loginForm.patchValue({
-      username: 'Hugo',
-      password: 'foxforum'
-    });
-}
 }

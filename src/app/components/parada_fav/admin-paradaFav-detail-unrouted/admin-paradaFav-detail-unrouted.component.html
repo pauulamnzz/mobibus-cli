@@ -5,11 +5,11 @@
 }@else{
 
 @if(status == null){
-  <section class=" py-16">
+  <section class=" py-12">
 <div class="flex justify-center mb-10">
-  <div class="w-full sm:w-4/4 md:w-4/4 lg:w-9/12 xl:w-8/12 ">
+  <div class="w-full sm:w-4/4 md:w-4/4 lg:w-8/12 xl:w-4/12 ">
     <div class="bg-white border rounded-lg shadow-md pb-5">
-      <div class="text-center mt-14">
+      <div class="text-center mt-6">
         <div class="overflow-x-auto">
           <table class="mx-auto text-center divide-y m-5">
             <thead class="text-md text-gray-700 uppercase">
@@ -35,7 +35,7 @@
               <tr class="border-b">
                 <th class="px-4 py-2 text-center">Usuari</th>
                 <td  class="text-gray-700 px-4 py-2 text-center">
-                  <a [routerLink]="['/admin','user','view',oParadaFav.user.id]">{{oParadaFav.user.id}}
+                  <a [routerLink]="['/admin','user','view',oParadaFav.user.id]">{{"("+oParadaFav.user.id+")"}}
                     {{oParadaFav.user.username}}</a>
                 </td>
               </tr>

@@ -24,16 +24,6 @@ export class UserLineaImgUnroutedComponent implements OnInit {
   this.linea = this.config.data.linea;
   }
 
-  // onPrint() {
-  //   const doc = new jsPDF();
-  //   //const imgData = "../../../../assets/rutas/Esquema-Paradas-Línea-" + this.linea + "-EMT-Valencia.gif";
-  //   //console.log(imgData);
-  //   if (this.imageUrl) {
-  //   doc.addImage(this.imageUrl, 'JPEG', 10, 10, 150, 250);
-  //   doc.save('ruta_linea_' + this.linea + '.pdf');
-  //   }
-  // }
-
   onPrint() {
     const doc = new jsPDF();
     const img = new Image();
