@@ -5,12 +5,12 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dy
 import { IParadaFav, IProxLlegada, IUser } from '../../../model/model.interface';
 import { SessionAjaxService } from '../../../services/session.ajax.service';
 import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service';
-import { CommonModule } from '@angular/common';
 import { UserParadaFormUnroutedComponent } from '../user-parada-form-unrouted/user-parada-form-unrouted.component';
 import { ParadaComunicationService } from '../../../services/parada.comunication.service';
 import { Router, RouterModule } from '@angular/router';
 import { UserLineaImgUnroutedComponent } from '../../linea/user-linea-img-unrouted/user-linea-img-unrouted.component';
 import { UserLineaImgErrorUnroutedComponent } from '../../linea/user-linea-img-error-unrouted/user-linea-img-error-unrouted.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-parada-detail-unrouted',
@@ -39,7 +39,8 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     @Optional() public config: DynamicDialogConfig,
     public oDialogService: DialogService,
     private comunicationService: ParadaComunicationService,
-    private oRouter: Router
+    private oRouter: Router,
+    private location: Location
 
 
   ) {
@@ -57,9 +58,10 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     });
   }
 
+
   goBack() {
-    this.oRouter.navigate(["user/parada/plist"]);
-  }
+    this.location.back();
+    }
 
   getOne(): void {
     this.oApiEmtAjaxService.getInfoLlegadas(this.id).subscribe({
