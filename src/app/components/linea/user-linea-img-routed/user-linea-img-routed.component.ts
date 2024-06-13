@@ -45,8 +45,8 @@ export class UserLineaImgRoutedComponent implements OnInit {
   }
 
   goBack() {
-    this.oRouter.navigate(["user/linea/plist"]);
-  }
+    this.location.back();
+    }
 
   onPrint() {
     const doc = new jsPDF();

@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
   standalone: true,
   styleUrls: ['./user-linea-plist-routed.component.scss'],
   imports: [
-  CommonModule,
     FormsModule,
     PaginatorModule
 

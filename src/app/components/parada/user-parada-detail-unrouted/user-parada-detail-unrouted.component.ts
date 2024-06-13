@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { UserParadaFormUnroutedComponent } from '../user-parada-form-unrouted/user-parada-form-unrouted.component';
 import { ParadaComunicationService } from '../../../services/parada.comunication.service';
 import { Router, RouterModule } from '@angular/router';
+import { UserLineaImgUnroutedComponent } from '../../linea/user-linea-img-unrouted/user-linea-img-unrouted.component';
+import { UserLineaImgErrorUnroutedComponent } from '../../linea/user-linea-img-error-unrouted/user-linea-img-error-unrouted.component';
 
 @Component({
   selector: 'app-user-parada-detail-unrouted',
@@ -167,5 +169,53 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     }
     return this.oProxLlegada[0]?.nomParada;
   }
+  doView(linea: string) {
+    const imageUrl = "../../../../assets/rutas/Esquema-Paradas-Línea-" + linea + "-EMT-Valencia.gif";
+     const width = window.innerWidth < 768 ? '80%' : '40%';
+      const isMobile = window.innerWidth < 768;
+      if(!isMobile){
+        // Para PC: Verificar si la imagen existe 
+      this.imageExists(imageUrl).then(exists => {
+        if (exists) {
+          // Si la imagen existe, abrir el diálogo con la imagen
+          this.oDialogService.open(UserLineaImgUnroutedComponent, {
+            data: { imageUrl, linea},
+            header: 'Ruta de línia ' + linea,
+            
+            width: width,
+            contentStyle: { overflow: 'auto' },
+            baseZIndex: 10000,
+            maximizable: false
+          });
+        } else {
+          // Si la imagen no existe, abrir el diálogo de error
+          this.oDialogService.open(UserLineaImgErrorUnroutedComponent, {
+            header: 'Error: No existe ruta para esta línea',
+            width: '40%',
+            contentStyle: { overflow: 'auto' },
+            baseZIndex: 10000,
+            maximizable: false
+          });
+        }
+      });
+    }else{
+       // Para movil: Verificar si la imagen existe 
+      this.imageExists(imageUrl).then(exists => {
+        if (exists) {
+          this.oRouter.navigate(['user/linea/img/'+linea]);
+        }else{
+          this.oRouter.navigate(['user/linea/imgError/'+linea]);
+        }
+      });
+     }
+    }
 
+    imageExists(url: string): Promise<boolean> {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+      });
+    }
 }
