@@ -8,7 +8,7 @@ import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service'
 import { CommonModule } from '@angular/common';
 import { UserParadaFormUnroutedComponent } from '../user-parada-form-unrouted/user-parada-form-unrouted.component';
 import { ParadaComunicationService } from '../../../services/parada.comunication.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-parada-detail-unrouted',
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-parada-detail-unrouted.component.scss'],
   standalone: true,
   imports: [
-    CommonModule
+    RouterModule,
   ]
 })
 export class UserParadaDetailUnroutedComponent implements OnInit {
@@ -77,9 +77,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
                   console.log(paradasFavs);
                   if (this.paradasFavs.some(paradaFav => paradaFav.id_parada === this.id)) {
                     this.isFavoriteParada = true;
-                    console.log("La parada es favorita");
                   } else {
-                    console.log("La parada no es favorita");
                     this.isFavoriteParada = false;
 
                   }
@@ -112,6 +110,10 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       id_parada: this.id
 
     };
+
+    const width = window.innerWidth < 768 ? '80%' : '40%';
+    const isMobile = window.innerWidth < 768;
+    if(!isMobile){
     this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
 
       width: '25%',
@@ -120,12 +122,22 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
       maximizable: false,
       data: data,
 
+    });}else{
+      this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
+
+        width: '80%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: false,
+        data: data,
+  
     });
+
     this.ref.onClose.subscribe(() => {
       this.comunicationService.triggerUpdateParadasFavoritas();
     });
   }
-
+  }
   removeFav(): void {
     if (this.oUser && this.id) {
       const paradaFavId = this.paradasFavs.find(paradaFav => paradaFav.id_parada === this.id)?.id;

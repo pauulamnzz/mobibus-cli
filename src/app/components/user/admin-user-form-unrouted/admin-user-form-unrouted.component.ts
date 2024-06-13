@@ -15,7 +15,7 @@ import { UserAjaxService } from '../../../services/user.ajax.service';
   styleUrls: ['./admin-user-form-unrouted.component.scss'],
   imports: [
     ReactiveFormsModule,
-   CommonModule
+   
   ],
 })
 export class AdminUserFormUnroutedComponent implements OnInit {
@@ -38,16 +38,22 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   }
   initializeForm(oUser: IUser) {
+    const usernameValidators = [Validators.required, Validators.minLength(3), Validators.maxLength(15)];
+    const emailValidators = [Validators.required, Validators.email];
+  
+    if (this.operation !== 'EDIT') {
+      usernameValidators.push(this.usernameExists(this.oUserAjaxService));
+      emailValidators.push(this.emailExists(this.oUserAjaxService));
+    }
+  
     this.userForm = this.oFormBuilder.group({
       id: [oUser.id],
-      username: [oUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(15),],
-        this.usernameExists(this.oUserAjaxService)],
-      email: [oUser.email, [Validators.required, Validators.email],
-        this.emailExists(this.oUserAjaxService)],
+      username: [oUser.username, usernameValidators],
+      email: [oUser.email, emailValidators],
       role: [oUser.role, Validators.required]
     });
   }
-
+  
   ngOnInit() {
     if (this.operation == 'EDIT') {
       this.oUserAjaxService.getOne(this.id).subscribe({
