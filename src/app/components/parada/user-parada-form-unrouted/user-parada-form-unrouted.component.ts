@@ -76,21 +76,29 @@ export class UserParadaFormUnroutedComponent implements OnInit {
             this.oParadaFav = { "user": {} } as IParadaFav;
 
             this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'Parada favorita afegida amb èxit' });
-            this.ref.close(); // Close the dialog if ref is available
-          },
+            this.ref.close({ success: true });
+                    },
           error: (error: any) => {
+            this.onCancel();
+
             this.oMessageService.add({ severity: 'detail',summary: 'Error', detail: 'No s\'ha pogut crear la parada favorita', life: 2000 });
           }
         });
 
         error: (error: any) => {
+          this.onCancel();
+
           console.error("Error en obtenir l'usuari de la sessió:", error);
         }
       }
     } else {
+      this.onCancel();
+
       console.error("DynamicDialogRef és nul.");
     }
   }
-
+  onCancel() {
+    this.ref.close({ success: false });
+  }
 
 }

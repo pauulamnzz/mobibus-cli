@@ -112,36 +112,40 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     const data = {
       usuario: this.oUser,
       id_parada: this.id
-
     };
-
     const width = window.innerWidth < 768 ? '80%' : '40%';
     const isMobile = window.innerWidth < 768;
     if(!isMobile){
+  
+    // Assuming oDialogService.open returns a ref
     this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
-
       width: '25%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,
       data: data,
-
-    });}else{
-      this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
-
-        width: '80%',
-        contentStyle: { overflow: 'auto' },
-        baseZIndex: 10000,
-        maximizable: false,
-        data: data,
+    });
+  }else{
+      
+    // Assuming oDialogService.open returns a ref
+    this.ref = this.oDialogService.open(UserParadaFormUnroutedComponent, {
+      width: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+      data: data,
+    });
+  }
   
-    });
-
-    this.ref.onClose.subscribe(() => {
-      this.comunicationService.triggerUpdateParadasFavoritas();
+    this.ref.onClose.subscribe((formResult) => {
+      if (formResult && formResult.success) {
+        // Update the favorite status and trigger UI update
+        this.isFavoriteParada = true;
+        this.comunicationService.triggerUpdateParadasFavoritas();
+      }
     });
   }
-  }
+  
   removeFav(): void {
     if (this.oUser && this.id) {
       const paradaFavId = this.paradasFavs.find(paradaFav => paradaFav.id_parada === this.id)?.id;
@@ -149,20 +153,21 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
         this.oParadaFavAjaxService.removeOne(paradaFavId).subscribe({
           next: () => {
             this.paradasFavs = this.paradasFavs.filter(paradaFav => paradaFav.id !== paradaFavId);
-            this.isFavoriteParada = false;
-            console.log("Parada eliminada de favorites");
+            this.isFavoriteParada = false; // Update favorite status
+            console.log("Parada eliminada de favoritos");
           },
           error: (error: any) => {
-            console.error("Error en eliminar la parada de favorites:", error);
+            console.error("Error en eliminar la parada de favoritos:", error);
           }
         });
       } else {
-        console.error("No s'ha trobat l'ID de la parada favorita per eliminar.");
+        console.error("No se encontró el ID de la parada favorita para eliminar.");
       }
     } else {
-      console.error("No es pot eliminar la parada de favorites. Usuari o ID de parada no vàlid.");
+      console.error("No se puede eliminar la parada de favoritos. Usuario o ID de parada no válido.");
     }
   }
+  
 
   getNombreParada(): string {
     if (this.isFavoriteParada) {
@@ -220,4 +225,6 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
         img.src = url;
       });
     }
+
+    
 }
