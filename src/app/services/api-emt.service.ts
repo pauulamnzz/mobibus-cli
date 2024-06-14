@@ -88,10 +88,10 @@ getOneParada(paradaId: number): Observable<any> {
 
 getInfoLlegadas(id: number): Observable<IProxLlegada[]> { 
   //despliegue
-  //const apiUrl = `/initial/api/data?id=${id}`; 
+  const apiUrl = `/initial/api/data?id=${id}`; 
 
   //local 
-  const apiUrl = `http://localhost:8083/api/data?id=${id}`; 
+ // const apiUrl = `http://localhost:8083/api/data?id=${id}`; 
 
   return this.oHttpClient.get<IProxLlegada[]>(apiUrl);
 }

@@ -17,10 +17,10 @@ export class EmailPasswordService {
 
 
 //local
-changePasswordUrl: string = "http://localhost:8083/email/";
+//changePasswordUrl: string = "http://localhost:8083/email/";
 
 //despliegue
-//changePasswordUrl: string = "http://localhost:8080/email/";
+changePasswordUrl: string = "http://localhost:8080/email/";
 
 public sendEmail(oEmailValuesDto: EmailValuesDto): Observable<any>{
     return this.oHttpClient.post<any>(this.changePasswordUrl + 'recover-password', oEmailValuesDto);
