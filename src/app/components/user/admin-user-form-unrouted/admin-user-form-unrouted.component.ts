@@ -21,7 +21,7 @@ import { UserAjaxService } from '../../../services/user.ajax.service';
 export class AdminUserFormUnroutedComponent implements OnInit {
   @Input() id: number = 1;
   @Input() operation: formOperation = 'NEW'; //new or edit
-
+  originalUser: IUser = {} as IUser; // Guardar los valores originales
   showRoleError: boolean = false;
   selectedRole: boolean = false;
   userForm!: FormGroup;
@@ -38,35 +38,31 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   }
   initializeForm(oUser: IUser) {
-    const usernameValidators = [Validators.required, Validators.minLength(3), Validators.maxLength(15)];
-    const emailValidators = [Validators.required, Validators.email];
-  
-    if (this.operation !== 'EDIT') {
-      usernameValidators.push(this.usernameExists(this.oUserAjaxService));
-      emailValidators.push(this.emailExists(this.oUserAjaxService));
-    }
-  
     this.userForm = this.oFormBuilder.group({
       id: [oUser.id],
-      username: [oUser.username, usernameValidators],
-      email: [oUser.email, emailValidators],
+      username: [oUser.username, [Validators.required, Validators.minLength(3), Validators.maxLength(15),],
+    ],
+      email: [oUser.email, [Validators.required, Validators.email],
+      ],
       role: [oUser.role, Validators.required]
     });
   }
+
   
-  ngOnInit() {
+ ngOnInit() {
     if (this.operation == 'EDIT') {
       this.oUserAjaxService.getOne(this.id).subscribe({
         next: (data: IUser) => {
           this.oUser = data;
           this.selectedRole = this.oUser.role;
+          this.originalUser = { ...data }; // Clonar los valores originales
           this.initializeForm(this.oUser);
         },
         error: (error: HttpErrorResponse) => {
           this.status = error;
           this.oMessageService.add({ severity: 'error', summary: 'Error', life: 2000 });
         }
-      })
+      });
     } else {
       this.initializeForm(this.oUser);
     }
@@ -80,39 +76,82 @@ export class AdminUserFormUnroutedComponent implements OnInit {
   onSubmit() {
     console.log(this.userForm.value);
     if (this.userForm.valid) {
-      if (this.operation == 'NEW') {
-        this.oUserAjaxService.newOne(this.userForm.value).subscribe({
-          next: (data: IUser) => {       
-            this.oUser = data;
-            this.initializeForm(this.oUser);
-            // avisar al usuario que se ha creado correctamente
-            this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'S\'ha creat el nou usuari',life: 2000 });
-            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
-          //  this.userForm.reset();
+      if (this.operation === 'NEW') {
+        this.oUserAjaxService.existsByUsername(this.userForm.value.username).subscribe({
+          next: (usernameExists: boolean) => {
+            if (usernameExists) {
+              this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'El nombre de usuario ya existe', life: 2000 });
+            } else {
+              this.oUserAjaxService.existsByEmail(this.userForm.value.email).subscribe({
+                next: (emailExists: boolean) => {
+                  if (emailExists) {
+                    this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'El email ya existe', life: 2000 });
+                  } else {
+                    this.createUser();
+                  }
+                },
+                error: (error: HttpErrorResponse) => {
+                  this.status = error;
+                  this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error al comprobar el email', life: 2000 });
+                }
+              });
+            }
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMessageService.add({ severity: 'error', summary: ' Error', detail:'No s\'ha pogut crear l\'usuari', life: 2000 });
+            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error al comprobar el nombre de usuario', life: 2000 });
           }
-        })
-
+        });
       } else {
-        this.oUserAjaxService.updateOne(this.userForm.value).subscribe({
-          next: (data: IUser) => {
-            this.oUser = data;
-            this.initializeForm(this.oUser);
-            // avisar al usuario que se ha actualizado correctamente
-            this.oMessageService.add({ severity: 'success', summary:"Èxit",detail: 'L\'usuari s\'ha actualitzat', life: 2000 });
-            this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
-          },
-          error: (error: HttpErrorResponse) => {
-            this.status = error;
-            this.oMessageService.add({ severity: 'error', summary:"Error", detail: 'No s\'ha pogut actualizar l\'usuari', life: 2000 });
-          }
-        })
+        if (this.isFormUnchanged()) {
+          this.oMessageService.add({ severity: 'warn', summary: 'Sin cambios', detail: 'Ningún campo ha sido actualizado', life: 2000 });
+          this.oRouter.navigate(['/admin', 'user', 'plist']);
+
+        } else {
+          this.updateUser();
+        }
       }
     }
   }
+
+  private createUser() {
+    this.oUserAjaxService.newOne(this.userForm.value).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
+        this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Se ha creado el nuevo usuario', life: 2000 });
+        this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+        this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido crear el usuario', life: 2000 });
+      }
+    });
+  }
+
+  private updateUser() {
+    this.oUserAjaxService.updateOne(this.userForm.value).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
+        this.initializeForm(this.oUser);
+        this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'El usuario se ha actualizado', life: 2000 });
+        this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.status = error;
+        this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido actualizar el usuario', life: 2000 });
+      }
+    });
+  }
+
+  private isFormUnchanged(): boolean {
+    return (
+      this.originalUser.username === this.userForm.value.username &&
+      this.originalUser.email === this.userForm.value.email &&
+      this.originalUser.role === this.userForm.value.role
+    );
+  }
+
+  
   lostFocus = {
     username: false,
     email: false,
@@ -121,23 +160,5 @@ export class AdminUserFormUnroutedComponent implements OnInit {
 
   };
 
-   usernameExists(userService: UserAjaxService): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return userService.existsByUsername(control.value).pipe(
-        map(exists => exists ? { usernameExists: true } : null),
-        catchError(() => of(null))
-      );
-    };
-  }
-
-   emailExists(userService: UserAjaxService): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return userService.existsByEmail(control.value).pipe(
-        map(exists => exists ? { emailExists: true } : null),
-        catchError(() => of(null))
-      );
-    };
-  }
-
-
+ 
 }

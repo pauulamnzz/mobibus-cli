@@ -3,8 +3,8 @@ import { IUser } from '../../../model/model.interface';
 import { Component, Input, OnInit, Optional } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserAjaxService } from '../../../services/user.ajax.service';
-import { RouterModule } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-admin-user-detail-unrouted',
   templateUrl: './admin-user-detail-unrouted.component.html',
@@ -22,7 +22,10 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
   constructor(
     private oUserAjaxService: UserAjaxService,
     @Optional() public ref: DynamicDialogRef,
-    @Optional() public config: DynamicDialogConfig
+    @Optional() public config: DynamicDialogConfig,
+    private location: Location,
+    private oRouter: Router
+
   ) {
     if (config){
       if (config.data){
@@ -47,4 +50,9 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
     })
 
   }
+
+
+  goBack() {
+    this.oRouter.navigate(["/admin/user/plist"]);
+    }
 }

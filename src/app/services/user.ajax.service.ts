@@ -71,7 +71,7 @@ export class UserAjaxService {
     }
 
     existsByUsername(username: string): Observable<boolean> {
-        return this.oHttpClient.get<boolean>(`${this.sUrl}/existsByUsername/${username}`);
+        return this.oHttpClient.get<boolean>(this.sUrl+'/existsByUsername/'+username);
     }
 
     existsByEmail(email: string): Observable<boolean> {
