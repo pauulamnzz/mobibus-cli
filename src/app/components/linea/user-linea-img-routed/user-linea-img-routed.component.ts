@@ -51,7 +51,7 @@ export class UserLineaImgRoutedComponent implements OnInit {
   onPrint() {
     const doc = new jsPDF();
     const imgData = "../../../../assets/rutas/Esquema-Paradas-Línea-" + this.linea + "-EMT-Valencia.gif";
-    console.log(imgData);
+   // console.log(imgData);
     doc.addImage(imgData, 'JPEG', 10, 10, 150, 250);
     doc.save('ruta_linea_' + this.linea + '.pdf');
   }

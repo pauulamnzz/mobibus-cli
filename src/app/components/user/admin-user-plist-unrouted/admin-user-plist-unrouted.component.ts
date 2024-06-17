@@ -108,7 +108,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   }
   doRemove(u: IUser) {
     this.oUserToRemove = u;
-    console.log(this.oUserToRemove);
+   //  console.log(this.oUserToRemove);
     this.oCconfirmationService.confirm({
       message: '¿Estàs segur que vols eliminar a '+this.oUserToRemove.username+ '?',
       icon: 'pi pi-exclamation-triangle',

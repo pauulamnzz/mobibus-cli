@@ -40,7 +40,7 @@ export class AdminUserSelectionUnroutedComponent implements OnInit {
         this.oPage = data;
  
         this.oPaginatorState.pageCount = data.totalPages;
-        console.log(this.oPaginatorState);
+        // console.log(this.oPaginatorState);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;

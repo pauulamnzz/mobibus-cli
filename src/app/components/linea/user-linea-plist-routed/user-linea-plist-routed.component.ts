@@ -37,7 +37,7 @@ export class UserLineaPlistRoutedComponent implements OnInit {
 this.ApiEmtService.getAllLineas().subscribe(result => {
   this.filterLineas = result;
   this.lineas = result;
-  console.log(result);
+ //  console.log(result);
 
   });
 

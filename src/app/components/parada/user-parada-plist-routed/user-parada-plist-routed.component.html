@@ -16,7 +16,7 @@
                   <tbody>
                     @for(paradaFav of getCurrentPageItemsFavs(); track getCurrentPageItemsFavs()){
                       <tr>
-                        <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700" [routerLink]="['/user','parada','view',paradaFav.id_parada]">
+                        <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700 cursor-pointer" [routerLink]="['/user','parada','view',paradaFav.id_parada]">
                           {{ paradaFav.id_parada }} : {{ paradaFav.alias }}
                         </td>
                       </tr>
@@ -44,7 +44,7 @@
                   <tbody>
                     @for(parada of getCurrentPageItemsAll(); track getCurrentPageItemsAll()){
                       <tr>
-                        <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700" [routerLink]="['/user','parada','view',parada.id_parada]">
+                        <td class="text-centered border-b py-3 hover:bg-gray-100 text-gray-700 cursor-pointer" [routerLink]="['/user','parada','view',parada.id_parada]">
                           {{ parada.denominacion }}
                         </td>
                       </tr>

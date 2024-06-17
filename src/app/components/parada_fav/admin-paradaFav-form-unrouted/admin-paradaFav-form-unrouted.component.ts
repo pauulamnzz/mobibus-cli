@@ -93,7 +93,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.paradaFavForm.value);
+   //  console.log(this.paradaFavForm.value);
     if (this.paradaFavForm.valid) {
       if (this.operation == 'NEW') {
         this.oParadaFavAjaxService.newOne(this.paradaFavForm.value).subscribe({
@@ -152,7 +152,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       this.paradaExists().subscribe(exists => {
         this.paradaExistsOnUser = exists;
       });
-      console.log("paradaExistsOnUser:", this.paradaExistsOnUser);
+     //  console.log("paradaExistsOnUser:", this.paradaExistsOnUser);
       }else{
         this.lostFocus.user = true; 
       }
@@ -204,7 +204,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
       const idParada = this.oResultApi.id_parada;
       const userId = this.paradaFavForm.get('user.id')?.value;
   
-      console.log("idParada:", idParada, "userId:", userId);  
+      // console.log("idParada:", idParada, "userId:", userId);  
   
       if (idParada !== null && userId !== null) {
         return this.validateParadaFavExists(idParada, userId)
@@ -234,7 +234,7 @@ export class AdminParadaFavFormUnroutedComponent implements OnInit {
   }
   //Valida si existe la parada en el usuario
   validateParadaFavExists(idParada: number, userId: number): Observable<boolean> {
-    console.log("idParada1234:", idParada);
+    // console.log("idParada1234:", idParada);
 
     return this.oParadaFavAjaxService.checkParadaFavExistsForUser(idParada, userId)
       .pipe(

@@ -64,7 +64,7 @@ export class LoginRoutedComponent implements OnInit {
         error: (error: HttpErrorResponse) => {
           this.status = error;
           this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Usuari i contrasenya no coincideixen' }); 
-       console.log(error);
+       // console.log(error);
         }
       });
     }

@@ -33,7 +33,7 @@ export class AdminParadaSelectionUnroutedComponent implements OnInit {
 
     this.ApiEmtService.getAllParadas().subscribe(result => {
       this.paradas = result;
-      console.log(result);
+     //  console.log(result);
     });
 
   }

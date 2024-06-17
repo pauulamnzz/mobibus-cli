@@ -74,7 +74,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
     this.oRouter.navigate(["/admin/user/plist"]);
   }
   onSubmit() {
-    console.log(this.userForm.value);
+   //  console.log(this.userForm.value);
     if (this.userForm.valid) {
       if (this.operation === 'NEW') {
         this.oUserAjaxService.existsByUsername(this.userForm.value.username).subscribe({

@@ -48,7 +48,7 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
   ngOnInit() {
     this.getPage();
     if (this.id_user > 0) {
-      console.log("filter by user: " + this.id_user);
+      // console.log("filter by user: " + this.id_user);
       this.getUser();
     }
     this.forceReload.subscribe({
@@ -63,7 +63,7 @@ export class AdminParadaFavPlistUnroutedComponent implements OnInit {
     this.oParadaFavAjaxService.getPage(this.oPaginatorState.rows, this.oPaginatorState.page, this.orderField, this.orderDirection, this.id_user).subscribe({
       next: (data: IParadaFavPage) => {
         this.oPage = data;
-        console.log("filterrr by user: " + this.id_user);
+        // console.log("filterrr by user: " + this.id_user);
 
         this.oPaginatorState.pageCount = data.totalPages;
       },

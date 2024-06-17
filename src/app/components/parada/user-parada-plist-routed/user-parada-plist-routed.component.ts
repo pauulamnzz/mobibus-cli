@@ -55,7 +55,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
         next: (result: IResultApi[]) => {
           this.paradasAll = result;
           this.filterParadasAll = result;
-          console.log(result);
+          // console.log(result);
         },
         error: (error: any) => {
           console.error(error);
@@ -77,7 +77,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
             next: (paradasFavs: IParadaFav[]) => {
               this.paradasFavs = paradasFavs;
               this.filterParadasFavs = paradasFavs;
-              console.log(paradasFavs);
+              // console.log(paradasFavs);
 
             },
             error: (error: any) => {
@@ -90,7 +90,7 @@ export class UserParadaPlistRoutedComponent implements OnInit {
         }
       });
     } else {
-      console.log("No hi ha cap sessió activa");
+      // console.log("No hi ha cap sessió activa");
     }
   }
 

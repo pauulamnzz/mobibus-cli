@@ -43,7 +43,7 @@ export class AdminParadaFavPlistRoutedComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("filterr by user: " + this.id_user);
+    // console.log("filterr by user: " + this.id_user);
   }
 
   doEmpty($event: Event) {

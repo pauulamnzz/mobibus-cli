@@ -67,7 +67,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
     this.oApiEmtAjaxService.getInfoLlegadas(this.id).subscribe({
       next: (data: IProxLlegada[]) => {
         this.oProxLlegada = data;
-        console.log(this.oProxLlegada);
+        // console.log(this.oProxLlegada);
 
 
         if (this.oSessionAjaxService.isSessionActive()) {
@@ -78,7 +78,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
               this.oParadaFavAjaxService.getParadasFavByUser(this.oUser.id).subscribe({
                 next: (paradasFavs: IParadaFav[]) => {
                   this.paradasFavs = paradasFavs;
-                  console.log(paradasFavs);
+                 //  console.log(paradasFavs);
                   if (this.paradasFavs.some(paradaFav => paradaFav.id_parada === this.id)) {
                     this.isFavoriteParada = true;
                   } else {
@@ -96,7 +96,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
             }
           });
         } else {
-          console.log("No hi ha cap sessió activa");
+          // console.log("No hi ha cap sessió activa");
     
         }
       },
@@ -154,7 +154,7 @@ export class UserParadaDetailUnroutedComponent implements OnInit {
           next: () => {
             this.paradasFavs = this.paradasFavs.filter(paradaFav => paradaFav.id !== paradaFavId);
             this.isFavoriteParada = false; // Update favorite status
-            console.log("Parada eliminada de favoritos");
+           //  console.log("Parada eliminada de favoritos");
           },
           error: (error: any) => {
             console.error("Error en eliminar la parada de favoritos:", error);

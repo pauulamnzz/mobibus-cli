@@ -50,7 +50,7 @@ export class MenuUnroutedComponent implements OnInit {
         this.oSessionUser = oUser;
       },
       error: (error: HttpErrorResponse) => {
-        console.log(error);
+      //   console.log(error);
       }
     });
    }
@@ -72,7 +72,7 @@ export class MenuUnroutedComponent implements OnInit {
               // Actualizar el rol de administrador si es necesario
             },
             error: (error: HttpErrorResponse) => {
-              console.log(error);
+            //   console.log(error);
             }
           });
         } else if (data.type === 'logout') {

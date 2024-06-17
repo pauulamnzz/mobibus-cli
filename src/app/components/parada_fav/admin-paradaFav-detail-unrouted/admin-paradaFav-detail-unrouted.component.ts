@@ -3,7 +3,8 @@ import { IParadaFav } from '../../../model/model.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ParadaFavAjaxService } from '../../../services/parada.fav.ajax.service';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-paradaFav-detail-unrouted',
@@ -23,7 +24,9 @@ export class AdminParadaFavDetailUnroutedComponent implements OnInit {
   constructor(
     private oParadaFavAjaxService: ParadaFavAjaxService,
     @Optional() public ref: DynamicDialogRef,
-    @Optional() public config: DynamicDialogConfig
+    @Optional() public config: DynamicDialogConfig,
+    private location: Location,
+    private oRouter: Router
   ) { 
     if (config) {
       if (config.data) {
@@ -48,4 +51,8 @@ export class AdminParadaFavDetailUnroutedComponent implements OnInit {
     })
 
   }
+
+  goBack() {
+    this.oRouter.navigate(["/admin/paradaFav/plist"]);
+    }
 }

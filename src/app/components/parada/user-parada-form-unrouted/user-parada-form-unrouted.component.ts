@@ -69,7 +69,7 @@ export class UserParadaFormUnroutedComponent implements OnInit {
             id: this.data.usuario.id
           } as IUser
         };
-        console.log(paradaFav);
+        // console.log(paradaFav);
 
         this.oParadaFavAjaxService.newOne(paradaFav).subscribe({
           next: (parada: IParadaFav) => {
