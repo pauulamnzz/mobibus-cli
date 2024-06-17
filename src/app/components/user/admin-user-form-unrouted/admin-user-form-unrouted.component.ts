@@ -80,31 +80,31 @@ export class AdminUserFormUnroutedComponent implements OnInit {
         this.oUserAjaxService.existsByUsername(this.userForm.value.username).subscribe({
           next: (usernameExists: boolean) => {
             if (usernameExists) {
-              this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'El nombre de usuario ya existe', life: 2000 });
+              this.oMessageService.add({ severity: 'error', summary: 'Error', detail: "El nom d'usuari ja existeix", life: 2000 });
             } else {
               this.oUserAjaxService.existsByEmail(this.userForm.value.email).subscribe({
                 next: (emailExists: boolean) => {
                   if (emailExists) {
-                    this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'El email ya existe', life: 2000 });
+                    this.oMessageService.add({ severity: 'error', summary: 'Error', detail: "El correu electrònic ja existeix", life: 2000 });
                   } else {
                     this.createUser();
                   }
                 },
                 error: (error: HttpErrorResponse) => {
                   this.status = error;
-                  this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error al comprobar el email', life: 2000 });
+                  this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error en comprovar el correu electrònic', life: 2000 });
                 }
               });
             }
           },
           error: (error: HttpErrorResponse) => {
             this.status = error;
-            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'Error al comprobar el nombre de usuario', life: 2000 });
+            this.oMessageService.add({ severity: 'error', summary: 'Error', detail: "Error en comprovar el nom d'usuari", life: 2000 });
           }
         });
       } else {
         if (this.isFormUnchanged()) {
-          this.oMessageService.add({ severity: 'info', summary: 'Sin cambios', detail: 'Ningún campo ha sido actualizado', life: 2000 });
+          this.oMessageService.add({ severity: 'info', summary: 'Operació cancel·lada', detail: 'Cap camp ha estat actualitzat', life: 2000 });
           this.oRouter.navigate(['/admin', 'user', 'plist']);
 
         } else {
@@ -118,12 +118,12 @@ export class AdminUserFormUnroutedComponent implements OnInit {
     this.oUserAjaxService.newOne(this.userForm.value).subscribe({
       next: (data: IUser) => {
         this.oUser = data;
-        this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'Se ha creado el nuevo usuario', life: 2000 });
+        this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'S\'ha creat el nou usuari', life: 2000 });
         this.oRouter.navigate(['/admin', 'user', 'view', this.oUser]);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
-        this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido crear el usuario', life: 2000 });
+        this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No s\'ha pogut crear l\'usuari', life: 2000 });
       }
     });
   }
@@ -133,12 +133,12 @@ export class AdminUserFormUnroutedComponent implements OnInit {
       next: (data: IUser) => {
         this.oUser = data;
         this.initializeForm(this.oUser);
-        this.oMessageService.add({ severity: 'success', summary: 'Éxito', detail: 'El usuario se ha actualizado', life: 2000 });
+        this.oMessageService.add({ severity: 'success', summary: 'Èxit', detail: 'L\'usuari s\'ha actualitzat', life: 2000 });
         this.oRouter.navigate(['/admin', 'user', 'view', this.oUser.id]);
       },
       error: (error: HttpErrorResponse) => {
         this.status = error;
-        this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha podido actualizar el usuario', life: 2000 });
+        this.oMessageService.add({ severity: 'error', summary: 'Error', detail: 'No s\'ha pogut actualitzar l\'usuari', life: 2000 });
       }
     });
   }
