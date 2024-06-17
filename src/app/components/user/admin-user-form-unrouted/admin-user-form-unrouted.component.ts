@@ -104,7 +104,7 @@ export class AdminUserFormUnroutedComponent implements OnInit {
         });
       } else {
         if (this.isFormUnchanged()) {
-          this.oMessageService.add({ severity: 'warn', summary: 'Sin cambios', detail: 'Ningún campo ha sido actualizado', life: 2000 });
+          this.oMessageService.add({ severity: 'info', summary: 'Sin cambios', detail: 'Ningún campo ha sido actualizado', life: 2000 });
           this.oRouter.navigate(['/admin', 'user', 'plist']);
 
         } else {
